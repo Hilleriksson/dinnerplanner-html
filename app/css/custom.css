@@ -1,0 +1,109 @@
+body{
+  height : 100vh;
+}
+
+.bottomDiv {
+  display: inline-flex;
+  position: absolute;
+  width: 300px;
+  height: 100px;
+  z-index: 15;
+  top: 50%;
+  left: 50%;
+  margin: 0px 0 0 -150px;
+  background: lightgreen;
+}
+
+#content {
+  font: 36px Arial, sans-serif;
+  background: #06c;
+  position: relative;
+  float: left;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#container {
+  position: absolute;
+  color: white;
+  background: #ffbd17;
+  width: 900px;
+  height: 260px;
+  z-index: 15;
+  top: 50%;
+  left: 50%;
+  margin: -300px 0 0 -450px;
+}
+
+#container2 {
+  position: absolute;
+  color: white;
+  background: #ffbd17;
+  width: 900px;
+  height: 400px;
+  z-index: 15;
+  top: 75%;
+  left: 50%;
+  margin: -300px 0 0 -450px;
+}
+
+#container3 {
+  position: absolute;
+  color: white;
+  background: #ffbd17;
+  width: 900px;
+  height: 260px;
+  z-index: 15;
+  top: 25%;
+  left: 50%;
+  margin: -300px 0 0 -450px;
+}
+
+#option1 {
+  position: absolute;
+  bottom: 50%;
+  width: 450px;
+  height: 200px;
+  border: 3px solid #73AD21;
+}
+
+#option2 {
+  position: absolute;
+  bottom: 50%;
+  right: 0;
+  width: 450px;
+  height: 200px;
+  border: 3px solid #73AD21;
+}
+
+#option3 {
+  position: absolute;
+  top: 50%;
+  width: 450px;
+  height: 200px;
+  border: 3px solid #73AD21;
+}
+
+#option4 {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 450px;
+  height: 200px;
+  border: 3px solid #73AD21;
+}
+
+#optionButton {
+  height: 150px;
+  width: 400px;
+  color: #fff;
+  background-color: #3276b1;
+  border-color: #3276b1;
+}
+
+#optionButton:hover {
+  color: #3276b1;
+  background-color: #FFFFFF;
+  border-color: #3276b1;
+}
