@@ -1,0 +1,25 @@
+<html>
+    <body ng-app='spotiQuizApp' ng-controller="LoginController">
+        <div class="container">
+            <div id="loginScreen">
+                <input id="txtEmail" ng-model="email" type="email" placeholder="Email">
+
+                <input id="txtPassword" ng-model="password" type="password" placeholder="Password">
+
+                <a href="#!/home" id="btnLogin" ng-click="btnLogin()" class="btn btn-primary">Log in</a>
+
+                <button id="btnSignUp" ng-click="btnSignUp()" class="btn btn-secondary">Sign up</button>
+            </div>
+
+                <button id="btnLogout" ng-click="btnLogout()" class="btn btn-action hide">Log out</button>
+
+            <div id="profile" class="hide">
+                <input id="txtChangeName" type="text" placeholder="Change username?">
+
+                <button id="btnChangeName" class="btn btn-action">Confirm</button><br>
+
+                Welcome, <span id="profileName"></span>
+            </div>
+        </div>
+    </body>
+</html>
