@@ -1,3 +1,3 @@
-spotiQuiz.factory('Dinner', function ($resource) {
+/*spotiQuiz.factory('Dinner', function ($resource) {
 
-});
+});*/

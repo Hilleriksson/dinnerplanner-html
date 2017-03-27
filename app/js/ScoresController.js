@@ -1,2 +1,2 @@
-spotiQuizApp.controller('ScoresController', function ($scope, quizService) {
-});
+/*spotiQuizApp.controller('ScoresController', function ($scope, quizService) {
+});*/
