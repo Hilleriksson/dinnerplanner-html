@@ -2,6 +2,8 @@ body{
   height : 100vh;
 }
 
+/*Play CSS*/
+
 .bottomDiv {
   display: inline-flex;
   position: absolute;
@@ -106,4 +108,77 @@ body{
   color: #3276b1;
   background-color: #FFFFFF;
   border-color: #3276b1;
+}
+
+/*Category CSS*/
+
+#container4 {
+  overflow: auto;
+  position: absolute;
+  color: white;
+  background: #ffbd17;
+  height: 750px;
+  z-index: 15;
+  top: 50%;
+  left: 50%;
+  margin: -300px 0 0 -450px;
+}
+
+#container5 {
+  overflow: auto;
+  position: absolute;
+  color: white;
+  background: #ffbd17;
+  width: 405px;
+  height: 100px;
+  z-index: 15;
+  top: 40%;
+  left: 50%;
+  margin: -300px 0 0 -450px;
+}
+
+#categoryOption {
+  height: 350px;
+  width: 350px;
+  border-color: #3276b1;
+}
+
+#categoryOption:hover {
+  color: #3276b1;
+  background-color: #FFFFFF;
+  border-color: #3276b1;
+}
+
+#categoryButton {
+  height: 250px;
+  width: 250px;
+  color: #fff;
+  background-color: #3276b1;
+  border-color: #3276b1;
+}
+
+#categoryButton:hover {
+  color: #3276b1;
+  background-color: #FFFFFF;
+  border-color: #3276b1;
+}
+
+#searchcategory {
+  height: 50px;
+  width: 250px;
+}
+
+#contentInline {
+  display: flex;
+  font: 36px Arial, sans-serif;
+  background: #06c;
+  position: relative;
+  float: left;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#searchcategory {
+  margin-right: 10px;
 }
