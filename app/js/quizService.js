@@ -17,9 +17,59 @@ spotiQuizApp.factory('quizService', function ($resource) {
     return noResult;
   }
 
+  this.getQuestion = function (id) {
+    var noResult = [{
+      'id': 0,
+      'question': 'No such question available',
+      'answer': 'No Awswer',
+    }]
+    for(i=0; i<questions.length; i++){
+      if(questions[i].id === id){
+        return questions[i];
+      }
+    }
+    return noResult;
+  }
+
   var questions = [{
     'id': 1,
-    'question': 'What is the name of this song ?',
+    'question': '1 What is the name of this song ?',
+    'answer': 'Blowers Daughter',
+  },{
+    'id': 2,
+    'question': '2 What is the name of this song ?',
+    'answer': 'Blowers Daughter',
+  },{
+    'id': 3,
+    'question': '3 What is the name of this song ?',
+    'answer': 'Blowers Daughter',
+  },{
+    'id': 4,
+    'question': '4 What is the name of this song ?',
+    'answer': 'Blowers Daughter',
+  },{
+    'id': 5,
+    'question': '5 What is the name of this song ?',
+    'answer': 'Blowers Daughter',
+  },{
+    'id': 6,
+    'question': '6 What is the name of this song ?',
+    'answer': 'Blowers Daughter',
+  },{
+    'id': 7,
+    'question': '7 What is the name of this song ?',
+    'answer': 'Blowers Daughter',
+  },{
+    'id': 8,
+    'question': '8 What is the name of this song ?',
+    'answer': 'Blowers Daughter',
+  },{
+    'id': 9,
+    'question': '9 What is the name of this song ?',
+    'answer': 'Blowers Daughter',
+  },{
+    'id': 10,
+    'question': '10 What is the name of this song ?',
     'answer': 'Blowers Daughter',
   }]
 

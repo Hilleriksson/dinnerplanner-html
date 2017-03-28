@@ -17,8 +17,8 @@ body{
 }
 
 #content {
+  color: black;
   font: 36px Arial, sans-serif;
-  background: #06c;
   position: relative;
   float: left;
   top: 50%;
@@ -26,10 +26,19 @@ body{
   transform: translate(-50%, -50%);
 }
 
+#content2 {
+  color: black;
+  font: 36px Arial, sans-serif;
+  position: relative;
+  float: left;
+  top: 75%;
+  left: 35%;
+  transform: translate(-50%, -50%);
+}
+
 #container {
   position: absolute;
   color: white;
-  background: #ffbd17;
   width: 900px;
   height: 260px;
   z-index: 15;
@@ -41,7 +50,6 @@ body{
 #container2 {
   position: absolute;
   color: white;
-  background: #ffbd17;
   width: 900px;
   height: 400px;
   z-index: 15;
@@ -53,7 +61,6 @@ body{
 #container3 {
   position: absolute;
   color: white;
-  background: #ffbd17;
   width: 900px;
   height: 260px;
   z-index: 15;
@@ -67,7 +74,6 @@ body{
   bottom: 50%;
   width: 450px;
   height: 200px;
-  border: 3px solid #73AD21;
 }
 
 #option2 {
@@ -76,7 +82,6 @@ body{
   right: 0;
   width: 450px;
   height: 200px;
-  border: 3px solid #73AD21;
 }
 
 #option3 {
@@ -84,7 +89,6 @@ body{
   top: 50%;
   width: 450px;
   height: 200px;
-  border: 3px solid #73AD21;
 }
 
 #option4 {
@@ -93,21 +97,20 @@ body{
   right: 0;
   width: 450px;
   height: 200px;
-  border: 3px solid #73AD21;
 }
 
 #optionButton {
+  color: black;
+  font-size: 20px;
   height: 150px;
   width: 400px;
-  color: #fff;
-  background-color: #3276b1;
-  border-color: #3276b1;
+  background-color: white;
+  border-color: #84bd00;
 }
 
 #optionButton:hover {
-  color: #3276b1;
-  background-color: #FFFFFF;
-  border-color: #3276b1;
+  color: black;
+  background-color: #84bd00;
 }
 
 /*Category CSS*/
@@ -116,7 +119,7 @@ body{
   overflow: auto;
   position: absolute;
   color: white;
-  background: #ffbd17;
+  background: #828282;
   height: 750px;
   z-index: 15;
   top: 50%;
@@ -128,7 +131,6 @@ body{
   overflow: auto;
   position: absolute;
   color: white;
-  background: #ffbd17;
   width: 405px;
   height: 100px;
   z-index: 15;
@@ -140,27 +142,28 @@ body{
 #categoryOption {
   height: 350px;
   width: 350px;
-  border-color: #3276b1;
+  background-color: #828282;
+  border-color: #828282;
 }
 
 #categoryOption:hover {
-  color: #3276b1;
-  background-color: #FFFFFF;
-  border-color: #3276b1;
+  color: #828282;
+  background-color: #828282;
+  border-color: #828282;
 }
 
 #categoryButton {
   height: 250px;
   width: 250px;
-  color: #fff;
-  background-color: #3276b1;
-  border-color: #3276b1;
+  color: black;
+  background-color: white;
+  border-color: #828282;
 }
 
 #categoryButton:hover {
-  color: #3276b1;
-  background-color: #FFFFFF;
-  border-color: #3276b1;
+  color: black;
+  background-color: #84bd00;
+  border-color: #84bd00;
 }
 
 #searchcategory {
@@ -171,7 +174,6 @@ body{
 #contentInline {
   display: flex;
   font: 36px Arial, sans-serif;
-  background: #06c;
   position: relative;
   float: left;
   top: 50%;
@@ -181,4 +183,80 @@ body{
 
 #searchcategory {
   margin-right: 10px;
+}
+
+#searchButton {
+  border-color: #84bd00;
+  color: #000000;
+  background-color: #ffffff;
+  border: 1px solid #84bd00;
+  /*border-radius: 25px;*/
+  width: 130px;
+  font-size: 15px;
+}
+
+#searchButton:hover {
+  border-color: #84bd00;
+  color: #000000;
+  background-color: #84bd00;
+  border: 1px solid #84bd00;
+  /*border-radius: 25px;*/
+  width: 130px;
+  font-size: 15px;
+}
+
+/*End Quiz CSS*/
+#container6 {
+  position: absolute;
+  color: white;
+  width: 900px;
+  height: 260px;
+  z-index: 15;
+  top: 50%;
+  left: 50%;
+  margin: -300px 0 0 -450px;
+}
+
+#contentEndPlay {
+  color: black;
+  font: 72px Arial, sans-serif;
+  position: relative;
+  float: left;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#container7 {
+  position: absolute;
+  color: white;
+  width: 900px;
+  height: 260px;
+  z-index: 15;
+  top: 75%;
+  left: 50%;
+  margin: -300px 0 0 -450px;
+}
+
+#endButton {
+  border-color: #84bd00;
+  color: #000000;
+  background-color: #ffffff;
+  border: 1px solid #84bd00;
+  /*border-radius: 25px;*/
+  width: 200px;
+  height: 90px;
+  font-size: 15px;
+}
+
+#endButton:hover {
+  border-color: #84bd00;
+  color: #000000;
+  background-color: #84bd00;
+  border: 1px solid #84bd00;
+  /*border-radius: 25px;*/
+  width: 200px;
+  height: 90px;
+  height: 90px;;
+  font-size: 15px;
 }

@@ -1,6 +1,6 @@
 spotiQuizApp.controller('PlayController', function ($scope, $timeout, quizService) {
 
-  $scope.counter = 3;
+  $scope.counter = 10;
   $scope.stopped = false;
   $scope.buttonText='Stop';
   $scope.onTimeout = function(){
@@ -17,6 +17,7 @@ spotiQuizApp.controller('PlayController', function ($scope, $timeout, quizServic
       if(!$scope.stopped){
           $timeout.cancel(mytimeout);
           $scope.buttonText='Resume';
+          $scope.nextQuestion();
       }
       else
       {
@@ -25,6 +26,28 @@ spotiQuizApp.controller('PlayController', function ($scope, $timeout, quizServic
           $scope.counter = 3;
       }
           $scope.stopped=!$scope.stopped;
+  }
+
+  var numbersGenerated = [];
+  $scope.question = "What is the name of this song?";
+  $scope.nextQuestion = function () {
+    if(numbersGenerated.length === 2){
+      $scope.endQuiz();
+    }else{
+      var x = Math.floor((Math.random() * 10) + 1);
+      if ( numbersGenerated.indexOf( x ) > -1 ){
+        $scope.nextQuestion();
+      }else{
+        numbersGenerated.push(x);
+        $scope.question = quizService.getQuestion(x).question;
+        $scope.stopped = true;
+        $scope.takeAction();
+      }
+    }
+  }
+
+  $scope.endQuiz = function () {
+    window.location.href = '#!/endPlay';
   }
 });
 
