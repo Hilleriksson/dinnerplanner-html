@@ -1,0 +1,81 @@
+<style type="text/css">
+.select-type-score {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.search-group {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.score-content {
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+</style>
+<div class="text-center">
+    <div class="btn-group btn-group-md select-type-score" role="group">
+        <button type="button" class="btn btn-default active" ng-click="showHistoricScores">Historic</button>
+        <button type="button" class="btn btn-default" ng-click="showBestScores">Highest</button>
+    </div>
+</div>
+<div class="score-content">
+    <div class="row search-group">
+        <div class="col-md-4">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search for...">
+                <span class="input-group-btn">
+                  <button class="btn btn-default" type="button">Go!</button>
+                </span>
+            </div>
+            <!-- /input-group -->
+        </div>
+        <!-- /.col-lg-6 -->
+    </div>
+    <div class="row select-type">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="sel1">Quiz type:</label>
+                <select class="form-control" id="sel1">
+                    <option>All</option>
+                    <option>90's music</option>
+                    <option>00's music</option>
+                    <option>Hip Hop</option>
+                    <option>Indie</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Quiz type</th>
+                <th>Score</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><a href="#!/user/axel">Axel</a></td>
+                <td>90's music</td>
+                <td>500</td>
+                <td>March 28th 15:21</td>
+            </tr>
+            <tr>
+                <td><a href="#!/user/arham">Arham</a></td>
+                <td>Hip Hop</td>
+                <td>500</td>
+                <td>March 28th 15:12</td>
+            </tr>
+            <tr>
+                <td><a href="#!/user/edu">Edu</a></td>
+                <td>Indie</td>
+                <td>499</td>
+                <td>March 28th 14:57</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
