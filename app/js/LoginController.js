@@ -1,3 +1,4 @@
+
 //TODO:
 // 1. implement Angular: $firebaseAuth
 // 2. Change pages with $location?
@@ -78,4 +79,4 @@ spotiQuizApp.controller('LoginController', ['$scope','$firebaseAuth', function($
               loginScreen.classList.remove('hide');
             }
           });
-}])
+}]);

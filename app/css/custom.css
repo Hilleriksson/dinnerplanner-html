@@ -1,0 +1,262 @@
+body{
+  height : 100vh;
+}
+
+/*Play CSS*/
+
+.bottomDiv {
+  display: inline-flex;
+  position: absolute;
+  width: 300px;
+  height: 100px;
+  z-index: 15;
+  top: 50%;
+  left: 50%;
+  margin: 0px 0 0 -150px;
+  background: lightgreen;
+}
+
+#content {
+  color: black;
+  font: 36px Arial, sans-serif;
+  position: relative;
+  float: left;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#content2 {
+  color: black;
+  font: 36px Arial, sans-serif;
+  position: relative;
+  float: left;
+  top: 75%;
+  left: 35%;
+  transform: translate(-50%, -50%);
+}
+
+#container {
+  position: absolute;
+  color: white;
+  width: 900px;
+  height: 260px;
+  z-index: 15;
+  top: 50%;
+  left: 50%;
+  margin: -300px 0 0 -450px;
+}
+
+#container2 {
+  position: absolute;
+  color: white;
+  width: 900px;
+  height: 400px;
+  z-index: 15;
+  top: 75%;
+  left: 50%;
+  margin: -300px 0 0 -450px;
+}
+
+#container3 {
+  position: absolute;
+  color: white;
+  width: 900px;
+  height: 260px;
+  z-index: 15;
+  top: 25%;
+  left: 50%;
+  margin: -300px 0 0 -450px;
+}
+
+#option1 {
+  position: absolute;
+  bottom: 50%;
+  width: 450px;
+  height: 200px;
+}
+
+#option2 {
+  position: absolute;
+  bottom: 50%;
+  right: 0;
+  width: 450px;
+  height: 200px;
+}
+
+#option3 {
+  position: absolute;
+  top: 50%;
+  width: 450px;
+  height: 200px;
+}
+
+#option4 {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 450px;
+  height: 200px;
+}
+
+#optionButton {
+  color: black;
+  font-size: 20px;
+  height: 150px;
+  width: 400px;
+  background-color: white;
+  border-color: #84bd00;
+}
+
+#optionButton:hover {
+  color: black;
+  background-color: #84bd00;
+}
+
+/*Category CSS*/
+
+#container4 {
+  overflow: auto;
+  position: absolute;
+  color: white;
+  background: #828282;
+  height: 750px;
+  z-index: 15;
+  top: 50%;
+  left: 50%;
+  margin: -300px 0 0 -450px;
+}
+
+#container5 {
+  overflow: auto;
+  position: absolute;
+  color: white;
+  width: 405px;
+  height: 100px;
+  z-index: 15;
+  top: 40%;
+  left: 50%;
+  margin: -300px 0 0 -450px;
+}
+
+#categoryOption {
+  height: 350px;
+  width: 350px;
+  background-color: #828282;
+  border-color: #828282;
+}
+
+#categoryOption:hover {
+  color: #828282;
+  background-color: #828282;
+  border-color: #828282;
+}
+
+#categoryButton {
+  height: 250px;
+  width: 250px;
+  color: black;
+  background-color: white;
+  border-color: #828282;
+}
+
+#categoryButton:hover {
+  color: black;
+  background-color: #84bd00;
+  border-color: #84bd00;
+}
+
+#searchcategory {
+  height: 50px;
+  width: 250px;
+}
+
+#contentInline {
+  display: flex;
+  font: 36px Arial, sans-serif;
+  position: relative;
+  float: left;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#searchcategory {
+  margin-right: 10px;
+}
+
+#searchButton {
+  border-color: #84bd00;
+  color: #000000;
+  background-color: #ffffff;
+  border: 1px solid #84bd00;
+  /*border-radius: 25px;*/
+  width: 130px;
+  font-size: 15px;
+}
+
+#searchButton:hover {
+  border-color: #84bd00;
+  color: #000000;
+  background-color: #84bd00;
+  border: 1px solid #84bd00;
+  /*border-radius: 25px;*/
+  width: 130px;
+  font-size: 15px;
+}
+
+/*End Quiz CSS*/
+#container6 {
+  position: absolute;
+  color: white;
+  width: 900px;
+  height: 260px;
+  z-index: 15;
+  top: 50%;
+  left: 50%;
+  margin: -300px 0 0 -450px;
+}
+
+#contentEndPlay {
+  color: black;
+  font: 72px Arial, sans-serif;
+  position: relative;
+  float: left;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#container7 {
+  position: absolute;
+  color: white;
+  width: 900px;
+  height: 260px;
+  z-index: 15;
+  top: 75%;
+  left: 50%;
+  margin: -300px 0 0 -450px;
+}
+
+#endButton {
+  border-color: #84bd00;
+  color: #000000;
+  background-color: #ffffff;
+  border: 1px solid #84bd00;
+  /*border-radius: 25px;*/
+  width: 200px;
+  height: 90px;
+  font-size: 15px;
+}
+
+#endButton:hover {
+  border-color: #84bd00;
+  color: #000000;
+  background-color: #84bd00;
+  border: 1px solid #84bd00;
+  /*border-radius: 25px;*/
+  width: 200px;
+  height: 90px;
+  height: 90px;;
+  font-size: 15px;
+}

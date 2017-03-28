@@ -1,5 +1,4 @@
 
-
 var spotiQuizApp = angular.module('spotiQuiz', ['ngRoute','ngResource','firebase']);
 
 //Necessary for us to connect with our firebaseserver
@@ -11,8 +10,7 @@ var config = {
         messagingSenderId: "97572176204"
       };
 
-      firebase.initializeApp(config);
-
+firebase.initializeApp(config);
 // Here we configure our application module and more specifically our $routeProvider.
 // Route provider is used to tell angular to load a specific partial (view) for an individual
 // specific address that is provided in the browser. This enables us to change the browser address
@@ -53,9 +51,17 @@ spotiQuizApp.config(['$routeProvider',
       when('/contact', {
         templateUrl: 'partials/contact.html'
       }).
+      when('/category', {
+        templateUrl: 'partials/category.html',
+        controller: 'CategoryController'
+      }).
       when('/play', {
         templateUrl: 'partials/play.html',
         controller: 'PlayController'
+      }).
+      when('/endPlay', {
+        templateUrl: 'partials/endPlay.html',
+        controller: 'EndPlayController'
       }).
       when('/scores', {
         templateUrl: 'partials/scores.html',
