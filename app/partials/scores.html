@@ -16,7 +16,7 @@
 }
 </style>
 <div class="text-center">
-    <div class="btn-group btn-group-md" id="select-type-score" role="group">
+    <div class="btn-group btn-group-md" id="select-type-score" role="group" ng-init="show='historic'">
         <button type="button" class="btn btn-default" ng-click="show='historic'">Historic</button>
         <button type="button" class="btn btn-default" ng-click="show='highest'">Highest</button>
     </div>
@@ -72,8 +72,8 @@
         <div class="row" id="selectType">
             <div class="col-md-4">
                 <div class="form-group">
-                    <label for="sel1">Quiz type:</label>
-                    <select class="form-control" id="sel1">
+                    <select class="form-control">
+                        <option value="" disabled selected>Select Quiz type</option>
                         <option>All</option>
                         <option>90's music</option>
                         <option>00's music</option>
