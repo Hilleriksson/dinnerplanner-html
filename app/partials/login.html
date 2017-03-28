@@ -1,22 +1,67 @@
 <html>
+<head>
+<style>
+    .center {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          padding: 10px;
+          width: auto;
+          -webkit-transform: translate(-50%,-50%);
+              -ms-transform: translate(-50%,-50%);
+                  transform: translate(-50%,-50%);
+}
+        h1 { color: #111;
+            font-family: 'Helvetica Neue', sans-serif;
+            font-size: 275px;
+            font-weight: bold;
+            letter-spacing: -1px;
+            line-height: 1;
+            position: absolute;
+            left: 50%;
+            top: 20%;
+            padding: 10px;
+            width: auto;
+            -webkit-transform: translate(-50%,-50%);
+                -ms-transform: translate(-50%,-50%);
+                    transform: translate(-50%,-50%);
+              }
+
+
+        h2 { color: #111;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 30px;
+            font-weight: 300;
+            line-height: 32px;
+            margin: 0 0 72px;
+            text-align: center;
+        }
+
+    }
+
+</style>
+</head>
+
     <body ng-app='spotiQuizApp' ng-controller="LoginController">
-        <div class="container">
+        <div class="container-fluid">
             <div id="loginScreen">
-                <input id="txtEmail" ng-model="email" type="email" placeholder="Email">
+                <h1>SpotiQuiz</h1>
+                <div id="loginDetails" class="center">
+                    <input id="txtEmail" ng-model="email" type="email" class="form-control" placeholder="Email"><br>
 
-                <input id="txtPassword" ng-model="password" type="password" placeholder="Password">
+                    <input id="txtPassword" ng-model="password" type="password" class="form-control" placeholder="Password"><br>
 
-                <a href="#!/home" id="btnLogin" ng-click="btnLogin()" class="btn btn-primary">Log in</a>
+                    <a ng-href="#!/home" id="btnLogin" ng-click="btnLogin()" class="btn btn-primary">Log in</a>
 
-                <button id="btnSignUp" ng-click="btnSignUp()" class="btn btn-secondary">Sign up</button>
+                    <button id="btnSignUp" ng-click="btnSignUp()" class="btn btn-secondary">Sign up</button>
+                </div>
             </div>
+                    <button id="btnLogout" ng-click="btnLogout()" class="btn btn-action hide">Log out</button>
 
-                <button id="btnLogout" ng-click="btnLogout()" class="btn btn-action hide">Log out</button>
+                <div id="profile" class="hide">
+                    <input id="txtChangeName" ng-model="changeName" type="text" placeholder="Change username?">
 
-            <div id="profile" class="hide">
-                <input id="txtChangeName" type="text" placeholder="Change username?">
-
-                <button id="btnChangeName" class="btn btn-action">Confirm</button><br>
+                    <button id="btnChangeName" ng-click="btnChangeName()" class="btn btn-action">Confirm</button><br>
 
                 Welcome, <span id="profileName"></span>
             </div>
