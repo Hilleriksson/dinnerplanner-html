@@ -1,3 +1,56 @@
 <!-- TODO in Lab 5: there is not much to do on the home screen. Just arrange the layout so it
 looks a bit nicer. -->
-<a href="#!/login" class="btn btn-primary">Create new dinner</a>
+
+<style>
+.center{
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          padding: 10px;
+          width: auto;
+          -webkit-transform: translate(-50%,-50%);
+              -ms-transform: translate(-50%,-50%);
+                  transform: translate(-50%,-50%);
+}
+
+        h1 { color: #111;
+            font-family: 'Helvetica Neue', sans-serif;
+            font-size: 275px;
+            font-weight: bold;
+            letter-spacing: -1px;
+            line-height: 1;
+            position: absolute;
+            left: 50%;
+            top: 20%;
+            padding: 10px;
+            width: auto;
+            -webkit-transform: translate(-50%,-50%);
+                -ms-transform: translate(-50%,-50%);
+                    transform: translate(-50%,-50%);
+              }
+
+</style>
+
+<div class="container">
+    <br>
+    <h1>SpotiQuiz</h1>
+    <div class="col-md-6 center">
+		<div class="row">
+	        <div class="col-md-12">
+	            <a href="#!/play" class="btn btn-primary btn-lg btn-block btn-huge">Play</a>
+	        </div>
+	    </div>
+	    <br>
+	    <div class="row">
+	        <div class="col-md-4">
+	            <a href="#!/user/userid" class="btn btn-primary btn-lg btn-block btn-huge">Your Profile</a>
+	        </div>
+	        <div class="col-md-4">
+	            <a href="#!/contact" class="btn btn-primary btn-lg btn-block btn-huge">Contact Us</a>
+	        </div>
+	        <div class="col-md-4">
+	            <a href="#!/scores" class="btn btn-primary btn-lg btn-block btn-huge">High Score</a>
+	        </div>
+	    </div>
+	</div>
+</div>
