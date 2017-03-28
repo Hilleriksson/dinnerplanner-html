@@ -1,4 +1,4 @@
-spotiQuizApp.controller('ScoresController', function($scope, quizService) {
+spotiQuizApp.controller('ScoresController', function($scope) {
 
     var userScores = [
         ["Axel", "90's music", "500", "March 28th 15:21"],
@@ -7,7 +7,7 @@ spotiQuizApp.controller('ScoresController', function($scope, quizService) {
     ];
 
     $scope.showHistoricScores = function() {
-
+        selectType.classList.add("hide");
     };
 
     $scope.showBestScores = function() {
