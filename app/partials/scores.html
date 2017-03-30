@@ -16,7 +16,7 @@
 }
 </style>
 <div class="text-center">
-    <div class="btn-group btn-group-md" id="select-type-score" role="group">
+    <div class="btn-group btn-group-md" id="select-type-score" role="group" ng-init="show='historic'">
         <button type="button" class="btn btn-default" ng-click="show='historic'">Historic</button>
         <button type="button" class="btn btn-default" ng-click="show='highest'">Highest</button>
     </div>
@@ -47,19 +47,19 @@
             </thead>
             <tbody>
                 <tr>
-                    <td><a href="#!/user/axel">Axel</a></td>
+                    <td><a href="#!/user/userid">Axel</a></td>
                     <td>90's music</td>
                     <td>500</td>
                     <td>March 28th 15:21</td>
                 </tr>
                 <tr>
-                    <td><a href="#!/user/arham">Arham</a></td>
+                    <td><a href="#!/user/userid">Arham</a></td>
                     <td>Hip Hop</td>
                     <td>500</td>
                     <td>March 28th 15:12</td>
                 </tr>
                 <tr>
-                    <td><a href="#!/user/edu">Edu</a></td>
+                    <td><a href="#!/user/userid">Edu</a></td>
                     <td>Indie</td>
                     <td>499</td>
                     <td>March 28th 14:57</td>
@@ -72,8 +72,8 @@
         <div class="row" id="selectType">
             <div class="col-md-4">
                 <div class="form-group">
-                    <label for="sel1">Quiz type:</label>
-                    <select class="form-control" id="sel1">
+                    <select class="form-control">
+                        <option value="" disabled selected>Select Quiz type</option>
                         <option>All</option>
                         <option>90's music</option>
                         <option>00's music</option>
@@ -86,25 +86,25 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Position</th>
+                    <th>#</th>
                     <th>Username</th>
                     <th>Avg. score</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>#1</td>
-                    <td><a href="#!/user/axel">Axel</a></td>
+                    <td><b>1</b></td>
+                    <td><a href="#!/user/userid">Axel</a></td>
                     <td>500</td>
                 </tr>
                 <tr>
-                    <td>#2</td>
-                    <td><a href="#!/user/arham">Arham</a></td>
+                    <td><b>2</b></td>
+                    <td><a href="#!/user/userid">Arham</a></td>
                     <td>450</td>
                 </tr>
                 <tr>
-                    <td>#3</td>
-                    <td><a href="#!/user/edu">Edu</a></td>
+                    <td><b>3</b></td>
+                    <td><a href="#!/user/userid">Edu</a></td>
                     <td>430</td>
                 </tr>
             </tbody>
