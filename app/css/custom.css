@@ -139,6 +139,18 @@ body{
   margin: -300px 0 0 -450px;
 }
 
+#containerCreateQuiz {
+  overflow: auto;
+  position: absolute;
+  color: white;
+  width: 405px;
+  height: 100px;
+  z-index: 15;
+  top: 40%;
+  left: 50%;
+  margin: -300px 0 0 220px;
+}
+
 #categoryOption {
   height: 350px;
   width: 350px;
@@ -202,6 +214,28 @@ body{
   border: 1px solid #84bd00;
   /*border-radius: 25px;*/
   width: 130px;
+  font-size: 15px;
+}
+
+#createQuiz {
+  height: 50px;
+  border-color: #84bd00;
+  color: #000000;
+  background-color: #ffffff;
+  border: 1px solid #84bd00;
+  /*border-radius: 25px;*/
+  width: 260px;
+  font-size: 15px;
+}
+
+#createQuiz:hover {
+  height: 50px;
+  border-color: #84bd00;
+  color: #000000;
+  background-color: #84bd00;
+  border: 1px solid #84bd00;
+  /*border-radius: 25px;*/
+  width: 260px;
   font-size: 15px;
 }
 
