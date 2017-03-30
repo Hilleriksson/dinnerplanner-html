@@ -1,6 +1,6 @@
 spotiQuizApp.controller('PlayController', function ($scope, $timeout, quizService) {
 
-  $scope.counter = 10;
+  $scope.counter = 5;
   $scope.stopped = false;
   $scope.buttonText='Stop';
   $scope.onTimeout = function(){
@@ -23,7 +23,7 @@ spotiQuizApp.controller('PlayController', function ($scope, $timeout, quizServic
       {
           mytimeout = $timeout($scope.onTimeout,1000);
           $scope.buttonText='Stop';
-          $scope.counter = 3;
+          $scope.counter = 5;
       }
           $scope.stopped=!$scope.stopped;
   }
