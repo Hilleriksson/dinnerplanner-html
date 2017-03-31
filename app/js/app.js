@@ -1,5 +1,5 @@
 
-var spotiQuizApp = angular.module('spotiQuiz', ['ngRoute','ngResource','firebase']);
+var spotiQuizApp = angular.module('spotiQuiz', ['ngRoute','ngResource','firebase','spotify']);
 
 //Necessary for us to connect with our firebaseserver
 var config = {
@@ -9,8 +9,17 @@ var config = {
         storageBucket: "iprog-project.appspot.com",
         messagingSenderId: "97572176204"
       };
+      firebase.initializeApp(config);
 
-firebase.initializeApp(config);
+spotiQuizApp.config(function (SpotifyProvider) {
+  SpotifyProvider.setClientId('fc5eab90280f4bdc9c380081376babe8');
+  SpotifyProvider.setRedirectUri('http://localhost:8000/callback');
+  SpotifyProvider.setScope('user-read-private playlist-read-private playlist-modify-private playlist-modify-public');
+  // If you already have an auth token
+  SpotifyProvider.setAuthToken('<AUTH_TOKEN>');
+});
+
+
 // Here we configure our application module and more specifically our $routeProvider.
 // Route provider is used to tell angular to load a specific partial (view) for an individual
 // specific address that is provided in the browser. This enables us to change the browser address
@@ -62,6 +71,10 @@ spotiQuizApp.config(['$routeProvider',
       when('/endPlay', {
         templateUrl: 'partials/endPlay.html',
         controller: 'EndPlayController'
+      }).
+      when('/createQuiz', {
+        templateUrl: 'partials/createQuiz.html',
+        controller: 'CreateQuizController'
       }).
       when('/scores', {
         templateUrl: 'partials/scores.html',
