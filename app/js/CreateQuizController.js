@@ -1,14 +1,24 @@
-spotiQuizApp.controller('CreateQuizController', ['$scope', 'Spotify', function ($scope, Spotify) {
+spotiQuizApp.controller('CreateQuizController', ['$scope', 'Spotify', "$http", function ($scope, Spotify, $http) {
 
-  $scope.searchArtist = function () {
-    Spotify.search($scope.searchartist, 'artist').then(function (data) {
-      $scope.artists = data.data.artists.items;
-      $scope.searchedArtist = data.data.artists.items[0].id;
-      Spotify.getArtistTopTracks($scope.searchedArtist, 'SE').then(function (data) {
-        $scope.searchedSong = data.data.tracks[0].preview_url;
+  $scope.songURL = "";
+
+  $scope.getURL = function () {
+    if ($scope.searchedSong != ""){
+      Spotify.search($scope.searchedSong, 'track').then(function (data) {
+        console.log(data);
+        $scope.songURL = data.data.tracks.items[0].preview_url;
       });
-    });
+    };
   };
 
+   $scope.songURL = "";
+   $scope.searchSong = function(val) {
+  return $http.get('//api.spotify.com/v1/search?q='+val+'&type=track', {
+  }).then(function(response){
+    return response.data.tracks.items.map(function(item){
+      return item.name;
+    });
+  });
+};
 
 }]);

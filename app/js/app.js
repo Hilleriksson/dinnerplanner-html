@@ -1,5 +1,6 @@
 
-var spotiQuizApp = angular.module('spotiQuiz', ['ngRoute','ngResource','firebase','spotify']);
+var spotiQuizApp = angular.module('spotiQuiz', ['ngRoute','ngResource','firebase','spotify', 'ngAnimate', 'ui.bootstrap']);
+
 
 //Necessary for us to connect with our firebaseserver
 var config = {
