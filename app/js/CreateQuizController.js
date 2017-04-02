@@ -1,19 +1,28 @@
 spotiQuizApp.controller('CreateQuizController', ['$scope', 'Spotify', "$http", function ($scope, Spotify, $http) {
 
+  $scope.questionAmount = 2;
+  $scope.getQuestionAmount = function(num) {
+    return new Array(num);
+  }
+
+
+  $scope.question = {};
+
 
   // Tries to match selected song with URL
   // Maybe not optimal solution
-  $scope.songURL = "";
-  $scope.getURL = function () {
+  $scope.question.URL = {};
+  $scope.getURL = function (val, index) {
+    $scope.temp = index;
     var matchCounter = 0;
-    if ($scope.searchedSong != ""){
-      var justSong = $scope.searchedSong.split(", ");
+    if (val != ""){
+      var justSong = val.split(", ");
       Spotify.search(justSong[0], 'track').then(function (data) {
         while (true) {
           //console.log(data.data.tracks.items[matchCounter].name + " med "+ justSong[0])
           //console.log(data.data.tracks.items[matchCounter].artists[0].name  + " med " + justSong[1])
           if (data.data.tracks.items[matchCounter].name == justSong[0] && data.data.tracks.items[matchCounter].artists[0].name == justSong[1]){
-              $scope.songURL = data.data.tracks.items[matchCounter].preview_url;
+              $scope.question.URL[$scope.temp] = data.data.tracks.items[matchCounter].preview_url;
               break;
           } else {
             matchCounter++;
@@ -44,35 +53,37 @@ spotiQuizApp.controller('CreateQuizController', ['$scope', 'Spotify', "$http", f
 
 
   $scope.submitQuestions = function() {
-    var filledForm = true;
-    var list = [$scope.textValue1, $scope.textValue2, $scope.textValue3, $scope.textValue4, $scope.radioValue];
+    // var filledForm = true;
+    // var list = [$scope.textValue1, $scope.textValue2, $scope.textValue3, $scope.textValue4, $scope.radioValue];
+    //
+    // if ($scope.searchedSong == ""){
+    //   filledForm = false;
+    //   $scope.songField = "has-error";
+    // } else {
+    //   $scope.songField = "";
+    // }
+    //
+    // if ($scope.writtenQuestion == ""){
+    //   filledForm = false;
+    //   $scope.questionField = "has-error";
+    // } else {
+    //   $scope.questionField = "";
+    // }
+    //
+    // for (var i=0; i<list.length; i++){
+    //   if (list[i] == "") {
+    //     filledForm = false;
+    //     $scope.answerField = "has-error";
+    //   } else {
+    //     $scope.answerField = "";
+    //   }
+    // }
+    //
+    // if (filledForm == true) {
+    //   console.log($scope.searchedSong);
+    // }
 
-    if ($scope.searchedSong == ""){
-      filledForm = false;
-      $scope.songField = "has-error";
-    } else {
-      $scope.songField = "";
-    }
-
-    if ($scope.writtenQuestion == ""){
-      filledForm = false;
-      $scope.questionField = "has-error";
-    } else {
-      $scope.questionField = "";
-    }
-
-    for (var i=0; i<list.length; i++){
-      if (list[i] == "") {
-        filledForm = false;
-        $scope.answerField = "has-error";
-      } else {
-        $scope.answerField = "";
-      }
-    }
-
-    if (filledForm == true) {
-      console.log("tja");
-    }
+    console.log($scope.question)
   }
 
 }]);

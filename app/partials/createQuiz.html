@@ -28,9 +28,8 @@
       margin-bottom: 20px;
     }
     .margin-down-small {
-      margin-bottom: 10px;
-    }
-    .margin-left {
+      margin-bottom: 10px;Object
+
       margin-left: 20px;
     }
   </style>
@@ -38,61 +37,56 @@
 <ng-include src="'partials/game-sidebar.html'" ng-controller="SidebarController"></ng-include>
 <div class="col-md-8 margin-left">
   <h2>Create your own quiz<h2>
+  <div ng-repeat="i in getQuestionAmount(questionAmount) track by $index">
+    <h3>Question number {{$index+1}}</h3>
 
-  <div class="row">
-    <div class='container-fluid typeahead margin-down col-md-6' ng-class="songField">
-      <h4>Enter a song</h4>
-      <pre>Model: {{searchedSong}}</pre>
-      <pre>Model: {{songURL}}</pre>
-      <input type="text" ng-model="searchedSong" placeholder="Search for a song" uib-typeahead="song for song in searchSong($viewValue)" typeahead-loading="loadingSongs" typeahead-no-results="noResults" typeahead-on-select="getURL(searchedSong)" class="form-control">
-      <i ng-show="loadingSongs" class="glyphicon glyphicon-refresh"></i>
-      <div ng-show="noResults">
-        <i class="glyphicon glyphicon-remove"></i> No Results Found
+    <div class="row">
+      <div class='container-fluid typeahead margin-down col-md-6' ng-class="songField">
+        <h4>Enter a song</h4>
+        <input type="text" ng-model="question.song[$index]" placeholder="Search for a song" uib-typeahead="song for song in searchSong($viewValue)" typeahead-loading="loadingSongs" typeahead-no-results="noResults" typeahead-on-select="getURL(question.song[$index],$index)" class="form-control">
+        <i ng-show="loadingSongs" class="glyphicon glyphicon-refresh"></i>
+        <div ng-show="noResults">
+          <i class="glyphicon glyphicon-remove"></i> No Results Found
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="container-fluid margin-down col-md-6" ng-class="questionField">
+        <h4>Write your question</h4>
+        <textarea class="form-control" ng-model="question.question[$index]" rows="5"></textarea>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="container-fluid margin-down col-md-6" ng-class="answerField">
+        <h4>Write your answer alternatives</h4>
+        <div class="input-group margin-down-small">
+          <span class="input-group-addon">
+            <input type="radio" ng-model="question.correct[$index]" value="1">
+          </span>
+          <input type="text" class="form-control" ng-model="question.answer1[$index]">
+        </div>
+        <div class="input-group margin-down-small">
+          <span class="input-group-addon">
+            <input type="radio" ng-model="question.correct[$index]" value="2">
+          </span>
+          <input type="text" class="form-control" ng-model="question.answer2[$index]">
+        </div>
+        <div class="input-group margin-down-small">
+          <span class="input-group-addon">
+            <input type="radio" ng-model="question.correct[$index]" value="3">
+          </span>
+          <input type="text" class="form-control" ng-model="question.answer3[$index]">
+        </div>
+        <div class="input-group margin-down-small">
+          <span class="input-group-addon">
+            <input type="radio" ng-model="question.correct[$index]" value="4">
+          </span>
+          <input type="text" class="form-control" ng-model="question.answer4[$index]">
+        </div>
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="container-fluid margin-down col-md-6" ng-class="questionField">
-      <h4>Write your question</h4>
-      <pre>Model: {{writtenQuestion}}</pre>
-      <textarea class="form-control" ng-model="writtenQuestion" rows="5"></textarea>
-    </div>
-  </div>
-  <div class="row">
-    <div class="container-fluid margin-down col-md-6" ng-class="answerField">
-      <h4>Write your answer alternatives</h4>
-      <pre>answer1: {{textValue1}}</pre>
-      <pre>answer1: {{textValue2}}</pre>
-      <pre>answer1: {{textValue3}}</pre>
-      <pre>answer1: {{textValue4}}</pre>
-      <pre>radio: {{radioValue}}</pre>
-      <div class="input-group margin-down-small">
-        <span class="input-group-addon">
-          <input type="radio" ng-model="radioValue" value="1">
-        </span>
-        <input type="text" class="form-control" ng-model="textValue1">
-      </div>
-      <div class="input-group margin-down-small">
-        <span class="input-group-addon">
-          <input type="radio" ng-model="radioValue" value="2">
-        </span>
-        <input type="text" class="form-control" ng-model="textValue2">
-      </div>
-      <div class="input-group margin-down-small">
-        <span class="input-group-addon">
-          <input type="radio" ng-model="radioValue" value="3">
-        </span>
-        <input type="text" class="form-control" ng-model="textValue3">
-      </div>
-      <div class="input-group margin-down-small">
-        <span class="input-group-addon">
-          <input type="radio" ng-model="radioValue" value="4">
-        </span>
-        <input type="text" class="form-control" ng-model="textValue4">
-      </div>
-
-    </div>
-  </div>
-
   <button type="button" class="btn btn-success" ng-click="submitQuestions()">Submit</button>
 <div>
