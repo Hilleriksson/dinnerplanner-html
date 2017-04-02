@@ -34,5 +34,45 @@ spotiQuizApp.controller('CreateQuizController', ['$scope', 'Spotify', "$http", f
     });
   });
 };
+  $scope.searchedSong = "";
+  $scope.writtenQuestion = "";
+  $scope.textValue1 = "";
+  $scope.textValue2 = "";
+  $scope.textValue3 = "";
+  $scope.textValue4 = "";
+  $scope.radioValue = "";
+
+
+  $scope.submitQuestions = function() {
+    var filledForm = true;
+    var list = [$scope.textValue1, $scope.textValue2, $scope.textValue3, $scope.textValue4, $scope.radioValue];
+
+    if ($scope.searchedSong == ""){
+      filledForm = false;
+      $scope.songField = "has-error";
+    } else {
+      $scope.songField = "";
+    }
+
+    if ($scope.writtenQuestion == ""){
+      filledForm = false;
+      $scope.questionField = "has-error";
+    } else {
+      $scope.questionField = "";
+    }
+
+    for (var i=0; i<list.length; i++){
+      if (list[i] == "") {
+        filledForm = false;
+        $scope.answerField = "has-error";
+      } else {
+        $scope.answerField = "";
+      }
+    }
+
+    if (filledForm == true) {
+      console.log("tja");
+    }
+  }
 
 }]);
