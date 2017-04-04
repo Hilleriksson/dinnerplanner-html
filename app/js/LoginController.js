@@ -1,23 +1,18 @@
 
-//TODO:
-// 1. implement Angular: $firebaseAuth
-// 2. Change pages with $location?
-// 3. Remove onAuthStateChanged, since we should not need to hide/show if we change pages.
 
 spotiQuizApp.controller('LoginController', ['$scope','$firebaseAuth','$location', function($scope, $firebaseAuth, $location) {
-  var auth = $firebaseAuth(); // Whyyy~?
+
+  var auth = $firebaseAuth();
 
 
   //var rootRef = firebase.database().ref() // Kirra detta, så kirrar vi
 
     $scope.btnSignUp = function() {
-      console.log('bas')
       event.preventDefault();
       var username = $scope.email;
       var password = $scope.password;
 
-      //$firebaseAuth().$createUserWithEmailAndPassword(username, password).then(function(){
-      firebase.auth().createUserWithEmailAndPassword(username, password).then(function(){
+      auth.$createUserWithEmailAndPassword(username, password).then(function(){
         console.log('Successfully registered');
       }, function(error) {
         console.error('Sign up error', error);
@@ -29,9 +24,7 @@ spotiQuizApp.controller('LoginController', ['$scope','$firebaseAuth','$location'
       var username = $scope.email;
       var password = $scope.password;
 
-      //firebase.auth().signInWithEmailAndPassword(username, password).then(function(){
       auth.$signInWithEmailAndPassword(username, password).then(function(){   //<--- This is what we want
-
         console.log('logged in successfully');
         $location.path('#!/home')
 
@@ -41,7 +34,7 @@ spotiQuizApp.controller('LoginController', ['$scope','$firebaseAuth','$location'
     }
 
     $scope.btnLogout = function() {
-      firebase.auth().signOut().then(function() {
+      auth.$signOut().then(function() {
         console.log('Signed Out');
       }, function(error) {
         console.error('Sign Out Error', error);
@@ -64,10 +57,12 @@ spotiQuizApp.controller('LoginController', ['$scope','$firebaseAuth','$location'
             console.error('Name change error', error);
           });
 
-    }
 
-      firebase.auth().onAuthStateChanged(firebaseUser => {
+
+      /*firebase.auth().onAuthStateChanged(firebaseUser => {
             if(firebaseUser)  {
+              console.log(firebaseUser);
+              console.log(firebaseUser.displayName)
               loginScreen.classList.add('hide');
               btnLogout.classList.remove('hide');
               profile.classList.remove("hide");
@@ -79,5 +74,9 @@ spotiQuizApp.controller('LoginController', ['$scope','$firebaseAuth','$location'
               profile.classList.add("hide");
               loginScreen.classList.remove('hide');
             }
-          });
+          });*/
+
+
+    }
+
 }]);
