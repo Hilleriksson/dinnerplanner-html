@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "angular-animate": "^1.6.4",
-    "angular-spotify": "^1.4.1"
+    "angular-spotify": "^1.4.1",
+    "angularfire": "^2.3.0"
   }
 }
