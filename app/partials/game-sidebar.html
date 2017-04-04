@@ -1,0 +1,68 @@
+<style>
+			.img-circle{
+        margin-left: 95px;
+        margin-top: 115px;
+		    width:200px; /* you can use % */
+		    height: auto;
+		    border-radius: 50%;
+		    border-style: solid;
+		    border-color: blue;
+			}
+
+			#displayNameProfilehtml {
+			  color: #111;
+        font-family: 'Helvetica Neue', sans-serif;
+        font-size: 27px;
+        font-weight: bold;
+        letter-spacing: -1px;
+        line-height: 1;
+      }
+
+      a#imgProfilehtml{
+			  float: left;
+			  position: relative;
+			}
+
+			a#imgProfilehtml img {
+			  display: block;
+			}
+
+			a#imgProfilehtml span {
+			  display: none;
+			  position: absolute;
+			  top: 0;
+			  left: 0;
+			  bottom: 0;
+			  right: 0;
+			  background: rgba(0,0,0,0.6);
+			  color: #ddd;
+			  padding: 50px;
+			}
+
+      #nameProfilehtml{
+        margin-left: 0px;
+	      position: absolute;
+	      width: 350px;
+	      text-align: center;
+	      padding: 5%;
+
+      }
+
+</style>
+
+<div id="leftMenu" class="col-md-4">
+  <div class="row">
+    <a id="imgProfilehtml">
+      <img class="img-circle" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg">
+      <span id="txtProfilehtml"> Change Profile Picture </span>
+    </a>
+  </div>
+  <div id="nameProfilehtml" class="row">
+    <span id="displayNameProfilehtml">Bob Smith </span>
+  </div>
+  <div id="sidebarButtonContainer">
+      <button type="button" id="sidebarButton" class="btn btn-success" ng-click="goToHome()">Home</button>
+      <button type="button" id="sidebarButton" class="btn btn-success" ng-click="goToScores()">Scores</button>
+      <button type="button" id="sidebarButton" class="btn btn-success" ng-click="goToProfile()">Profile</button>
+  </div>
+</div>
