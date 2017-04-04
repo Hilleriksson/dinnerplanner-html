@@ -1,0 +1,40 @@
+{
+    "users": {
+        // We have to think about what key is going to identify users
+        "test@test.com": {
+            "name": "Bob Smith",
+            "profilePic": "/images/bob.jpg",
+            "scores": {
+                "quiz": "Drake Type quiz",
+                "score": 400,
+                "timestamp": 1202039239
+            }
+        },
+        "test2@test2.com": {
+        }
+    },
+    "quizzes": {
+        // Maybe use a number id
+        "1": {
+            "name": "Drake Type quiz",
+            "creator": "test@test.com",
+            "creatorName": "Bob Smith",
+            // Creation date?
+            "timestamp": 239485239845,
+            "questions": {
+                "1": {
+                    "question": "What is the name of this song?",
+                    "option1": "One Dance",
+                    "option2": "Friday",
+                    "option3": "Baby",
+                    "option4": "Die Mauer",
+                    "correctOption": 1
+                },
+                "2": {
+                }
+            }
+        },
+        "2": {
+        }
+    }
+}
