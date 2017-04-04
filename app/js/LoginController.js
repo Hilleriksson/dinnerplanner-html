@@ -4,10 +4,11 @@
 // 2. Change pages with $location?
 // 3. Remove onAuthStateChanged, since we should not need to hide/show if we change pages.
 
-spotiQuizApp.controller('LoginController', ['$scope','$firebaseAuth', function($scope, $firebaseObject, $firebaseAuth) {
-  //$firebaseAuth(); // Whyyy~?
+spotiQuizApp.controller('LoginController', ['$scope','$firebaseAuth','$location', function($scope, $firebaseAuth, $location) {
+  var auth = $firebaseAuth(); // Whyyy~?
 
-  var rootRef = firebase.database().ref() // Kirra detta, så kirrar vi
+
+  //var rootRef = firebase.database().ref() // Kirra detta, så kirrar vi
 
     $scope.btnSignUp = function() {
       console.log('bas')
@@ -28,10 +29,11 @@ spotiQuizApp.controller('LoginController', ['$scope','$firebaseAuth', function($
       var username = $scope.email;
       var password = $scope.password;
 
-      firebase.auth().signInWithEmailAndPassword(username, password).then(function(){
+      //firebase.auth().signInWithEmailAndPassword(username, password).then(function(){
+      auth.$signInWithEmailAndPassword(username, password).then(function(){   //<--- This is what we want
+
         console.log('logged in successfully');
-
-
+        $location.path('#!/home')
 
       }, function(error) {
         console.error('logged in error', error);
@@ -39,7 +41,6 @@ spotiQuizApp.controller('LoginController', ['$scope','$firebaseAuth', function($
     }
 
     $scope.btnLogout = function() {
-    //$firebaseAuth().$signInWithEmailAndPassword(username,password);   <--- This is what we want
       firebase.auth().signOut().then(function() {
         console.log('Signed Out');
       }, function(error) {
