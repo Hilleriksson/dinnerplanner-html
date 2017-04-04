@@ -1,6 +1,5 @@
 {
     "users": {
-        // We have to think about what key is going to identify users
         "test@test.com": {
             "name": "Bob Smith",
             "profilePic": "/images/bob.jpg",
@@ -14,12 +13,10 @@
         }
     },
     "quizzes": {
-        // Maybe use a number id
         "1": {
             "name": "Drake Type quiz",
             "creator": "test@test.com",
             "creatorName": "Bob Smith",
-            // Creation date?
             "timestamp": 239485239845,
             "questions": {
                 "1": {
