@@ -1,4 +1,7 @@
-spotiQuizApp.controller('ScoresController', function($scope) {
+spotiQuizApp.controller('ScoresController', function($scope, $firebaseObject) {
+
+    // Ref to interact with Firebase
+    var ref = firebase.database().ref();
 
     $scope.showHistoricScores = function() {
         $scope.moduleState = "historic";
