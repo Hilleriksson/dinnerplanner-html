@@ -23,7 +23,7 @@ spotiQuizApp.controller('PlayController', function ($scope, $timeout, quizServic
       {
           mytimeout = $timeout($scope.onTimeout,1000);
           $scope.buttonText='Stop';
-          $scope.counter = 3;
+          $scope.counter = 10;
       }
           $scope.stopped=!$scope.stopped;
   }
@@ -31,7 +31,7 @@ spotiQuizApp.controller('PlayController', function ($scope, $timeout, quizServic
   var numbersGenerated = [];
   $scope.question = "What is the name of this song?";
   $scope.nextQuestion = function () {
-    if(numbersGenerated.length === 2){
+    if(numbersGenerated.length === 5){
       $scope.endQuiz();
     }else{
       var x = Math.floor((Math.random() * 10) + 1);

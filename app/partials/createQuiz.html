@@ -1,0 +1,92 @@
+  <style>
+    .typeahead .custom-popup-wrapper {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      z-index: 1000;
+      display: none;
+      background-color: #f9f9f9;
+    }
+
+    .typeahead .custom-popup-wrapper > .message {
+      padding: 10px 20px;
+      border-bottom: 1px solid #ddd;
+      color: #868686;
+    }
+
+    .typeahead .custom-popup-wrapper > .dropdown-menu {
+      position: static;
+      float: none;
+      display: block;
+      min-width: 160px;
+      background-color: transparent;
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
+    }
+    .margin-down {
+      margin-bottom: 20px;
+    }
+    .margin-down-small {
+      margin-bottom: 10px;Object
+
+      margin-left: 20px;
+    }
+  </style>
+
+<ng-include src="'partials/game-sidebar.html'" ng-controller="SidebarController"></ng-include>
+<div class="col-md-8 margin-left">
+  <h2>Create your own quiz<h2>
+  <div ng-repeat="i in getQuestionAmount(questionAmount) track by $index">
+    <h3>Question number {{$index+1}}</h3>
+
+    <div class="row">
+      <div class='container-fluid typeahead margin-down col-md-6' ng-class="songField">
+        <h4>Enter a song</h4>
+        <input type="text" ng-model="question.song[$index]" placeholder="Search for a song" uib-typeahead="song for song in searchSong($viewValue)" typeahead-loading="loadingSongs" typeahead-no-results="noResults" typeahead-on-select="getURL(question.song[$index],$index)" class="form-control">
+        <i ng-show="loadingSongs" class="glyphicon glyphicon-refresh"></i>
+        <div ng-show="noResults">
+          <i class="glyphicon glyphicon-remove"></i> No Results Found
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="container-fluid margin-down col-md-6" ng-class="questionField">
+        <h4>Write your question</h4>
+        <textarea class="form-control" ng-model="question.question[$index]" rows="5"></textarea>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="container-fluid margin-down col-md-6" ng-class="answerField">
+        <h4>Write your answer alternatives</h4>
+        <div class="input-group margin-down-small">
+          <span class="input-group-addon">
+            <input type="radio" ng-model="question.correct[$index]" value="1">
+          </span>
+          <input type="text" class="form-control" ng-model="question.answer1[$index]">
+        </div>
+        <div class="input-group margin-down-small">
+          <span class="input-group-addon">
+            <input type="radio" ng-model="question.correct[$index]" value="2">
+          </span>
+          <input type="text" class="form-control" ng-model="question.answer2[$index]">
+        </div>
+        <div class="input-group margin-down-small">
+          <span class="input-group-addon">
+            <input type="radio" ng-model="question.correct[$index]" value="3">
+          </span>
+          <input type="text" class="form-control" ng-model="question.answer3[$index]">
+        </div>
+        <div class="input-group margin-down-small">
+          <span class="input-group-addon">
+            <input type="radio" ng-model="question.correct[$index]" value="4">
+          </span>
+          <input type="text" class="form-control" ng-model="question.answer4[$index]">
+        </div>
+      </div>
+    </div>
+  </div>
+  <button type="button" class="btn btn-success" ng-click="submitQuestions()">Submit</button>
+<div>

@@ -11,8 +11,11 @@
   },
   "scripts": {
     "postinstall": "bower install",
-
     "prestart": "npm install",
     "start": "http-server app/ -a 0.0.0.0 -p 8000"
+  },
+  "dependencies": {
+    "angular-animate": "^1.6.4",
+    "angular-spotify": "^1.4.1"
   }
 }
