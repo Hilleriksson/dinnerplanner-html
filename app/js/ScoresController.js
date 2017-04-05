@@ -19,6 +19,7 @@ spotiQuizApp.controller('ScoresController', function($scope, $firebaseObject) {
       console.log(users.$value);
     });
   }
+  
   $scope.getUsers = function() {
     _getScores();
   };
