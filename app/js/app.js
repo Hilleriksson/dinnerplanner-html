@@ -1,5 +1,6 @@
 
-var spotiQuizApp = angular.module('spotiQuiz', ['ngRoute','ngResource','firebase','spotify']);
+var spotiQuizApp = angular.module('spotiQuiz', ['ngRoute','ngResource','firebase','spotify', 'ngAnimate', 'ui.bootstrap']);
+
 
 //Necessary for us to connect with our firebaseserver
 var config = {
@@ -47,7 +48,8 @@ spotiQuizApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
       when('/home', {
-        templateUrl: 'partials/home.html'
+        templateUrl: 'partials/home.html',
+        controller: 'LoginController'
       }).
       when('/login', {
         templateUrl: 'partials/login.html',
