@@ -1,28 +1,21 @@
-spotiQuizApp.controller('ScoresController', function($scope, $firebaseObject) {
+spotiQuizApp.controller('ScoresController', function($scope, $firebaseArray) {
 
   // Ref to interact with Firebase
-  var ref = firebase.database().ref();
+  var usersRef = firebase.database().ref().child("users");
 
-  $scope.showHistoricScores = function() {
-    $scope.moduleState = "historic";
-  };
+  $scope.scoreContentStatus = "loading";
 
-  $scope.showBestScores = function() {
-    $scope.moduleState = "highest";
-  };
-
-  function _getScores() {
-    // get scores from firebase
-    var users = $firebaseObject(ref.child("users"));
+  $scope.getUsers = function() {
+    console.log("getUsers function gets called.");
+    // ref.child("users")
+    var users = $firebaseArray(usersRef);
     users.$loaded().then(function() {
       console.log("Fetched users data from database.");
-      console.log(users.$value);
+      $scope.scoreContentStatus = "loaded";
+      // Show scores
     });
-  }
-  
-  $scope.getUsers = function() {
-    _getScores();
   };
 
+  $scope.getUsers();
 
 });
