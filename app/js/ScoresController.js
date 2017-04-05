@@ -13,6 +13,8 @@ spotiQuizApp.controller('ScoresController', function($scope, $firebaseArray) {
       console.log("Fetched users data from database.");
       $scope.scoreContentStatus = "loaded";
       // Show scores
+      console.log(users);
+      $scope.usersContent = users;
     });
   };
 

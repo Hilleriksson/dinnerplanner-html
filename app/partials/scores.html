@@ -48,24 +48,19 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <!-- TODO fill content with database content -->
+          <tr ng-repeat="user in usersContent">
+            <td>{{ user.name }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.scores.score }}</td>
+            <td>{{ user.name }}</td>
+          </tr>
+          <!-- <tr>
             <td><a href="#!/user/userid">Axel</a></td>
             <td>90's music</td>
             <td>500</td>
             <td>March 28th 15:21</td>
-          </tr>
-          <tr>
-            <td><a href="#!/user/userid">Arham</a></td>
-            <td>Hip Hop</td>
-            <td>500</td>
-            <td>March 28th 15:12</td>
-          </tr>
-          <tr>
-            <td><a href="#!/user/userid">Edu</a></td>
-            <td>Indie</td>
-            <td>499</td>
-            <td>March 28th 14:57</td>
-          </tr>
+          </tr> -->
         </tbody>
       </table>
     </div>
