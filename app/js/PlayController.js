@@ -1,18 +1,32 @@
 spotiQuizApp.controller('PlayController', function ($scope, $timeout, quizService) {
 
-  $scope.counter = 10;
+  $scope.powerUp = function () {
+    $scope.counter = 100;
+    $scope.displayType = 'none';
+  }
+  $scope.displayType = 'none';
+  $scope.progress = 0;
+  $scope.counter = 100;
+  $scope.barType = 'success';
   $scope.stopped = false;
   $scope.buttonText='Stop';
   $scope.onTimeout = function(){
       $scope.counter--;
+      if($scope.counter === 50){
+        $scope.barType = 'warning';
+      }
+      if($scope.counter === 30){
+        $scope.barType = 'danger';
+        $scope.displayType = '';
+      }
       if($scope.counter == 0){
         $scope.stopped = false;
         $scope.takeAction();
       }else{
-        mytimeout = $timeout($scope.onTimeout,1000)
+        mytimeout = $timeout($scope.onTimeout,100)
       }
   }
-  var mytimeout = $timeout($scope.onTimeout,1000);
+  var mytimeout = $timeout($scope.onTimeout,100);
   $scope.takeAction = function(){
       if(!$scope.stopped){
           $timeout.cancel(mytimeout);
@@ -21,9 +35,11 @@ spotiQuizApp.controller('PlayController', function ($scope, $timeout, quizServic
       }
       else
       {
-          mytimeout = $timeout($scope.onTimeout,1000);
           $scope.buttonText='Stop';
-          $scope.counter = 10;
+          $scope.barType = 'success';
+          $scope.displayType = 'none';
+          $scope.counter = 100;
+          mytimeout = $timeout($scope.onTimeout,100);
       }
           $scope.stopped=!$scope.stopped;
   }
@@ -31,7 +47,8 @@ spotiQuizApp.controller('PlayController', function ($scope, $timeout, quizServic
   var numbersGenerated = [];
   $scope.question = "What is the name of this song?";
   $scope.nextQuestion = function () {
-    if(numbersGenerated.length === 5){
+    $scope.progress = (numbersGenerated.length + 1)/10 * 100;
+    if(numbersGenerated.length === 10){
       $scope.endQuiz();
     }else{
       var x = Math.floor((Math.random() * 10) + 1);
