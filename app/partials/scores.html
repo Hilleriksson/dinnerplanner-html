@@ -19,6 +19,13 @@
   background-color: #84bd00;
 }
 
+#loadingAnimation {
+  background-color: #ffffff;
+  display: block;
+  width: 250px;
+  margin-left: 50%;
+}
+
 </style>
 <ng-include src="'partials/game-sidebar.html'" ng-controller="SidebarController"></ng-include>
 <div class="col-md-8">
@@ -52,9 +59,12 @@
             <th>Date</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody ng-switch on="scoreContentStatus">
           <!-- TODO fill content with database content -->
-          <tr ng-repeat="user in usersContent">
+          <tr id="loadingAnimation" ng-switch-when="loaded">
+            <td><img src="http://www.cuisson.co.uk/templates/cuisson/supersize/slideshow/img/progress.BAK-FOURTH.gif"></td>
+          </tr>
+          <tr ng-repeat="user in usersContent" ng-switch-when="loaded">
             <td>{{ user.name }}</td>
             <td>{{ user.name }}</td>
             <!-- Probably have to change this to score[0] when there's more than 1 
