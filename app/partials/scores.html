@@ -40,10 +40,10 @@
       <div class="row" id="search-group">
         <div class="col-md-4">
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search for...">
+            <input type="text" class="form-control" placeholder="Search username" ng-model="usernameQuery">
             <span class="input-group-btn">
-                  <button class="btn btn-default" type="button">Go!</button>
-                </span>
+                  <button class="btn btn-default" type="button" ng-click="searchUsername(usernameQuery)">Go!</button>
+            </span>
           </div>
           <!-- /input-group -->
         </div>
@@ -59,10 +59,9 @@
           </tr>
         </thead>
         <tbody>
-          <!-- TODO fill content with database content -->
-          <tr ng-repeat="user in usersContent" ng-if="scoreContentStatus == 'loaded'">
+          <tr ng-repeat="user in usersContent" ng-if="scoreContentStatus === 'loaded'">
             <td>{{ user.name }}</td>
-            <td>{{ user.name }}</td>
+            <td>{{ user.scores.quiz }}</td>
             <!-- Probably have to change this to score[0] when there's more than 1 
             object -->
             <td>{{ user.scores.score }}</td>
@@ -96,10 +95,13 @@
         </div>
         <div class="col-md-4">
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Quiz name">
+            <input type="text" class="form-control" placeholder="Search quiz name">
           </div>
         </div>
       </div>
+      <!-- <div class="text-center">
+        <h3>Selected quiz name</h3>
+      </div> -->
       <table class="table table-striped">
         <thead>
           <tr>
@@ -109,6 +111,7 @@
           </tr>
         </thead>
         <tbody>
+          <!-- TODO fill content with database content -->
           <tr>
             <td><b>1</b></td>
             <td><a href="#!/user/userid">Axel</a></td>
@@ -116,6 +119,7 @@
           </tr>
         </tbody>
       </table>
+      <img class="img-responsive" id="loadingAnimation" ng-if="scoreContentStatus == 'loading'" src="http://www.cuisson.co.uk/templates/cuisson/supersize/slideshow/img/progress.BAK-FOURTH.gif">
     </div>
   </div>
 </div>
