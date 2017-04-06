@@ -4,6 +4,8 @@ spotiQuizApp.controller('ScoresController', function($scope, $firebaseArray) {
   var usersRef = firebase.database().ref().child("users");
 
   $scope.scoreContentStatus = "loading";
+  // Initialize query to empty string
+  $scope.usernameQuery = "";
   // Default means that there hasn't been a text query looking for an specific user
   // $scope.showing = "default";
 
@@ -32,20 +34,28 @@ spotiQuizApp.controller('ScoresController', function($scope, $firebaseArray) {
       console.log(users);
 
       // Save scores from users with similar name to query, use some distance algo
-      var results = [];
-      angular.forEach(users, function(user) {
-        if (user.name === $scope.usernameQuery) {
-          console.log("Found user with similar name: " + user.name);
-          results.push({"name": user.name, "scores": {"quiz": user.scores.quiz, 
-            "score": user.scores.score}});
-          
-        }
-      });
-      console.log("Logging results array");
-      console.log(results);
+      // If the query is empty return everything
+      if ($scope.usernameQuery === "") {
+        $scope.usersContent = users;
+      } else {
+        var results = [];
+        angular.forEach(users, function(user) {
+          if (user.name === $scope.usernameQuery) {
+            console.log("Found user with similar name: " + user.name);
+            results.push({
+              "name": user.name,
+              "scores": {
+                "quiz": user.scores.quiz,
+                "score": user.scores.score
+              }
+            });
+          }
+        });
+        console.log("Logging results array");
+        console.log(results);
+        $scope.usersContent = results;
+      }
       $scope.scoreContentStatus = "loaded";
-      $scope.usersContent = results;
-      // $scope.showing = "queryResult";
     });
   };
 
