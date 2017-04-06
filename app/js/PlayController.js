@@ -1,21 +1,22 @@
 spotiQuizApp.controller('PlayController', function ($scope, $timeout, quizService) {
 
+
   $scope.powerUp = function () {
-    $scope.counter = 100;
+    $scope.counter = 10;
     $scope.displayType = 'none';
   }
   $scope.displayType = 'none';
   $scope.progress = 0;
-  $scope.counter = 100;
+  $scope.counter = 10;
   $scope.barType = 'success';
   $scope.stopped = false;
   $scope.buttonText='Stop';
   $scope.onTimeout = function(){
       $scope.counter--;
-      if($scope.counter === 50){
+      if($scope.counter === 5){
         $scope.barType = 'warning';
       }
-      if($scope.counter === 30){
+      if($scope.counter === 3){
         $scope.barType = 'danger';
         $scope.displayType = '';
       }
@@ -23,10 +24,10 @@ spotiQuizApp.controller('PlayController', function ($scope, $timeout, quizServic
         $scope.stopped = false;
         $scope.takeAction();
       }else{
-        mytimeout = $timeout($scope.onTimeout,100)
+        //$timeout($scope.onTimeout,1000)
       }
   }
-  var mytimeout = $timeout($scope.onTimeout,100);
+  //var mytimeout = $timeout($scope.onTimeout,1000);
   $scope.takeAction = function(){
       if(!$scope.stopped){
           $timeout.cancel(mytimeout);
@@ -38,8 +39,8 @@ spotiQuizApp.controller('PlayController', function ($scope, $timeout, quizServic
           $scope.buttonText='Stop';
           $scope.barType = 'success';
           $scope.displayType = 'none';
-          $scope.counter = 100;
-          mytimeout = $timeout($scope.onTimeout,100);
+          $scope.counter = 10;
+          mytimeout = $timeout($scope.onTimeout,1000);
       }
           $scope.stopped=!$scope.stopped;
   }

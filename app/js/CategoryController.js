@@ -1,4 +1,4 @@
-spotiQuizApp.controller('CategoryController', function ($scope, quizService) {
+spotiQuizApp.controller('CategoryController', function ($scope, quizService, $firebaseArray) {
 
   $scope.searchGenre = function (genre) {
     if(genre === '' || genre === undefined){
@@ -22,4 +22,5 @@ spotiQuizApp.controller('CategoryController', function ($scope, quizService) {
       }
     }
   }
+  console.log($firebaseArray(firebase.database().ref().child('quizzes')));
 });
