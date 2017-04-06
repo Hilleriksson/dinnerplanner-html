@@ -1,6 +1,6 @@
-spotiQuizApp.controller('CreateQuizController', ['$scope', 'Spotify', "$http", "$firebaseArray", "$firebaseAuth", "$location",  function ($scope, Spotify, $http, $firebaseArray, $firebaseAuth, $location) {
+spotiQuizApp.controller('CreateQuizController', function ($scope, Spotify, $http, $firebaseArray, $firebaseAuth, $location) {
 
-  $scope.questionAmount = 2;
+  $scope.questionAmount = 1;
   $scope.getQuestionAmount = function(num) {
     return new Array(num);
   }
@@ -9,27 +9,18 @@ spotiQuizApp.controller('CreateQuizController', ['$scope', 'Spotify', "$http", "
 
 
   $firebaseAuth().$onAuthStateChanged(function(authData){
-
-
     if (authData != null) {
     $scope.username = authData.displayName;
     $scope.usermail = authData.email;
+    }
+  })
+
+  $scope.showPage = function (index) {
+    //$scope.questionField = "hidden";
+    console.log($scope);
+    angular.element(document.getElementById("Question-" + index)).addClass("has-error");
+    console.log(index)
   }
-
-        $scope.btnChangeName = function() {
-          event.preventDefault();
-
-          authData.updateProfile({ //Need to fix this to work in angular.
-          displayName: $scope.changeName
-          }).then(function() {
-              console.log('Update successful.')
-              $route.reload();
-
-          }, function(error) {
-          // An error happened.
-          });
-        }
-        })
 
   // Tries to match selected song with URL
   // Maybe not optimal solution
@@ -133,4 +124,4 @@ spotiQuizApp.controller('CreateQuizController', ['$scope', 'Spotify', "$http", "
     $location.path('#!/category')
   }
 
-}]);
+});
