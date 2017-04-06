@@ -1,18 +1,35 @@
-spotiQuizApp.controller('CreateQuizController', ['$scope', 'Spotify', "$http", "$firebaseArray", "$firebaseAuth", function ($scope, Spotify, $http, $firebaseArray, $firebaseAuth) {
+spotiQuizApp.controller('CreateQuizController', ['$scope', 'Spotify', "$http", "$firebaseArray", "$firebaseAuth", "$location",  function ($scope, Spotify, $http, $firebaseArray, $firebaseAuth, $location) {
 
-var auth = $firebaseAuth();
-
-auth.onAuthStateChanged(function(authData){
-  console.log(authData.displayName)
-});
   $scope.questionAmount = 2;
   $scope.getQuestionAmount = function(num) {
     return new Array(num);
   }
   $scope.question = {};
   var firebaseRef = $firebaseArray(firebase.database().ref().child('quizzes'));
-  console.log(firebaseRef);
 
+
+  $firebaseAuth().$onAuthStateChanged(function(authData){
+
+
+    if (authData != null) {
+    $scope.username = authData.displayName;
+    $scope.usermail = authData.email;
+  }
+
+        $scope.btnChangeName = function() {
+          event.preventDefault();
+
+          authData.updateProfile({ //Need to fix this to work in angular.
+          displayName: $scope.changeName
+          }).then(function() {
+              console.log('Update successful.')
+              $route.reload();
+
+          }, function(error) {
+          // An error happened.
+          });
+        }
+        })
 
   // Tries to match selected song with URL
   // Maybe not optimal solution
@@ -89,31 +106,31 @@ auth.onAuthStateChanged(function(authData){
     // }
 
     //console.log($scope.question);
-    var toSend = {
-          "name": $scope.question.nameOfQuiz,
-          "description" : $scope.questions.questionDescription,
-          "creator": "help@gmail.com",
-          "creatorName": "Help Smithsson",
-          "timestamp": firebase.database.ServerValue.TIMESTAMP,
-          "questions": {}
-        };
 
-    for (var i=0; i<$scope.questionAmount; i++){
-      var questionNumber = i+1;
-      toSend.questions[questionNumber] = {
-          "songUrl": $scope.question.URL[i],
-          "question": $scope.question.question[i],
-          "option1": $scope.question.answer1[i],
-          "option2": $scope.question.answer2[i],
-          "option3": $scope.question.answer3[i],
-          "option4": $scope.question.answer4[i],
-          "correctOption": $scope.question.correct[i]
-        };
-
-    }
-    console.log(toSend);
-    firebaseRef.$add(toSend);
-    console.log("klar");
+    // var toSend = {
+    //       "name": $scope.question.nameOfQuiz,
+    //       "description" : $scope.question.questionDescription,
+    //       "creator": $scope.usermail,
+    //       "creatorName": $scope.username,
+    //       "timestamp": firebase.database.ServerValue.TIMESTAMP,
+    //       "questions": {}
+    //     };
+    //
+    // for (var i=0; i<$scope.questionAmount; i++){
+    //   var questionNumber = i+1;
+    //   toSend.questions[questionNumber] = {
+    //       "songUrl": $scope.question.URL[i],
+    //       "question": $scope.question.question[i],
+    //       "option1": $scope.question.answer1[i],
+    //       "option2": $scope.question.answer2[i],
+    //       "option3": $scope.question.answer3[i],
+    //       "option4": $scope.question.answer4[i],
+    //       "correctOption": $scope.question.correct[i]
+    //     };
+    //
+    // }
+    // firebaseRef.$add(toSend);
+    $location.path('#!/category')
   }
 
 }]);
