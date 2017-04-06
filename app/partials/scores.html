@@ -21,11 +21,10 @@
 
 #loadingAnimation {
   background-color: #ffffff;
+  width: 200px;
   display: block;
-  width: 250px;
-  margin-left: 50%;
+  margin: 0 auto;
 }
-
 </style>
 <ng-include src="'partials/game-sidebar.html'" ng-controller="SidebarController"></ng-include>
 <div class="col-md-8">
@@ -59,12 +58,9 @@
             <th>Date</th>
           </tr>
         </thead>
-        <tbody ng-switch on="scoreContentStatus">
+        <tbody>
           <!-- TODO fill content with database content -->
-          <tr id="loadingAnimation" ng-switch-when="loaded">
-            <td><img src="http://www.cuisson.co.uk/templates/cuisson/supersize/slideshow/img/progress.BAK-FOURTH.gif"></td>
-          </tr>
-          <tr ng-repeat="user in usersContent" ng-switch-when="loaded">
+          <tr ng-repeat="user in usersContent" ng-if="scoreContentStatus == 'loaded'">
             <td>{{ user.name }}</td>
             <td>{{ user.name }}</td>
             <!-- Probably have to change this to score[0] when there's more than 1 
@@ -80,6 +76,7 @@
           </tr> -->
         </tbody>
       </table>
+      <img class="img-responsive" id="loadingAnimation" ng-if="scoreContentStatus == 'loading'" src="http://www.cuisson.co.uk/templates/cuisson/supersize/slideshow/img/progress.BAK-FOURTH.gif">
     </div>
     <div id="highest-scores" ng-switch-when="highest">
       <!-- Select quiz type -->
@@ -87,13 +84,19 @@
         <div class="col-md-4">
           <div class="form-group">
             <select class="form-control">
-              <option value="" disabled selected>Select Quiz type</option>
+              <option value="" disabled selected>Most popular quizzes</option>
+              <!-- Populate with most popular quizzes -->
               <option>All</option>
               <option>90's music</option>
               <option>00's music</option>
               <option>Hip Hop</option>
               <option>Indie</option>
             </select>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Quiz name">
           </div>
         </div>
       </div>
@@ -110,16 +113,6 @@
             <td><b>1</b></td>
             <td><a href="#!/user/userid">Axel</a></td>
             <td>500</td>
-          </tr>
-          <tr>
-            <td><b>2</b></td>
-            <td><a href="#!/user/userid">Arham</a></td>
-            <td>450</td>
-          </tr>
-          <tr>
-            <td><b>3</b></td>
-            <td><a href="#!/user/userid">Edu</a></td>
-            <td>430</td>
           </tr>
         </tbody>
       </table>
