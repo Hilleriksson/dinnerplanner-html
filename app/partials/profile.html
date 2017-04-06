@@ -75,24 +75,32 @@
 			<div class="col-md-4">
 				<div class="row">
 					<a id="imgProfilehtml" href="#">
-						<img class="img-circle" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg">
+						<img class="img-circle" src="{{displayProfilePicture}}">
 						<span id="txtProfilehtml"> Change Profile Picture </span>
 					</a>
 				</div>
 
 				<div id="nameProfilehtml" class="row">
-					<span id="displayNameProfilehtml">Bob Smith </span><a href="#" title="Change your name"><span class="glyphicon glyphicon-pencil"></span></a>
+					<span id="displayNameProfilehtml">{{displayProfileName}}</span><a href="#" title="Change your name"><span class="glyphicon glyphicon-pencil"></span></a>
+					<button id="btnLogout" ng-click="btnLogout()" class="btn btn-action">Log out</button>
+				</div>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+                <div id="random" class="row">
+                    <span><input id="txtChangeName" ng-model="changeName" type="text" placeholder="Name">
+                    <button id="btnChangeName" ng-click="btnChangeName()" class="btn btn-action">Confirm</button></span>
+
+                    <span><input id="txtChangePhoto" ng-model="changePhoto" type="text" placeholder="Photo">
+                    <button id="btnChangePhoto" ng-click="btnChangePhoto()" class="btn btn-action">Confirm</button></span>
 				</div>
 		    </div>
-
-
-		    <div id="profile" class="hide">
-                    <input id="txtChangeName" ng-model="changeName" type="text" placeholder="Change username?">
-
-                    <button id="btnChangeName" ng-click="btnChangeName()" class="btn btn-action">Confirm</button><br>
-
-                Welcome, <span id="profileName"></span>
-            </div>
 
 		    <div class="col-md-8">
 		    	<div class="row">
