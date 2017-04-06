@@ -1,11 +1,17 @@
-spotiQuizApp.controller('CreateQuizController', ['$scope', 'Spotify', "$http", "$firebaseArray", function ($scope, Spotify, $http, $firebaseArray) {
+spotiQuizApp.controller('CreateQuizController', ['$scope', 'Spotify', "$http", "$firebaseArray", "$firebaseAuth", function ($scope, Spotify, $http, $firebaseArray, $firebaseAuth) {
 
+var auth = $firebaseAuth();
+
+auth.onAuthStateChanged(function(authData){
+  console.log(authData.displayName)
+});
   $scope.questionAmount = 2;
   $scope.getQuestionAmount = function(num) {
     return new Array(num);
   }
   $scope.question = {};
   var firebaseRef = $firebaseArray(firebase.database().ref().child('quizzes'));
+  console.log(firebaseRef);
 
 
   // Tries to match selected song with URL
@@ -82,9 +88,10 @@ spotiQuizApp.controller('CreateQuizController', ['$scope', 'Spotify', "$http", "
     //   console.log($scope.searchedSong);
     // }
 
-    console.log($scope.question);
+    //console.log($scope.question);
     var toSend = {
-          "name": "SomeonesQuiz",
+          "name": $scope.question.nameOfQuiz,
+          "description" : $scope.questions.questionDescription,
           "creator": "help@gmail.com",
           "creatorName": "Help Smithsson",
           "timestamp": firebase.database.ServerValue.TIMESTAMP,
@@ -93,8 +100,7 @@ spotiQuizApp.controller('CreateQuizController', ['$scope', 'Spotify', "$http", "
 
     for (var i=0; i<$scope.questionAmount; i++){
       var questionNumber = i+1;
-      toSend.questions = {
-        "questionNumber": {
+      toSend.questions[questionNumber] = {
           "songUrl": $scope.question.URL[i],
           "question": $scope.question.question[i],
           "option1": $scope.question.answer1[i],
@@ -102,12 +108,11 @@ spotiQuizApp.controller('CreateQuizController', ['$scope', 'Spotify', "$http", "
           "option3": $scope.question.answer3[i],
           "option4": $scope.question.answer4[i],
           "correctOption": $scope.question.correct[i]
-        }
-      }
-    }
+        };
 
+    }
     console.log(toSend);
-    //firebaseRef.$add(toSend);
+    firebaseRef.$add(toSend);
     console.log("klar");
   }
 

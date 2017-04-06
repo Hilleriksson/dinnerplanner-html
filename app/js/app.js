@@ -81,7 +81,6 @@ spotiQuizApp.config(['$routeProvider',
         templateUrl: 'partials/scores.html',
         controller: 'ScoresController'
       }).
-      // TODO in Lab 5: add more conditions for the last two screens (overview and preparation)
       otherwise({
         redirectTo: '/home'
       });

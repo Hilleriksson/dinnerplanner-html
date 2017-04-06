@@ -37,9 +37,20 @@
 <ng-include src="'partials/game-sidebar.html'" ng-controller="SidebarController"></ng-include>
 <div class="col-md-8 margin-left">
   <h2>Create your own quiz<h2>
+  <div class="row">
+    <div class='container-fluid typeahead margin-down col-md-6' ng-class="songField">
+      <h4>Name of your Quiz</h4>
+      <input type="text" ng-model="question.nameOfQuiz" placeholder="enter" class="form-control">
+    </div>
+  </div>
+  <div class="row">
+      <div class="container-fluid margin-down col-md-6" ng-class="questionField">
+        <h4>Name of your Quiz</h4>
+        <textarea class="form-control" ng-model="question.questionDescription" rows="5"></textarea>
+      </div>
+  </div>
   <div ng-repeat="i in getQuestionAmount(questionAmount) track by $index">
     <h3>Question number {{$index+1}}</h3>
-
     <div class="row">
       <div class='container-fluid typeahead margin-down col-md-6' ng-class="songField">
         <h4>Enter a song</h4>
