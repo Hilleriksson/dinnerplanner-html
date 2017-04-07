@@ -16,53 +16,55 @@
 }
 </style>
 <ng-include src="'partials/game-sidebar.html'" ng-controller="SidebarController"></ng-include>
-<h1 class="text-center">Contact us!</h1>
-<form id="contact-form" method="post" action="" role="form">
-  <div class="controls">
-    <div class="row">
-      <div class="col-md-4">
-        <div class="form-group">
-          <label for="form_name">Firstname *</label>
-          <input id="form_name" type="text" name="name" class="form-control" placeholder="Aubrey Drake" required="required" data-error="Firstname is required.">
+<div id="wrapper" class="col-md-8">
+  <h1 class="text-center">Contact us!</h1>
+  <form id="contact-form" method="post" action="" role="form">
+    <div class="controls">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="form_name">Firstname *</label>
+            <input id="form_name" type="text" name="name" class="form-control" placeholder="Aubrey Drake" required="required" data-error="Firstname is required.">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="form_lastname">Lastname *</label>
+            <input id="form_lastname" type="text" name="surname" class="form-control" placeholder="Graham" required="required" data-error="Lastname is required.">
+          </div>
         </div>
       </div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <label for="form_lastname">Lastname *</label>
-          <input id="form_lastname" type="text" name="surname" class="form-control" placeholder="Graham" required="required" data-error="Lastname is required.">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="form_email">Email *</label>
+            <input id="form_email" type="email" name="email" class="form-control" placeholder="drake@ovosound.com" required="required" data-error="Valid email is required.">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="form_phone">Phone</label>
+            <input id="form_phone" type="tel" name="phone" class="form-control" placeholder="+46XXXXXXX">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8">
+          <div class="form-group">
+            <label for="form_message">Message *</label>
+            <textarea id="form_message" name="message" class="form-control" placeholder="Message" rows="4" required="required" data-error="Please,leave us a message."></textarea>
+            <div class="help-block with-errors"></div>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <input type="submit" class="btn btn-success btn-send" value="Send message">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8">
+          <p class="text-muted"><strong>*</strong> These fields are required.
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-4">
-        <div class="form-group">
-          <label for="form_email">Email *</label>
-          <input id="form_email" type="email" name="email" class="form-control" placeholder="drake@ovosound.com" required="required" data-error="Valid email is required.">
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <label for="form_phone">Phone</label>
-          <input id="form_phone" type="tel" name="phone" class="form-control" placeholder="+46XXXXXXX">
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-8">
-        <div class="form-group">
-          <label for="form_message">Message *</label>
-          <textarea id="form_message" name="message" class="form-control" placeholder="Message" rows="4" required="required" data-error="Please,leave us a message."></textarea>
-          <div class="help-block with-errors"></div>
-        </div>
-      </div>
-      <div class="col-md-8">
-        <input type="submit" class="btn btn-success btn-send" value="Send message">
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-8">
-        <p class="text-muted"><strong>*</strong> These fields are required.
-      </div>
-    </div>
-  </div>
-</form>
+  </form>
+</div>
