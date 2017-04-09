@@ -1,6 +1,8 @@
 spotiQuizApp.controller('CreateQuizController', function ($scope, Spotify, $http, $firebaseArray, $firebaseAuth, $location) {
 
   $scope.questionAmount = 1;
+  $scope.currentQuestionIndex = 0;
+
   $scope.getQuestionAmount = function(num) {
     return new Array(num);
   }
@@ -15,11 +17,47 @@ spotiQuizApp.controller('CreateQuizController', function ($scope, Spotify, $http
     }
   })
 
+  $scope.nextField = function () {
+    var filledForm = true;
+
+    if ($scope.question.nameOfQuiz == "" || $scope.question.nameOfQuiz == undefined) {
+      filledForm = false;
+    }
+    if ($scope.question.questionDescription == "" || $scope.question.questionDescription == undefined) {
+      filledForm = false;
+    }
+
+    if (filledForm) {
+      angular.element(document.getElementById("infoField")).addClass("hidden");
+      angular.element(document.getElementById("questionField")).removeClass("hidden");
+
+      for(var i=0; i<$scope.questionAmount; i++){
+        angular.element(document.getElementById("Question-" + i)).addClass("hidden");
+      }
+      angular.element(document.getElementById("Question-" + $scope.currentQuestionIndex)).removeClass("hidden");
+
+    } else {
+      angular.element(document.getElementById("infoFieldAlert")).removeClass("hidden");
+    }
+
+
+  }
+
+  $scope.backField = function () {
+    angular.element(document.getElementById("infoField")).removeClass("hidden");
+    angular.element(document.getElementById("questionField")).addClass("hidden");
+  }
+
+
   $scope.showPage = function (index) {
     //$scope.questionField = "hidden";
-    console.log($scope);
-    angular.element(document.getElementById("Question-" + index)).addClass("has-error");
+    for(var i=0; i<$scope.questionAmount; i++){
+      angular.element(document.getElementById("Question-" + i)).addClass("hidden");
+    }
+    angular.element(document.getElementById("Question-" + index)).removeClass("hidden");
+    $scope.currentQuestionIndex = index;
     console.log(index)
+    console.log($scope.questionAmount);
   }
 
   // Tries to match selected song with URL
