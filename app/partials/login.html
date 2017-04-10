@@ -4,7 +4,7 @@
     .center {
           position: absolute;
           left: 50%;
-          top: 50%;
+          top: 60%;
           padding: 10px;
           width: auto;
           -webkit-transform: translate(-50%,-50%);
@@ -50,9 +50,20 @@
 
                     <input id="txtPassword" ng-model="password" type="password" class="form-control" placeholder="Password"><br>
 
+
+                    <div id="firsttime" class="input form hidden">
+                        <input ng-model="changeName" class="form-control" placeholder="Your profile name"><p style="color: red">Please enter a name before logging in.</p><br>
+
+                        <button id="btnProceed" ng-click="btnLogin()" class="btn btn-primary btn-lg btn-block btn-huge">Proceed</button>
+
+
+                    </div>
+
                     <button id="btnLogin" ng-click="btnLogin()" class="btn btn-primary">Log in</button>
 
                     <button id="btnSignUp" ng-click="btnSignUp()" class="btn btn-secondary">Sign up</button>
+
+
                 </div>
             </div>
         </div>

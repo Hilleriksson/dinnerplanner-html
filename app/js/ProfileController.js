@@ -3,7 +3,7 @@
 //Fix the anuglar instead of route.reload (?)
 
 
-spotiQuizApp.controller('ProfileController', ['$scope','$firebaseAuth','$location','$route', function($scope, $firebaseAuth, $location, $route) {
+spotiQuizApp.controller('ProfileController', ['$scope','$firebaseAuth','$location','$route', function($scope, $firebaseAuth, $location, $route, $sce) {
 
 	var auth = $firebaseAuth();
 
@@ -15,11 +15,12 @@ spotiQuizApp.controller('ProfileController', ['$scope','$firebaseAuth','$locatio
 		$scope.displayProfilePicture = authData.photoURL;
 	}
 
-        $scope.btnChangeName = function() {
+        $scope.btnChangeName = function(changeName) {
       		event.preventDefault();
+      		console.log(changeName)
 
 	        authData.updateProfile({ //Need to fix this to work in angular.
-				  displayName: $scope.changeName
+				  displayName: changeName,
 					}).then(function() {
 					  	console.log('Update successful.')
 					  	$route.reload();
@@ -38,11 +39,12 @@ spotiQuizApp.controller('ProfileController', ['$scope','$firebaseAuth','$locatio
 		$scope.displayProfilePicture = authData.photoURL;
 	}
 
-    	$scope.btnChangePhoto = function() {
+    	$scope.btnChangePhoto = function(changePhoto) {
       		event.preventDefault();
+      		console.log(changePhoto)
 
 	        authData.updateProfile({ //Need to fix this to work in angular
-				  photoURL: "https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg"
+				  photoURL: changePhoto,
 					}).then(function() {
 					 	console.log('Update successful.')
 					  	$route.reload();
@@ -62,6 +64,15 @@ spotiQuizApp.controller('ProfileController', ['$scope','$firebaseAuth','$locatio
       });
     }
 
+  $scope.photoPopover = {
+    content: 'Insert photo-URL',
+    templateUrl: 'myPopoverTemplates.html'
+      };
+
+   $scope.namePopover = {
+   	content: 'Insert new name',
+   	templateUrl: 'myPopoverTemplate.html'
+   };
 
 
 }])

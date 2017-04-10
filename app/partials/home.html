@@ -30,7 +30,7 @@ looks a bit nicer. -->
               }
 
 </style>
-  <div class="container">
+  <div class="container" ng-controller="ProfileController">
       <br>
       <h1>SpotiQuiz</h1>
       <div class="col-md-6 center">
@@ -38,9 +38,9 @@ looks a bit nicer. -->
   	        <div class="col-md-12">
   	            <a href="#!/category" class="btn btn-primary btn-lg btn-block btn-huge">Play</a>
   	        </div>
-  	    </div>
+  	  </div>
   	    <br>
-  	    <div class="row">
+  	  <div class="row">
   	        <div class="col-md-4">
                 <a ng-href="#!/user/{{userids}}" class="btn btn-primary btn-lg btn-block btn-huge">Your Profile</a>
 
@@ -52,5 +52,11 @@ looks a bit nicer. -->
   	            <a href="#!/scores" class="btn btn-primary btn-lg btn-block btn-huge">High Score</a>
   	        </div>
   	    </div>
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+                <button id="btnLogout" ng-click="btnLogout()" class="btn btn-primary btn-lg btn-block btn-huge">Log out</button>
+            </div>
+        </div>
   	</div>
   </div>
