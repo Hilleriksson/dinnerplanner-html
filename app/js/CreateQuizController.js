@@ -2,13 +2,17 @@ spotiQuizApp.controller('CreateQuizController', function ($scope, Spotify, $http
 
   $scope.questionAmount = 1;
   $scope.currentQuestionIndex = 0;
-
-  $scope.getQuestionAmount = function(num) {
-    return new Array(num);
-  }
   $scope.question = {};
-  var firebaseRef = $firebaseArray(firebase.database().ref().child('quizzes'));
+  $scope.question.song = [];
+  $scope.question.question = [];
+  $scope.question.answer1 = [];
+  $scope.question.answer2 = [];
+  $scope.question.answer3 = [];
+  $scope.question.answer4 = [];
+  $scope.question.correct = [];
 
+
+  var firebaseRef = $firebaseArray(firebase.database().ref().child('quizzes'));
 
   $firebaseAuth().$onAuthStateChanged(function(authData){
     if (authData != null) {
@@ -17,6 +21,12 @@ spotiQuizApp.controller('CreateQuizController', function ($scope, Spotify, $http
     }
   })
 
+  // function for ng-repeat questions
+  $scope.getQuestionAmount = function(num) {
+    return new Array(num);
+  }
+
+  //Checks if all forms are filled, then hides first part of the form
   $scope.nextField = function () {
     var filledForm = true;
 
@@ -28,6 +38,7 @@ spotiQuizApp.controller('CreateQuizController', function ($scope, Spotify, $http
     }
 
     if (filledForm) {
+      angular.element(document.getElementById("infoFieldAlert")).addClass("hidden");
       angular.element(document.getElementById("infoField")).addClass("hidden");
       angular.element(document.getElementById("questionField")).removeClass("hidden");
 
@@ -35,29 +46,48 @@ spotiQuizApp.controller('CreateQuizController', function ($scope, Spotify, $http
         angular.element(document.getElementById("Question-" + i)).addClass("hidden");
       }
       angular.element(document.getElementById("Question-" + $scope.currentQuestionIndex)).removeClass("hidden");
-
     } else {
       angular.element(document.getElementById("infoFieldAlert")).removeClass("hidden");
     }
-
-
   }
 
+  // back to first part of the form
   $scope.backField = function () {
     angular.element(document.getElementById("infoField")).removeClass("hidden");
     angular.element(document.getElementById("questionField")).addClass("hidden");
   }
 
 
+
+  // shows correct question when selected on paginator
   $scope.showPage = function (index) {
-    //$scope.questionField = "hidden";
     for(var i=0; i<$scope.questionAmount; i++){
       angular.element(document.getElementById("Question-" + i)).addClass("hidden");
     }
     angular.element(document.getElementById("Question-" + index)).removeClass("hidden");
     $scope.currentQuestionIndex = index;
-    console.log(index)
-    console.log($scope.questionAmount);
+  }
+
+  // shows next question on paginator
+  $scope.nextPage = function () {
+    if ($scope.currentQuestionIndex<$scope.questionAmount-1){
+      for(var i=0; i<$scope.questionAmount; i++){
+        angular.element(document.getElementById("Question-" + i)).addClass("hidden");
+      }
+      $scope.currentQuestionIndex++;
+      angular.element(document.getElementById("Question-" + $scope.currentQuestionIndex)).removeClass("hidden");
+    }
+  }
+
+  //shows shows previous question on paginator
+  $scope.backPage = function () {
+    if ($scope.currentQuestionIndex>0){
+      for(var i=0; i<$scope.questionAmount; i++){
+        angular.element(document.getElementById("Question-" + i)).addClass("hidden");
+      }
+      $scope.currentQuestionIndex--;
+      angular.element(document.getElementById("Question-" + $scope.currentQuestionIndex)).removeClass("hidden");
+    }
   }
 
   // Tries to match selected song with URL
@@ -83,7 +113,6 @@ spotiQuizApp.controller('CreateQuizController', function ($scope, Spotify, $http
     };
   };
 
-
   // Called upon when the typeaheader is called.
   $scope.searchSong = function(val) {
   return $http.get('//api.spotify.com/v1/search?q='+val+'&type=track', {
@@ -94,72 +123,54 @@ spotiQuizApp.controller('CreateQuizController', function ($scope, Spotify, $http
     });
   });
 };
-  $scope.searchedSong = "";
-  $scope.writtenQuestion = "";
-  $scope.textValue1 = "";
-  $scope.textValue2 = "";
-  $scope.textValue3 = "";
-  $scope.textValue4 = "";
-  $scope.radioValue = "";
 
 
+  var list = [$scope.question.song, $scope.question.question, $scope.question.answer1, $scope.question.answer2, $scope.question.answer3, $scope.question.answer4, $scope.question.correct]
+
+
+  //checks  if all forms are filled, then submits data to firebase
   $scope.submitQuestions = function() {
-    // var filledForm = true;
-    // var list = [$scope.textValue1, $scope.textValue2, $scope.textValue3, $scope.textValue4, $scope.radioValue];
-    //
-    // if ($scope.searchedSong == ""){
-    //   filledForm = false;
-    //   $scope.songField = "has-error";
-    // } else {
-    //   $scope.songField = "";
-    // }
-    //
-    // if ($scope.writtenQuestion == ""){
-    //   filledForm = false;
-    //   $scope.questionField = "has-error";
-    // } else {
-    //   $scope.questionField = "";
-    // }
-    //
-    // for (var i=0; i<list.length; i++){
-    //   if (list[i] == "") {
-    //     filledForm = false;
-    //     $scope.answerField = "has-error";
-    //   } else {
-    //     $scope.answerField = "";
-    //   }
-    // }
-    //
-    // if (filledForm == true) {
-    //   console.log($scope.searchedSong);
-    // }
+    var filledForm = true;
 
-    //console.log($scope.question);
+    for(var i=0; i<list.length; i++){
+      for(var j=0; j<$scope.questionAmount; j++){
+        if(list[i][j] == undefined || list[i][j] == ""){
+          filledForm = false;
+        }
+      }
+    }
 
-    // var toSend = {
-    //       "name": $scope.question.nameOfQuiz,
-    //       "description" : $scope.question.questionDescription,
-    //       "creator": $scope.usermail,
-    //       "creatorName": $scope.username,
-    //       "timestamp": firebase.database.ServerValue.TIMESTAMP,
-    //       "questions": {}
-    //     };
-    //
-    // for (var i=0; i<$scope.questionAmount; i++){
-    //   var questionNumber = i+1;
-    //   toSend.questions[questionNumber] = {
-    //       "songUrl": $scope.question.URL[i],
-    //       "question": $scope.question.question[i],
-    //       "option1": $scope.question.answer1[i],
-    //       "option2": $scope.question.answer2[i],
-    //       "option3": $scope.question.answer3[i],
-    //       "option4": $scope.question.answer4[i],
-    //       "correctOption": $scope.question.correct[i]
-    //     };
-    //
-    // }
-    // firebaseRef.$add(toSend);
-    $location.path('#!/category')
+
+
+    if (filledForm) {
+      var toSend = {
+            "name": $scope.question.nameOfQuiz,
+            "description" : $scope.question.questionDescription,
+            "creator": $scope.usermail,
+            "creatorName": $scope.username,
+            "timestamp": firebase.database.ServerValue.TIMESTAMP,
+            "questions": {}
+          };
+
+      for (var i=0; i<$scope.questionAmount; i++){
+        var questionNumber = i+1;
+        toSend.questions[questionNumber] = {
+            "songUrl": $scope.question.URL[i],
+            "question": $scope.question.question[i],
+            "option1": $scope.question.answer1[i],
+            "option2": $scope.question.answer2[i],
+            "option3": $scope.question.answer3[i],
+            "option4": $scope.question.answer4[i],
+            "correctOption": $scope.question.correct[i]
+          };
+
+      }
+      firebaseRef.$add(toSend);
+      $location.path('#!/category')
+
+    } else {
+      angular.element(document.getElementById("questionFieldAlert")).removeClass("hidden");
+    }
   }
 
 });
