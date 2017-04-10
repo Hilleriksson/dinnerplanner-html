@@ -69,6 +69,10 @@ body{
   margin: -300px 0 0 -450px;
 }
 
+/*.containerProgressBar {
+  margin-top: 55%;
+}*/
+
 #option1 {
   position: absolute;
   bottom: 50%;

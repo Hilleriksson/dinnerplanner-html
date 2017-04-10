@@ -46,6 +46,7 @@
 				width:200px; /* you can use % */
 			    height: auto;
 			    border-radius: 50%;
+			    cursor: pointer;
 			}
 
 			#txtProfilehtml {
@@ -60,31 +61,55 @@
               }
 
             #nameProfilehtml{
-	            position: absolute;
-	            width: 200px;
-	            text-align: center;
 	            padding: 5%;
 
             }
 
+            #testest{
+            	position: absolute;
+            	width: 200px;
+            }
+            /* The max width is dependant on the container (more info below) */
 
 
 </style>
+<body>
+	<script type="text/ng-template" id="myPopoverTemplates.html">
+		<label>{{photoPopover.content}}</label>
+        <div class="input-group">
+            <input type="text" class="form-control" ng-model="changePhoto">
+            <span class="input-group-btn">
+                <button class="btn btn-default" ng-click="btnChangePhoto(changePhoto)" type="button">Confirm</button>
+            </span>
+        </div>
+    </script>
+
+    <script type="text/ng-template" id="myPopoverTemplate.html">
+		<label>{{namePopover.content}}</label>
+        <div class="input-group">
+            <input type="text" class="form-control" ng-model="changeName">
+            <span class="input-group-btn">
+                <button class="btn btn-default" ng-click="btnChangeName(changeName)" type="button">Confirm</button>
+            </span>
+        </div>
+    </script>
+
 	<div class="container" style="margin-top: 2%">
-		<div class="col-md-8">
-			<div class="col-md-4">
+		<!--<div class="col-md-8">
+			<div class="col-md-4">-->
 				<div class="row">
-					<a id="imgProfilehtml" href="#">
-						<img class="img-circle" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg">
+					<a id="imgProfilehtml" uib-popover-template="photoPopover.templateUrl" type="button" popover-placement="right">
+						<img class="img-circle" src="{{displayProfilePicture}}">
 						<span id="txtProfilehtml"> Change Profile Picture </span>
 					</a>
 				</div>
 
 				<div id="nameProfilehtml" class="row">
-					<span id="displayNameProfilehtml">Bob Smith </span><a href="#" title="Change your name"><span class="glyphicon glyphicon-pencil"></span></a>
+					<span id="displayNameProfilehtml">{{displayProfileName}}</span>
+					<a uib-popover-template="namePopover.templateUrl" type="button" popover-placement="right" title="Change your name">
+						<span style="margin-left: 5px; cursor: pointer" class="glyphicon glyphicon-pencil"></span>
+					</a>
 				</div>
-		    </div>
-
 		    <div class="col-md-8">
 		    	<div class="row">
 				    <table id="history">
@@ -135,3 +160,4 @@
 		    </div>
 	    </div>
 	</div>
+</body>
