@@ -5,7 +5,7 @@ body{
 
 /*Play CSS*/
 
-        h1 { color: #84bd00;
+        #spotiQuizTitle { color: #84bd00;
             font-family: 'Helvetica Neue', sans-serif;
             font-size: 275px;
             font-weight: bold;
