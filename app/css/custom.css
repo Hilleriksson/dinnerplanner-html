@@ -1,8 +1,26 @@
 body{
   height : 100vh;
+  background-color:  #000000;
 }
 
 /*Play CSS*/
+
+        h1 { color: #84bd00;
+            font-family: 'Helvetica Neue', sans-serif;
+            font-size: 275px;
+            font-weight: bold;
+            letter-spacing: -1px;
+            line-height: 1;
+            position: absolute;
+            left: 50%;
+            top: 20%;
+            padding: 10px;
+            width: auto;
+            -webkit-transform: translate(-50%,-50%);
+                -ms-transform: translate(-50%,-50%);
+                    transform: translate(-50%,-50%);
+              }
+
 
 .bottomDiv {
   display: inline-flex;
@@ -341,3 +359,101 @@ body{
   height: 50px;
   font-size: 15px;
 }
+
+      .img-circle{
+        width: 150px; /* you can use % */
+        height: auto;
+        border-radius: 50%;
+        border-style: solid;
+        border-color: blue;
+      }
+
+      .img-circle-sidebar{
+        margin-left: 95px;
+        margin-top: 115px;
+        width:200px; /* you can use % */
+        height: auto;
+        border-radius: 50%;
+        border-style: solid;
+        border-color: blue;
+      }
+
+      #nameProfilehtmlSidebar{
+        margin-left: 0px;
+        position: absolute;
+        width: 350px;
+        text-align: center;
+        padding: 5%;
+
+      }
+
+      #history {
+        width: 100%;
+        margin-top: 5%;
+      }
+
+      #displayNameContainer {
+        margin-top: 40px;
+
+
+      }
+      #displayNameProfilehtml {
+            color: #ffffff;
+            font-family: 'Helvetica Neue', sans-serif;
+            font-size: 75px;
+            font-weight: bold;
+            letter-spacing: -5px;
+            line-height: 1;
+
+              }
+
+            a#imgProfilehtml{
+        float: left;
+        position: relative;
+      }
+
+      a#imgProfilehtml img {
+        display: block;
+      }
+
+      a#imgProfilehtml span {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background: rgba(0,0,0,0.6);
+        color: #ddd;
+
+      }
+
+      a#imgProfilehtml:hover span {
+        display: block;
+        width: 150px; /* you can use % */
+        height: auto;
+        border-radius: 50%;
+          cursor: pointer;
+      }
+
+      #txtProfilehtml {
+        color: #ffffff;
+              font-family: 'Helvetica Neue', sans-serif;
+              font-size: 10px;
+              font-weight: bold;
+              letter-spacing: -1px;
+              line-height: 1;
+              width: 50px;
+              text-align: center;
+              }
+
+            #nameProfilehtml{
+              padding: 5%;
+
+            }
+
+            #testest{
+              position: absolute;
+              width: 200px;
+            }
+            /* The max width is dependant on the container (more info below) */
