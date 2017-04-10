@@ -8,7 +8,6 @@ spotiQuizApp.controller('ProfileController', ['$scope','$firebaseAuth','$locatio
 	var auth = $firebaseAuth();
 
 	auth.$onAuthStateChanged(function(authData){
-		console.log(authData)
 
 		if (authData != null) {
 		$scope.displayProfileName = authData.displayName;
@@ -32,7 +31,6 @@ spotiQuizApp.controller('ProfileController', ['$scope','$firebaseAuth','$locatio
    			})
 
 	auth.$onAuthStateChanged(function(authData){
-		console.log(authData)
 
 		if (authData != null) {
 		$scope.displayProfileName = authData.displayName;
