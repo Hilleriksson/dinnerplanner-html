@@ -22,8 +22,9 @@
                 <div id="loginDetails" class="center">
                     <input id="txtEmail" ng-model="email" type="email" class="form-control" placeholder="Email"><br>
 
-                    <input id="txtPassword" ng-model="password" type="password" class="form-control" placeholder="Password"><br>
+                    <input id="txtPassword" ng-model="password" type="password" class="form-control" placeholder="Password">
 
+                    <span id="errorTxt" class="hidden" style="color: red">Error: {{errorMessage}}</span><br>
 
                     <div id="firsttime" class="input form hidden">
                         <input ng-model="changeName" class="form-control" placeholder="Your profile name"><p style="color: red">Please enter a name before logging in.</p><br>

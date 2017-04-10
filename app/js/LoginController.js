@@ -6,6 +6,9 @@ spotiQuizApp.controller('LoginController', ['$scope','$firebaseAuth','$location'
 
   //var rootRef = firebase.database().ref() // Kirra detta, så kirrar vi
 
+  var dispName = 'first';
+  var firstfirst = [];
+
     $scope.btnSignUp = function() {
       event.preventDefault();
       var username = $scope.email;
@@ -15,12 +18,16 @@ spotiQuizApp.controller('LoginController', ['$scope','$firebaseAuth','$location'
       var emailForm = document.getElementById('txtEmail');
       var btnLogin = document.getElementById('btnLogin');
       var btnSignUp = document.getElementById('btnSignUp');
+      var errorTxt = document.getElementById('errorTxt');
 
       auth.$createUserWithEmailAndPassword(username, password).then(function(){
         console.log('Successfully registered');
 
         auth.$onAuthStateChanged(function(authData){
+          if (authData != null){
           if (authData.displayName == null){
+            angular.copy(dispName, firstfirst)
+
             console.log('Welcome!')
              firstTime.classList.remove('hidden');
              emailForm.classList.add('hidden');
@@ -29,10 +36,14 @@ spotiQuizApp.controller('LoginController', ['$scope','$firebaseAuth','$location'
              btnSignUp.classList.add('hidden');
 
           }
+        }
         })
 
       }, function(error) {
-        console.error('Sign up error', error);
+        //console.error('Sign up error', error);
+        console.log(error)
+        $scope.errorMessage = error.message;
+        errorTxt.classList.remove('hidden');
       });
     }
 
@@ -41,22 +52,24 @@ spotiQuizApp.controller('LoginController', ['$scope','$firebaseAuth','$location'
       event.preventDefault(); // COPYPASTA = "To prevent form refresh"
       var username = $scope.email;
       var password = $scope.password;
-      var changeName = $scope.changeName;
-      console.log($scope.changeName)
 
-      auth.$onAuthStateChanged(function(authData){
-          if (authData.displayName == null){
-            authData.updateProfile({
-              displayName: changeName,
-              photoURL: "https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg",
-            }).then(function() {
+      if (firstfirst[0] == 'f'){
+        auth.$onAuthStateChanged(function(authData){
+          if (authData != null){
+            if (authData.displayName == null){
+              authData.updateProfile({
+                displayName: $scope.changeName,
+                photoURL: "https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg",
+              }).then(function() {
 
-            }, function(error) {
+              }, function(error) {
 
-                });
-              }
+              });
+            }
+          }
+        })
+      }
 
-            })
 
       auth.$signInWithEmailAndPassword(username, password).then(function(){   //<--- This is what we want
         console.log('logged in successfully');
