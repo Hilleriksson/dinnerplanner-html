@@ -1,4 +1,4 @@
-spotiQuizApp.controller('CreateQuizController', function ($scope, Spotify, $http, $firebaseArray, $firebaseAuth, $location) {
+spotiQuizApp.controller('CreateQuizController', function ($scope, Spotify, $http, $firebaseAuth, $location) {
 
   $scope.questionAmount = 1;
   $scope.currentQuestionIndex = 0;
@@ -10,9 +10,10 @@ spotiQuizApp.controller('CreateQuizController', function ($scope, Spotify, $http
   $scope.question.answer3 = [];
   $scope.question.answer4 = [];
   $scope.question.correct = [];
+  var list = [$scope.question.song, $scope.question.question, $scope.question.answer1, $scope.question.answer2, $scope.question.answer3, $scope.question.answer4, $scope.question.correct]
 
 
-  var firebaseRef = $firebaseArray(firebase.database().ref().child('quizzes'));
+
 
   $firebaseAuth().$onAuthStateChanged(function(authData){
     if (authData != null) {
@@ -99,7 +100,7 @@ spotiQuizApp.controller('CreateQuizController', function ($scope, Spotify, $http
     if (val != ""){
       var justSong = val.split(", ");
       Spotify.search(justSong[0], 'track').then(function (data) {
-        while (true) {
+        while (true) {var list = [$scope.question.song, $scope.question.question, $scope.question.answer1, $scope.question.answer2, $scope.question.answer3, $scope.question.answer4, $scope.question.correct]
           //console.log(data.data.tracks.items[matchCounter].name + " med "+ justSong[0])
           //console.log(data.data.tracks.items[matchCounter].artists[0].name  + " med " + justSong[1])
           if (data.data.tracks.items[matchCounter].name == justSong[0] && data.data.tracks.items[matchCounter].artists[0].name == justSong[1]){
@@ -125,8 +126,6 @@ spotiQuizApp.controller('CreateQuizController', function ($scope, Spotify, $http
 };
 
 
-  var list = [$scope.question.song, $scope.question.question, $scope.question.answer1, $scope.question.answer2, $scope.question.answer3, $scope.question.answer4, $scope.question.correct]
-
 
   //checks  if all forms are filled, then submits data to firebase
   $scope.submitQuestions = function() {
@@ -139,8 +138,6 @@ spotiQuizApp.controller('CreateQuizController', function ($scope, Spotify, $http
         }
       }
     }
-
-
 
     if (filledForm) {
       var toSend = {
@@ -163,14 +160,25 @@ spotiQuizApp.controller('CreateQuizController', function ($scope, Spotify, $http
             "option4": $scope.question.answer4[i],
             "correctOption": $scope.question.correct[i]
           };
-
       }
-      firebaseRef.$add(toSend);
-      $location.path('#!/category')
+
+      updateDb(toSend);
+      $location.path('/category')
 
     } else {
       angular.element(document.getElementById("questionFieldAlert")).removeClass("hidden");
     }
+  }
+
+  // stores quiz-object in firebase
+  function updateDb (obj){
+    var newPostKey = firebase.database().ref().child('posts').push().key;
+
+    var updates = {};
+    updates['/quizzes/' + newPostKey] = obj;
+    updates['/quizzes-pop/' + newPostKey] = 0;
+
+    return firebase.database().ref().update(updates);
   }
 
 });
