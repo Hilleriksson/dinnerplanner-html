@@ -12,13 +12,13 @@
     <button id="createQuiz" class="btn btn-success">Create Quiz</button>
   </div>
 </div>
-<div id="container4" ng-init="getGenres()">
+<div id="container4" ng-init="getQuiz()">
   <div class="table-responsive">
   <table class="table">
     <tr ng-repeat="genre in genres">
       <td id="categoryOption" ng-repeat="data in genre">
         <div id="content">
-          <a ng-href="#!/play" id="{{data.id}}"><button type="button" id="categoryButton">{{data.genre}}</button></a>
+          <a ng-href="#!/play" id="{{data[0]}}"><button type="button" id="categoryButton">{{data[1]}}</button></a>
         </div>
       </td>
     </tr>

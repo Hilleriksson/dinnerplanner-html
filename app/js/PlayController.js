@@ -1,10 +1,10 @@
-spotiQuizApp.controller('PlayController', function ($scope, $timeout, quizService) {
+spotiQuizApp.controller('PlayController', function ($scope, $timeout, quizService, $firebaseArray, $filter) {
 
 
   $scope.powerUp = function () {
     $scope.counter = 10;
     $scope.displayType = 'none';
-  }
+  };
   $scope.displayType = 'none';
   $scope.progress = 0;
   $scope.counter = 10;
@@ -20,14 +20,29 @@ spotiQuizApp.controller('PlayController', function ($scope, $timeout, quizServic
         $scope.barType = 'danger';
         $scope.displayType = '';
       }
-      if($scope.counter == 0){
+      if($scope.counter === 0){
         $scope.stopped = false;
         $scope.takeAction();
       }else{
-        //$timeout($scope.onTimeout,1000)
+        $timeout($scope.onTimeout,1000);
       }
-  }
-  //var mytimeout = $timeout($scope.onTimeout,1000);
+  };
+
+  var mytimeout = 0;
+  console.log($firebaseArray(firebase.database().ref().child('quizzes')));
+  var quizQuestions = $firebaseArray(firebase.database().ref().child('quizzes'));
+  // for(valueJson in quizQuestions){
+  //   console.log(valueJson);
+  // }
+  quizQuestions.$loaded()
+    .then(function(){
+        angular.forEach(quizQuestions, function(user) {
+            console.log(user);
+        })
+    });
+  // console.log(quizQuestions.first);
+  //console.log(JSON.parse(quizQuestions));
+
   $scope.takeAction = function(){
       if(!$scope.stopped){
           $timeout.cancel(mytimeout);
@@ -43,7 +58,7 @@ spotiQuizApp.controller('PlayController', function ($scope, $timeout, quizServic
           mytimeout = $timeout($scope.onTimeout,1000);
       }
           $scope.stopped=!$scope.stopped;
-  }
+  };
 
   var numbersGenerated = [];
   $scope.question = "What is the name of this song?";
@@ -62,11 +77,11 @@ spotiQuizApp.controller('PlayController', function ($scope, $timeout, quizServic
         $scope.takeAction();
       }
     }
-  }
+  };
 
   $scope.endQuiz = function () {
     window.location.href = '#!/endPlay';
-  }
+  };
 });
 
 spotiQuizApp.filter('formatTimer', function() {
