@@ -61,18 +61,26 @@ spotiQuizApp.controller('PlayController', function ($scope, $timeout, quizServic
   };
 
   var numbersGenerated = [];
-  $scope.question = "What is the name of this song?";
+  var quizLength = quizService.getQuizLength();
+  var x = 0;
+  var options = [];
   $scope.nextQuestion = function () {
-    $scope.progress = (numbersGenerated.length + 1)/10 * 100;
-    if(numbersGenerated.length === 10){
+    $scope.progress = (numbersGenerated.length + 1)/quizLength * 100;
+    if(numbersGenerated.length === quizLength){
       $scope.endQuiz();
     }else{
-      var x = Math.floor((Math.random() * 10) + 1);
+      x = Math.floor((Math.random() * quizLength) + 1);
       if ( numbersGenerated.indexOf( x ) > -1 ){
         $scope.nextQuestion();
       }else{
+        options = quizService.getOptions(x);
         numbersGenerated.push(x);
-        $scope.question = quizService.getQuestion(x).question;
+        $scope.sourceURL = quizService.getSongURL(x);
+        $scope.question = quizService.getQuestion(x);
+        $scope.option1 = options[0];
+        $scope.option2 = options[1];
+        $scope.option3 = options[2];
+        $scope.option4 = options[3];
         $scope.stopped = true;
         $scope.takeAction();
       }
@@ -80,6 +88,11 @@ spotiQuizApp.controller('PlayController', function ($scope, $timeout, quizServic
   };
 
   $scope.endQuiz = function () {
+    quizService.setQuizLength(0);
+    quizService.removeAllQuestion();
+    quizService.removeAllOption();
+    quizService.removeAllCorrectAns();
+    quizService.removeSongURL();
     window.location.href = '#!/endPlay';
   };
 });

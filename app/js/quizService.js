@@ -82,6 +82,7 @@ spotiQuizApp.factory('quizService', function ($resource, $firebaseArray) {
 
   this.storeQuestion = function (questions) {
     var options = [];
+    var length = 0;
     for(var key in questions){
       this.addQuestion(questions[key].question);
       options.push(questions[key].option1);
@@ -92,7 +93,9 @@ spotiQuizApp.factory('quizService', function ($resource, $firebaseArray) {
       options = [];
       this.addCorrectAns(questions[key].correctOption);
       this.addURL(questions[key].songUrl);
+      ++length;
     }
+    this.setQuizLength(length);
   }
 
   this.getGenres = function () {
@@ -112,19 +115,19 @@ spotiQuizApp.factory('quizService', function ($resource, $firebaseArray) {
     return noResult;
   }
 
-  this.getQuestion = function (id) {
-    var noResult = [{
-      'id': 0,
-      'question': 'No such question available',
-      'answer': 'No Awswer',
-    }]
-    for(i=0; i<questions.length; i++){
-      if(questions[i].id === id){
-        return questions[i];
-      }
-    }
-    return noResult;
-  }
+  // this.getQuestion = function (id) {
+  //   var noResult = [{
+  //     'id': 0,
+  //     'question': 'No such question available',
+  //     'answer': 'No Awswer',
+  //   }]
+  //   for(i=0; i<questions.length; i++){
+  //     if(questions[i].id === id){
+  //       return questions[i];
+  //     }
+  //   }
+  //   return noResult;
+  // }
 
   var questions = [{
     'id': 1,
