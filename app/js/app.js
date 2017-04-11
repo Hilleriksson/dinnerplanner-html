@@ -60,7 +60,8 @@ spotiQuizApp.config(['$routeProvider',
         controller: 'ProfileController'
       }).
       when('/contact', {
-        templateUrl: 'partials/contact.html'
+        templateUrl: 'partials/contact.html',
+        controller: 'ContactController'
       }).
       when('/category', {
         templateUrl: 'partials/category.html',

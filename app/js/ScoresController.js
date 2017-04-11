@@ -1,19 +1,62 @@
-spotiQuizApp.controller('ScoresController', function($scope) {
+spotiQuizApp.controller('ScoresController', function($scope, $firebaseArray) {
 
-    var userScores = [
-        ["Axel", "90's music", "500", "March 28th 15:21"],
-        ["Arham", "Hip Hop", "500", "March 28th 15:12"],
-        ["Edu", "Indie", "499", "March 28th 14:57"]
-    ];
+  // Ref to interact with Firebase
+  var usersRef = firebase.database().ref().child("users");
 
-    $scope.moduleState = "historic";
+  $scope.scoreContentStatus = "loading";
+  // Initialize query to empty string
+  $scope.usernameQuery = "";
 
+  $scope.getUsers = function() {
+    console.log("getUsers function gets called.");
+    // ref.child("users")
+    var users = $firebaseArray(usersRef);
+    users.$loaded().then(function() {
+      console.log("Fetched users data from database.");
+      console.log(users);
+      $scope.scoreContentStatus = "loaded";
+      $scope.usersContent = users;
+      // $scope.showing = "default";
+    });
+  };
 
-    $scope.showHistoricScores = function() {
-        $scope.moduleState = "historic";
-    };
+  $scope.searchUsername = function(usernameQuery) {
+    // Query firebase for scores of an specific user
+    // Fetch users and show the scores of the similar one
+    var users = $firebaseArray(usersRef);
+    $scope.scoreContentStatus = "loading";
+    $scope.usernameQuery = usernameQuery;
+    users.$loaded().then(function() {
+      console.log("Query is: " + $scope.usernameQuery);
+      console.log("Fetched users data from database.");
+      console.log(users);
 
-    $scope.showBestScores = function() {
-        $scope.moduleState = "highest";
-    };
+      // Save scores from users with similar name to query, use some distance algo
+      // If the query is empty return everything
+      if ($scope.usernameQuery === "") {
+        $scope.usersContent = users;
+      } else {
+        var results = [];
+        angular.forEach(users, function(user) {
+          if (user.name === $scope.usernameQuery) {
+            console.log("Found user with similar name: " + user.name);
+            results.push({
+              "name": user.name,
+              "scores": {
+                "quiz": user.scores.quiz,
+                "score": user.scores.score
+              }
+            });
+          }
+        });
+        console.log("Logging results array");
+        console.log(results);
+        $scope.usersContent = results;
+      }
+      $scope.scoreContentStatus = "loaded";
+    });
+  };
+
+  $scope.getUsers();
+
 });

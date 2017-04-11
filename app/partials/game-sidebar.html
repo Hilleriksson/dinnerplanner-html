@@ -1,15 +1,16 @@
 
-<div id="leftMenu" class="col-md-4">
-  <div class="row">
+<div id="leftMenu" class="col-md-2">
+  <div class="row" style="text-align: center; margin-bottom: 5%; margin-top: 14%">
       <img class="img-circle-sidebar" ng-controller="ProfileController" src="{{displayProfilePicture}}">
   </div>
   <div id="nameProfilehtmlSidebar" ng-controller="ProfileController" class="row">
     <span id="displayNameProfilehtml">{{displayProfileName}}</span>
   </div>
-  <div id="sidebarButtonContainer">
+  <div id="sidebarButtonContainer" class="row">
       <button type="button" id="sidebarButton" class="btn btn-success" ng-click="goToHome()">Home</button>
       <button type="button" id="sidebarButton" class="btn btn-success" ng-click="goToScores()">Scores</button>
       <button type="button" id="sidebarButton" class="btn btn-success" ng-click="goToProfile()">Profile</button>
       <button ng-controller="ProfileController" type="button" id="sidebarButton" class="btn btn-success" ng-click="btnLogout()">Logout</button>
   </div>
+
 </div>
