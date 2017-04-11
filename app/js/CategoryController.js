@@ -1,5 +1,7 @@
 spotiQuizApp.controller('CategoryController', function ($scope, quizService, $firebaseArray) {
-  var quizQuestions = $firebaseArray(firebase.database().ref().child('quizzes'));
+  // var quizQuestions = $firebaseArray(firebase.database().ref().child('quizzes'));
+  var quizQuestions = quizService.getQuiz();
+  console.log(quizQuestions);
   $scope.searchGenre = function (genre) {
     if(genre === '' || genre === undefined){
       $scope.getQuiz();
@@ -10,7 +12,7 @@ spotiQuizApp.controller('CategoryController', function ($scope, quizService, $fi
       quizQuestions.$loaded()
         .then(function(){
             angular.forEach(quizQuestions, function(user) {
-              if(user.name === genre){
+              if(user.name.toUpperCase() === genre.toUpperCase()){
                 detailQuiz.push(user.$id);
                 detailQuiz.push(user.name);
                 dataGenre.push(detailQuiz);
@@ -32,12 +34,13 @@ spotiQuizApp.controller('CategoryController', function ($scope, quizService, $fi
               detailQuiz.push(user.name);
               dataGenre.push(detailQuiz);
               detailQuiz = [];
-              if((i+1)%1 === 0){
+              if((i+1)%3 === 0){
                 $scope.genres.push(dataGenre);
                 dataGenre = [];
               }
               ++i;
           });
+          $scope.genres.push(dataGenre);
       });
   };
 });

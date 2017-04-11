@@ -82,6 +82,10 @@ spotiQuizApp.config(['$routeProvider',
         templateUrl: 'partials/scores.html',
         controller: 'ScoresController'
       }).
+      when('/description/:quizId', {
+        templateUrl: 'partials/description.html',
+        controller: 'DescriptionController'
+      }).
       // TODO in Lab 5: add more conditions for the last two screens (overview and preparation)
       otherwise({
         redirectTo: '/login'

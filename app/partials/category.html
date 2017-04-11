@@ -18,7 +18,7 @@
     <tr ng-repeat="genre in genres">
       <td id="categoryOption" ng-repeat="data in genre">
         <div id="content">
-          <a ng-href="#!/play" id="{{data[0]}}"><button type="button" id="categoryButton">{{data[1]}}</button></a>
+          <a ng-href="#!/description/{{data[0]}}" id="{{data[0]}}"><button type="button" id="categoryButton">{{data[1]}}</button></a>
         </div>
       </td>
     </tr>
