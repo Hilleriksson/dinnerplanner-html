@@ -3,6 +3,20 @@ spotiQuizApp.controller('ScoresController', function($scope, $firebaseArray) {
   // Ref to interact with Firebase
   var usersRef = firebase.database().ref().child("users");
 
+  // TODO use a string comparison of this kind instead of exact match
+  // Levenshtein Distance algo taken from the Internet
+  function compareStrings(s, t) {
+    if (!s.length) return t.length;
+    if (!t.length) return s.length;
+
+    return Math.min(
+      levenshteinDistance(s.substr(1), t) + 1,
+      levenshteinDistance(t.substr(1), s) + 1,
+      levenshteinDistance(s.substr(1), t.substr(1)) + (s[0] !== t[0] ? 1 : 0)
+    ) + 1;
+  }
+
+  // Control animation when loading the table
   $scope.scoreContentStatus = "loading";
   // Initialize query to empty string
   $scope.usernameQuery = "";
@@ -18,6 +32,31 @@ spotiQuizApp.controller('ScoresController', function($scope, $firebaseArray) {
       $scope.usersContent = users;
       // $scope.showing = "default";
     });
+  };
+
+  // TODO Populate the select with the options of the most popular quizzes
+  $scope.getMostPopularQuizzes = function() {
+    var numQuizzes = 5;
+    // Fetch quizzes from popular quizzes, take most popular ones and get their name
+    var quizzesPopRef = firebase.database().ref().child("quizzes-pop");
+    var quizzesRef = firebase.database().ref().child("quizzes");
+
+    var quizzesPop = $firebaseArray(quizzesPopRef);
+    quizzesPop.$loaded().then(function() {
+      console.log("Quizzes and their popularity loaded from Firebase.");
+      // Find kth most popular, then find numQuizzes - 1 larger or equal. 2 iterations of array
+      var mostPopularQuizzes = [];
+      angular.forEach(quizzesPop, function(popularity, quizId) {
+        
+      });
+    });
+    
+
+  };
+
+  // TODO Retrieve quiz names matching the input and show high scores for each of them
+  $scope.searchQuizName = function() {
+
   };
 
   $scope.searchUsername = function(usernameQuery) {
@@ -56,6 +95,8 @@ spotiQuizApp.controller('ScoresController', function($scope, $firebaseArray) {
       $scope.scoreContentStatus = "loaded";
     });
   };
+
+
 
   $scope.getUsers();
 
