@@ -22,20 +22,22 @@
 
 <div class="container-fluid">
 	<ng-include src="'partials/game-sidebar.html'" ng-controller="SidebarController"></ng-include>
-		<div class="col-md-8" style="margin-left: 2%; margin-top: 2%">
+		<div class="col-md-9" style=" margin-top: 2%;">
 				<div class="row">
 					<a id="imgProfilehtml" uib-popover-template="photoPopover.templateUrl" type="button" popover-placement="right">
 						<img class="img-circle" src="{{displayProfilePicture}}">
 						<span id="txtProfilehtml"> Change Profile Picture </span>
 					</a>
+					<button class="btn btn-default" ng-click="smoer(newProduct)" type="button">smoer</button>
+					<span>{{list}}</span>
 
 					<div class="container" id="displayNameContainer">
-						<span id="displayNameProfilehtml">{{displayProfileName}}</span>
+						<span id="displayNameProfilehtml" style="margin-left: 10px">{{displayProfileName}}</span>
 						<a uib-popover-template="namePopover.templateUrl" type="button" popover-placement="right" title="Change your name">
 							<span style="margin-left: 5px; cursor: pointer" class="glyphicon glyphicon-pencil"></span>
 						</a>
 					</div>
-			</div>
+				</div>
 
 			<div class="col-md-8">
 		    	<div class="row">
@@ -85,5 +87,6 @@
 					Played a game of <i>Classical</i>-quiz and got a score of <i>10</i><br>
 				</div>
 		    </div>
+		</div>
 	</div>
 </body>

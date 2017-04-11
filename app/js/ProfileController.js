@@ -3,9 +3,25 @@
 //Fix the anuglar instead of route.reload (?)
 
 
-spotiQuizApp.controller('ProfileController', ['$scope','$firebaseAuth','$location','$route', function($scope, $firebaseAuth, $location, $route, $sce) {
+spotiQuizApp.controller('ProfileController', ['$scope','$firebaseAuth', '$firebaseArray', '$location','$route', function($scope, $firebaseAuth, $firebaseArray, $location, $route, $sce) {
 
 	var auth = $firebaseAuth();
+	var ref = firebase.database().ref();
+	var list = $firebaseArray(ref);
+	var test = {
+		Genre: 'Rock',
+		Score: '21'
+	}
+
+	$scope.smoer = function(){
+		ref.push('vov');
+		ref.child('vov').push('round one')
+		ref.child('vov').child('round one').push(test)
+
+	}
+
+
+
 
 	auth.$onAuthStateChanged(function(authData){
 

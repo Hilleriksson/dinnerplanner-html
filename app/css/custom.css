@@ -1,6 +1,11 @@
 body{
-  height : 100vh;
+  /*height : 100vh;*/
   background-color:  #000000;
+}
+
+.container-fluid {
+  padding-right: 0px;
+  padding-left: 0px;
 }
 
 /*Play CSS*/
@@ -319,23 +324,30 @@ body{
 /*Sidebar CSS*/
 
 #leftMenu{
-  background-color: #ecebe8;
+  /*background-color: #ecebe8;*/
   height:100vh;
-  /*border: 1px solid black;*/
-  /*height: 100%;*/
+  border: 1px solid yellow;
+  /*height: 100%;
   width: 20%;
   overflow: hidden;
-  display: inline-block;
+  display: inline-block;*/
 }
 
 #sidebarButtonContainer {
   color: black;
   font: 72px Arial, sans-serif;
-  position: relative;
-  float: left;
-  top: 30%;
-  left: 70%;
-  transform: translate(-50%, -50%);
+  text-align: center;
+ /* position: relative;
+  /*float: left;*/
+  /*top: 70%;
+  transform: translate(-50%, -50%);*
+  position: absolute;
+  left: 55%;
+  padding: 10px;
+  width: auto;
+  -webkit-transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);*/
 }
 
 #sidebarButton {
@@ -369,21 +381,22 @@ body{
       }
 
       .img-circle-sidebar{
-        margin-left: 95px;
-        margin-top: 115px;
-        width:200px; /* you can use % */
+        /*margin-left: 95px;
+        margin-top: 115px;*/
+        width:150px; /* you can use % */
         height: auto;
         border-radius: 50%;
         border-style: solid;
         border-color: blue;
+        align: center;
       }
 
       #nameProfilehtmlSidebar{
-        margin-left: 0px;
+        /*margin-left: 0px;
         position: absolute;
-        width: 350px;
+        width: 350px;*/
         text-align: center;
-        padding: 5%;
+        padding: 0%;
 
       }
 
@@ -393,14 +406,14 @@ body{
       }
 
       #displayNameContainer {
-        margin-top: 40px;
+        margin-top: 47px;
 
 
       }
       #displayNameProfilehtml {
             color: #ffffff;
             font-family: 'Helvetica Neue', sans-serif;
-            font-size: 75px;
+            font-size: 50px;
             font-weight: bold;
             letter-spacing: -5px;
             line-height: 1;
@@ -410,6 +423,7 @@ body{
             a#imgProfilehtml{
         float: left;
         position: relative;
+        margin-left: 10px;
       }
 
       a#imgProfilehtml img {
