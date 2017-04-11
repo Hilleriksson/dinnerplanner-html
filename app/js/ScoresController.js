@@ -6,8 +6,6 @@ spotiQuizApp.controller('ScoresController', function($scope, $firebaseArray) {
   $scope.scoreContentStatus = "loading";
   // Initialize query to empty string
   $scope.usernameQuery = "";
-  // Default means that there hasn't been a text query looking for an specific user
-  // $scope.showing = "default";
 
   $scope.getUsers = function() {
     console.log("getUsers function gets called.");
