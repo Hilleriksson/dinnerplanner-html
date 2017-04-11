@@ -381,13 +381,6 @@ body{
 }
 
 
-#nameProfilehtmlSidebar{
-  margin-left: 0px;
-  position: absolute;
-  width: 350px;
-  text-align: center;
-  padding: 5%;
-}
 
     .img-circle-sidebar{
         /*margin-left: 95px;
@@ -418,8 +411,8 @@ body{
 
 }
 
-      }
-      #displayNameProfilehtml {
+
+#displayNameProfilehtml {
             color: #ffffff;
             font-family: 'Helvetica Neue', sans-serif;
             font-size: 50px;
