@@ -372,15 +372,24 @@ body{
   font-size: 15px;
 }
 
-      .img-circle{
-        width: 150px; /* you can use % */
-        height: auto;
-        border-radius: 50%;
-        border-style: solid;
-        border-color: blue;
-      }
+.img-circle{
+  width: 150px; /* you can use % */
+  height: auto;
+  border-radius: 50%;
+  border-style: solid;
+  border-color: blue;
+}
 
-      .img-circle-sidebar{
+
+#nameProfilehtmlSidebar{
+  margin-left: 0px;
+  position: absolute;
+  width: 350px;
+  text-align: center;
+  padding: 5%;
+}
+
+    .img-circle-sidebar{
         /*margin-left: 95px;
         margin-top: 115px;*/
         width:150px; /* you can use % */
@@ -398,16 +407,16 @@ body{
         text-align: center;
         padding: 0%;
 
-      }
+}
 
-      #history {
-        width: 100%;
-        margin-top: 5%;
-      }
-
+#history {
+  width: 100%;
+  margin-top: 5%;
+}
       #displayNameContainer {
         margin-top: 47px;
 
+}
 
       }
       #displayNameProfilehtml {
@@ -417,8 +426,12 @@ body{
             font-weight: bold;
             letter-spacing: -5px;
             line-height: 1;
+}
 
-              }
+a#imgProfilehtml img {
+  display: block;
+}
+
 
             a#imgProfilehtml{
         float: left;
@@ -426,48 +439,75 @@ body{
         margin-left: 10px;
       }
 
-      a#imgProfilehtml img {
-        display: block;
+a#imgProfilehtml span {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0,0,0,0.6);
+  color: #ddd;
+
+}
+
+a#imgProfilehtml:hover span {
+  display: block;
+  width: 150px; /* you can use % */
+  height: auto;
+  border-radius: 50%;
+    cursor: pointer;
+}
+
+#txtProfilehtml {
+  color: #ffffff;
+        font-family: 'Helvetica Neue', sans-serif;
+        font-size: 10px;
+        font-weight: bold;
+        letter-spacing: -1px;
+        line-height: 1;
+        width: 50px;
+        text-align: center;
+        }
+
+      #nameProfilehtml{
+        padding: 5%;
+
       }
 
-      a#imgProfilehtml span {
-        display: none;
+      #testest{
         position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        background: rgba(0,0,0,0.6);
-        color: #ddd;
-
+        width: 200px;
       }
+      /* The max width is dependant on the container (more info below) */
+.typeahead .custom-popup-wrapper {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  display: none;
+  background-color: #f9f9f9;
+}
 
-      a#imgProfilehtml:hover span {
-        display: block;
-        width: 150px; /* you can use % */
-        height: auto;
-        border-radius: 50%;
-          cursor: pointer;
-      }
+.typeahead .custom-popup-wrapper > .message {
+  padding: 10px 20px;
+  border-bottom: 1px solid #ddd;
+  color: #868686;
+}
 
-      #txtProfilehtml {
-        color: #ffffff;
-              font-family: 'Helvetica Neue', sans-serif;
-              font-size: 10px;
-              font-weight: bold;
-              letter-spacing: -1px;
-              line-height: 1;
-              width: 50px;
-              text-align: center;
-              }
-
-            #nameProfilehtml{
-              padding: 5%;
-
-            }
-
-            #testest{
-              position: absolute;
-              width: 200px;
-            }
-            /* The max width is dependant on the container (more info below) */
+.typeahead .custom-popup-wrapper > .dropdown-menu {
+  position: static;
+  float: none;
+  display: block;
+  min-width: 160px;
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+.margin-down {
+  margin-bottom: 20px;
+}
+.margin-down-small {
+  margin-bottom: 10px;
+}
