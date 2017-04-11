@@ -74,7 +74,7 @@ spotiQuizApp.controller('LoginController', ['$scope','$firebaseAuth','$location'
       auth.$signInWithEmailAndPassword(username, password).then(function(){   //<--- This is what we want
         console.log('logged in successfully');
 
-        $location.path('#!/home')
+        $location.path('/home')
 
       }, function(error) {
         console.error('logged in error', error);
