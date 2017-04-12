@@ -31,22 +31,18 @@ spotiQuizApp.controller('PlayController', function ($scope, $timeout, quizServic
   var mytimeout = 0;
   console.log($firebaseArray(firebase.database().ref().child('quizzes')));
   var quizQuestions = $firebaseArray(firebase.database().ref().child('quizzes'));
-  // for(valueJson in quizQuestions){
-  //   console.log(valueJson);
-  // }
   quizQuestions.$loaded()
     .then(function(){
         angular.forEach(quizQuestions, function(user) {
             console.log(user);
         })
     });
-  // console.log(quizQuestions.first);
-  //console.log(JSON.parse(quizQuestions));
 
   $scope.takeAction = function(){
       if(!$scope.stopped){
           $timeout.cancel(mytimeout);
           $scope.buttonText='Resume';
+          $scope.pauseSong();
           $scope.nextQuestion();
       }
       else
@@ -62,31 +58,45 @@ spotiQuizApp.controller('PlayController', function ($scope, $timeout, quizServic
 
   var numbersGenerated = [];
   var quizLength = quizService.getQuizLength();
+  console.log(quizLength);
   var x = 0;
   var options = [];
+  $scope.audio = '';
   $scope.nextQuestion = function () {
     $scope.progress = (numbersGenerated.length + 1)/quizLength * 100;
+    console.log(quizLength);
     if(numbersGenerated.length === quizLength){
       $scope.endQuiz();
     }else{
       x = Math.floor((Math.random() * quizLength) + 1);
+      console.log(x);
       if ( numbersGenerated.indexOf( x ) > -1 ){
         $scope.nextQuestion();
       }else{
-        options = quizService.getOptions(x);
+        options = quizService.getOptions(x - 1);
         numbersGenerated.push(x);
-        $scope.sourceURL = quizService.getSongURL(x);
-        $scope.audio = ngAudio.load(sourceURL);    
-        $scope.question = quizService.getQuestion(x);
+        $scope.sourceURL = quizService.getSongURL(x - 1);
+        $scope.audio = ngAudio.load(quizService.getSongURL(x - 1));
+        $scope.playSong();
+        $scope.question = quizService.getQuestion(x - 1);
         $scope.option1 = options[0];
         $scope.option2 = options[1];
         $scope.option3 = options[2];
         $scope.option4 = options[3];
+        $scope.audio.play();
         $scope.stopped = true;
         $scope.takeAction();
       }
     }
   };
+
+  $scope.playSong = function () {
+    $scope.audio.play();
+  }
+
+  $scope.pauseSong = function () {
+    $scope.audio.pause();
+  }
 
   $scope.endQuiz = function () {
     quizService.setQuizLength(0);

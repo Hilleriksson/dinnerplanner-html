@@ -17,6 +17,7 @@ spotiQuizApp.factory('quizService', function ($resource, $firebaseArray) {
   }
 
   this.getQuestion = function (index) {
+    console.log(this.allQuestionArray);
     return this.allQuestionArray[index];
   }
 
@@ -29,6 +30,7 @@ spotiQuizApp.factory('quizService', function ($resource, $firebaseArray) {
   }
 
   this.getSongURL = function (index) {
+    console.log(this.allsongURLArray);
     return this.allsongURLArray[index];
   }
 
