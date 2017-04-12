@@ -1,5 +1,5 @@
 
-var spotiQuizApp = angular.module('spotiQuiz', ['ngRoute','ngResource','firebase','spotify', 'ngAnimate', 'ui.bootstrap']);
+var spotiQuizApp = angular.module('spotiQuiz', ['ngRoute','ngResource','firebase','spotify', 'ngAnimate', 'ui.bootstrap', 'ngAudio']);
 
 
 //Necessary for us to connect with our firebaseserver
@@ -60,7 +60,8 @@ spotiQuizApp.config(['$routeProvider',
         controller: 'ProfileController'
       }).
       when('/contact', {
-        templateUrl: 'partials/contact.html'
+        templateUrl: 'partials/contact.html',
+        controller: 'ContactController'
       }).
       when('/category', {
         templateUrl: 'partials/category.html',
@@ -82,6 +83,11 @@ spotiQuizApp.config(['$routeProvider',
         templateUrl: 'partials/scores.html',
         controller: 'ScoresController'
       }).
+      when('/description/:quizId', {
+        templateUrl: 'partials/description.html',
+        controller: 'DescriptionController'
+      }).
+      // TODO in Lab 5: add more conditions for the last two screens (overview and preparation)
       otherwise({
         redirectTo: '/login'
       });

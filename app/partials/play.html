@@ -5,6 +5,16 @@
     <span class="glyphicon glyphicon-volume-up" aria-hidden="true"></span>
     <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
     <span class="glyphicon glyphicon-pause" aria-hidden="true"></span>
+    <div ng-controller='audioDemo'>
+       <button ng-click='audio.paused ? audio.play() : audio.pause()'>Pause</button>
+       <button ng-click='audio.restart()'>Stop</button>
+       <button ng-click='audio.muting = !audio.muting'>Mute</button>
+
+       <label>Current Time</label>
+       <input class='form-control' type=text ng-model='audio.currentTime'>
+       <label>Volume</label>
+       <input class='form-control' type=range min=0 max=1 step=0.01 ng-model='audio.volume'>
+   </div>
   </div>
   <div id="content2">
     <!-- Countdown : {{counter|formatTimer}} -->
@@ -30,22 +40,22 @@
 <div id="container2">
   <div id="option1">
     <div id="content">
-      <button type="button" id="optionButton" class="btn btn-success" ng-click="nextQuestion()">OPTION 1</button>
+      <button type="button" id="optionButton" class="btn btn-success" ng-click="nextQuestion()">{{option1}}</button>
     </div>
   </div>
   <div id="option2">
     <div id="content">
-      <button type="button" id="optionButton" class="btn btn-success" ng-click="nextQuestion()">OPTION 2</button>
+      <button type="button" id="optionButton" class="btn btn-success" ng-click="nextQuestion()">{{option2}}</button>
     </div>
   </div>
   <div id="option3">
     <div id="content">
-      <button type="button" id="optionButton" class="btn btn-success" ng-click="nextQuestion()">OPTION 3</button>
+      <button type="button" id="optionButton" class="btn btn-success" ng-click="nextQuestion()">{{option3}}</button>
     </div>
   </div>
   <div id="option4">
     <div id="content">
-      <button type="button" id="optionButton" class="btn btn-success" ng-click="nextQuestion()">OPTION 4</button>
+      <button type="button" id="optionButton" class="btn btn-success" ng-click="nextQuestion()">{{option4}}</button>
     </div>
   </div>
 </div>
