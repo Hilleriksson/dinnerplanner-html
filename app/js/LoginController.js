@@ -29,6 +29,7 @@ spotiQuizApp.controller('LoginController', ['$scope','$firebaseAuth','$location'
             angular.copy(dispName, firstfirst)
 
             console.log('Welcome!')
+             errorTxt.classList.add('hidden');
              firstTime.classList.remove('hidden');
              emailForm.classList.add('hidden');
              passForm.classList.add('hidden');
@@ -78,6 +79,8 @@ spotiQuizApp.controller('LoginController', ['$scope','$firebaseAuth','$location'
 
       }, function(error) {
         console.error('logged in error', error);
+        $scope.errorMessage = error.message;
+        errorTxt.classList.remove('hidden');
       });
     }
 

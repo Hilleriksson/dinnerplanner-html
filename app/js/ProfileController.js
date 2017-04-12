@@ -8,10 +8,9 @@ spotiQuizApp.controller('ProfileController', ['$scope','$firebaseAuth', '$fireba
 	var auth = $firebaseAuth();
 	var ref = firebase.database().ref();
 	var list = $firebaseArray(ref);
-	var test = {
-		Genre: 'Rock',
-		Score: '21'
-	}
+
+	console.log($firebaseArray(ref.child('users')))
+
 
 	$scope.smoer = function(){
 		ref.push('vov');

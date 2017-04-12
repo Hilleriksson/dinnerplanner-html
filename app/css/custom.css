@@ -1,6 +1,6 @@
 body{
   /*height : 100vh;*/
-  background-color:  #000000;
+
 }
 
 .container-fluid {
@@ -413,7 +413,7 @@ body{
 
 
 #displayNameProfilehtml {
-            color: #ffffff;
+            color: #000000;
             font-family: 'Helvetica Neue', sans-serif;
             font-size: 50px;
             font-weight: bold;
