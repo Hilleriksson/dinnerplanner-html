@@ -1,4 +1,4 @@
-spotiQuizApp.controller('PlayController', function ($scope, $timeout, quizService, $firebaseArray, $filter) {
+spotiQuizApp.controller('PlayController', function ($scope, $timeout, quizService, $firebaseArray, $filter, ngAudio) {
 
 
   $scope.powerUp = function () {
@@ -76,6 +76,7 @@ spotiQuizApp.controller('PlayController', function ($scope, $timeout, quizServic
         options = quizService.getOptions(x);
         numbersGenerated.push(x);
         $scope.sourceURL = quizService.getSongURL(x);
+        $scope.audio = ngAudio.load(sourceURL);    
         $scope.question = quizService.getQuestion(x);
         $scope.option1 = options[0];
         $scope.option2 = options[1];
