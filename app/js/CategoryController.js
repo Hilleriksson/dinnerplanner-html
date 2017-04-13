@@ -1,6 +1,8 @@
-spotiQuizApp.controller('CategoryController', function ($scope, quizService, $firebaseArray) {
+spotiQuizApp.controller('CategoryController', function ($scope, quizService, $firebaseArray, $firebaseAuth) {
   // var quizQuestions = $firebaseArray(firebase.database().ref().child('quizzes'));
   var quizQuestions = quizService.getQuiz();
+  //To store the userId in the service file after the LoginController
+  var storeUserID = quizService.storeUserID();
   console.log(quizQuestions);
   $scope.searchGenre = function (genre) {
     if(genre === '' || genre === undefined){

@@ -1,7 +1,7 @@
 
 
-spotiQuizApp.controller('LoginController', ['$scope','$firebaseAuth','$location', function($scope, $firebaseAuth, $location) {
-
+spotiQuizApp.controller('LoginController', ['$scope','$firebaseAuth','$location', function($scope, $firebaseAuth, $location, quizService) {
+  
   var auth = $firebaseAuth();
 
   //var rootRef = firebase.database().ref() // Kirra detta, så kirrar vi

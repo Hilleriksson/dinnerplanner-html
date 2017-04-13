@@ -1,9 +1,9 @@
 
 <ng-include src="'partials/game-sidebar.html'" ng-controller="SidebarController"></ng-include>
 
-<div id="container6">
+<div id="container6" ng-init="getCurrentScore()">
   <div id="contentEndPlay">
-    Your Score : 6
+    Your Score : {{currentScore}}
   </div>
 </div>
 <div id="container7">
