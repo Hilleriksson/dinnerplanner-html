@@ -1,13 +1,29 @@
 
-spotiQuizApp.factory('quizService', function ($resource, $firebaseArray) {
+spotiQuizApp.factory('quizService', function ($resource, $firebaseArray, $firebaseAuth) {
 
   var _self = this;
+  var auth = $firebaseAuth();
   this.allQuestionArray = [];
   this.allOptionArray = [];
   this.allCorrectAnsArray = [];
   this.allsongURLArray = [];
   this.quizLength = 0;
+  this.userId = '';
+  this.quizId = '';
+  this.currentScore = 0;
+  this.quizName = '';
 
+  this.incrementCurrentScore = function () {
+    this.currentScore = this.currentScore + 1;
+  }
+
+  this.setCurrentScore = function (score) {
+    this.currentScore = score ;
+  }
+
+  this.getCurrentScore = function () {
+    return this.currentScore;
+  }
   this.getQuizLength = function () {
     return this.quizLength;
   }
@@ -57,7 +73,15 @@ spotiQuizApp.factory('quizService', function ($resource, $firebaseArray) {
   }
 
   this.getQuiz = function () {
-    return  $firebaseArray(firebase.database().ref().child('quizzes'));
+    return $firebaseArray(firebase.database().ref().child('quizzes'));
+  }
+
+  this.getAllQuizFromOuizPOP = function () {
+    return $firebaseArray(firebase.database().ref().child('quizzes-pop'));
+  }
+
+  this.getAllUserData = function () {
+    return $firebaseArray(firebase.database().ref().child('users'));
   }
 
   this.addURL = function (url) {
@@ -80,6 +104,76 @@ spotiQuizApp.factory('quizService', function ($resource, $firebaseArray) {
       });
   }
 
+  this.storeUserID = function () {
+    auth.$onAuthStateChanged(function(authData){
+      _self.userId = authData.uid;
+    })
+  }
+
+  this.storeQuizID = function (id) {
+    this.quizId = id;
+  }
+
+  this.storeQuizName = function (name) {
+    this.quizName = name;
+  }
+
+  this.storeInAllScores = function () {
+    var childName = "all_scores";
+    var msgData = {
+      QUIZID: this.quizId,
+      SCORE: this.currentScore,
+      TIMESTAMP: +new Date,
+      USERID: this.userId
+    };
+    var newMsgKey = firebase.database().ref().child(childName).push().key;
+    var updates = {};
+    updates["/" + childName + "/" + newMsgKey] = msgData;
+    firebase.database().ref().update(updates).then(function() {
+      console.log("Saved scores to database in table all_scores.");
+    });
+  }
+
+  this.incrementQuizPOP = function () {
+    var quiz = this.getAllQuizFromOuizPOP();
+    quiz.$loaded()
+      .then(function(){
+          angular.forEach(quiz, function(data) {
+            if(data.$id === _self.quizId){
+              var childName = "quizzes-pop";
+              var updates = {};
+              updates["/" + childName + "/" + _self.quizId] = data.$value + 1;
+              firebase.database().ref().update(updates).then(function() {
+                console.log("Incremented quiz pop.");
+              });
+            }
+          });
+      });
+  }
+
+  this.storeDataInUser = function () {
+    var users = this.getAllUserData();
+    users.$loaded()
+      .then(function(){
+          angular.forEach(users, function(data) {
+            if(data.$id === _self.userId){
+              var childName = "users";
+              var msgData = {
+                name: _self.quizName,
+                score: _self.currentScore,
+                timestamp: +new Date
+              };
+              var updates = {};
+              var newMsgKey = firebase.database().ref().child(childName).child(_self.userId).child("history").push().key;
+              updates["/" + childName + "/" + _self.userId + "/history/" + newMsgKey] = msgData;
+              firebase.database().ref().update(updates).then(function() {
+                console.log("Updated the users table.");
+              });
+            }
+          });
+      });
+  }
+
   this.storeQuestion = function (questions) {
     var options = [];
     var length = 0;
@@ -97,108 +191,6 @@ spotiQuizApp.factory('quizService', function ($resource, $firebaseArray) {
     }
     this.setQuizLength(length);
   }
-
-  this.getGenres = function () {
-    return genres;
-  }
-
-  this.searchGenre = function (genre) {
-    var noResult = [{
-      'id': 0,
-      'genre': 'No such genre available',
-    }]
-    for(i=0; i<genres.length; i++){
-      if(genres[i].genre === genre){
-        return genres[i];
-      }
-    }
-    return noResult;
-  }
-
-  // this.getQuestion = function (id) {
-  //   var noResult = [{
-  //     'id': 0,
-  //     'question': 'No such question available',
-  //     'answer': 'No Awswer',
-  //   }]
-  //   for(i=0; i<questions.length; i++){
-  //     if(questions[i].id === id){
-  //       return questions[i];
-  //     }
-  //   }
-  //   return noResult;
-  // }
-
-  var questions = [{
-    'id': 1,
-    'question': '1 What is the name of this song ?',
-    'answer': 'Blowers Daughter',
-  },{
-    'id': 2,
-    'question': '2 What is the name of this song ?',
-    'answer': 'Blowers Daughter',
-  },{
-    'id': 3,
-    'question': '3 What is the name of this song ?',
-    'answer': 'Blowers Daughter',
-  },{
-    'id': 4,
-    'question': '4 What is the name of this song ?',
-    'answer': 'Blowers Daughter',
-  },{
-    'id': 5,
-    'question': '5 What is the name of this song ?',
-    'answer': 'Blowers Daughter',
-  },{
-    'id': 6,
-    'question': '6 What is the name of this song ?',
-    'answer': 'Blowers Daughter',
-  },{
-    'id': 7,
-    'question': '7 What is the name of this song ?',
-    'answer': 'Blowers Daughter',
-  },{
-    'id': 8,
-    'question': '8 What is the name of this song ?',
-    'answer': 'Blowers Daughter',
-  },{
-    'id': 9,
-    'question': '9 What is the name of this song ?',
-    'answer': 'Blowers Daughter',
-  },{
-    'id': 10,
-    'question': '10 What is the name of this song ?',
-    'answer': 'Blowers Daughter',
-  }]
-
-  var genres = [{
-    'id': 1,
-    'genre': 'Rock',
-  },{
-    'id': 2,
-    'genre': 'Techno',
-  },{
-    'id': 3,
-    'genre': 'Pop',
-  },{
-    'id': 4,
-    'genre': 'Jazz',
-  },{
-    'id': 5,
-    'genre': 'Indie Pop',
-  },{
-    'id': 6,
-    'genre': 'Folk',
-  },{
-    'id': 7,
-    'genre': 'Classical',
-  },{
-    'id': 8,
-    'genre': 'Heavy Metal',
-  },{
-    'id': 9,
-    'genre': 'Waltz',
-  },]
 
   return this;
 
