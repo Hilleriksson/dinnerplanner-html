@@ -504,3 +504,7 @@ a#imgProfilehtml:hover span {
 .margin-down-small {
   margin-bottom: 10px;
 }
+
+.margin-up {
+  margin-top: 50px;
+}

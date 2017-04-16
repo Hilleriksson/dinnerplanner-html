@@ -1,28 +1,35 @@
 
 <ng-include src="'partials/game-sidebar.html'" ng-controller="SidebarController"></ng-include>
+<div class="col-md-8">
 
-<div id="container5">
-  <div id="contentInline">
-    <input ng-model="query" type="text" class="form-control form-control-lg" id="searchcategory" placeholder="Search">
-    <button ng-click="searchGenre(query)" id="searchButton" class="btn btn-success">Search</button>
+  <div class="row margin-down-small margin-up">
+    <div class="col-md-12">
+      <input ng-model="query" type="text" class="form-control form-control-lg pull-left" id="searchcategory" placeholder="Search">
+      <a href="#!/createQuiz" class="btn btn-success pull-right" id="createQuiz">Create Quiz</a>
+    </div>
   </div>
-</div>
-<div id="containerCreateQuiz">
-  <div id="contentInline">
-    <!--<button id="createQuiz" class="btn btn-success">Create Quiz</button> -->
-    <a href="#!/createQuiz" class="btn btn-success" id="createQuiz">Create Quiz</a>
+
+  <div class="row" ng-init="getQuiz()">
+    <div class="col-md-12 ">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th><a href="" ng-click="sortTable('name')">Quiz</a></th>
+            <th><a href="" ng-click="sortTable('questions.length')">Number of questions</a></th>
+            <th><a href="" ng-click="sortTable('creatorName')">Creator</a></th>
+            <th><a href="" ng-click="sortTable('pop')">Number of plays</a></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="quiz in quizList | orderBy: orderFilter | filter:{ name: query}" ng-click="showQuiz(quiz.$id)">
+              <td>{{quiz.name}}</td>
+              <td>{{quiz.questions.length-1}}</td>
+              <td>{{quiz.creatorName}}</td>
+              <td>{{quiz.pop}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-</div>
-<div id="container4" ng-init="getQuiz()">
-  <div class="table-responsive">
-  <table class="table">
-    <tr ng-repeat="genre in genres">
-      <td id="categoryOption" ng-repeat="data in genre">
-        <div id="content">
-          <a ng-href="#!/description/{{data[0]}}" id="{{data[0]}}"><button type="button" id="categoryButton">{{data[1]}}</button></a>
-        </div>
-      </td>
-    </tr>
-  </table>
-  </div>
+
 </div>

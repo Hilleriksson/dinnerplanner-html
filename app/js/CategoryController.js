@@ -1,56 +1,46 @@
-spotiQuizApp.controller('CategoryController', function ($scope, quizService, $firebaseArray, $firebaseAuth) {
-  // var quizQuestions = $firebaseArray(firebase.database().ref().child('quizzes'));
-  var quizQuestions = quizService.getQuiz();
-  //To store the userId in the service file after the LoginController
-  var storeUserID = quizService.storeUserID();
-  console.log(quizQuestions);
+spotiQuizApp.controller('CategoryController', function ($scope, quizService, $location) {
 
-  $scope.searchGenre = function (genre) {
-    if(genre === '' || genre === undefined){
-      $scope.getQuiz();
-    }else{
-      $scope.genres = [];
-      var dataGenre = [];
-      var detailQuiz = [];
-      var i = 0;
-      quizQuestions.$loaded()
-        .then(function(){
-            angular.forEach(quizQuestions, function(user) {
-              if(user.name.toUpperCase().includes(genre.toUpperCase())){
-                detailQuiz.push(user.$id);
-                detailQuiz.push(user.name);
-                dataGenre.push(detailQuiz);
-                detailQuiz = [];
-                if((i+1)%3 === 0){
-                  $scope.genres.push(dataGenre);
-                  dataGenre = [];
-                }
-                ++i;
-              }
-            });
-            $scope.genres.push(dataGenre);
-        });
+  var quizQuestions = quizService.getQuiz();
+  var quizPop = quizService.getAllQuizFromOuizPOP();
+
+  $scope.query = '';
+  $scope.orderFilter = '-pop'
+
+  // Redirects page to specific quiz
+  $scope.showQuiz = function(id) {
+    $location.path('/description/' + id);
+  }
+
+  //chooses filter to sort table by
+  $scope.sortTable = function(column){
+    if (column == $scope.orderFilter ){
+      $scope.orderFilter = '-' + column;
+    } else {
+      $scope.orderFilter = column;
     }
-  };
-  $scope.getQuiz = function () {
-    $scope.genres = [];
-    var dataGenre = [];
-    var detailQuiz = [];
-    var i = 0;
-    quizQuestions.$loaded()
-      .then(function(){
-          angular.forEach(quizQuestions, function(user) {
-              detailQuiz.push(user.$id);
-              detailQuiz.push(user.name);
-              dataGenre.push(detailQuiz);
-              detailQuiz = [];
-              if((i+1)%3 === 0){
-                $scope.genres.push(dataGenre);
-                dataGenre = [];
-              }
-              ++i;
-          });
-          $scope.genres.push(dataGenre);
-      });
-  };
+  }
+
+  // Generates the list of quizzes
+  $scope.getQuiz = function() {
+    $scope.quizList = [];
+    quizQuestions.$loaded().then(function() {
+      quizPop.$loaded().then(function() {
+        for(var i=0; i<quizQuestions.length; i++){
+          var quiz = addPopularity(quizPop, quizQuestions[i]);
+          $scope.quizList.push(quiz)
+        }
+      })
+    })
+  }
+
+  // Adds popularity of the quiz to the object so the list first is sorted by
+  // popularity
+  function addPopularity(quizPop, obj) {
+    for(var i=0; i<quizPop.length; i++){
+      if(quizPop[i].$id == obj.$id){
+        obj.pop = quizPop[i].$value;
+        return obj
+      }
+    }
+  }
 });
