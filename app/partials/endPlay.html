@@ -1,13 +1,28 @@
 
 <ng-include src="'partials/game-sidebar.html'" ng-controller="SidebarController"></ng-include>
 
-<div id="container6">
-  <div id="contentEndPlay">
-    Your Score : 6
+<div class="row">
+  <div id="container6" ng-init="getCurrentScore()" class="col-md-5">
+    <div id="contentEndPlay">
+      Your Score : {{currentScore}}
+    </div>
+  </div>
+  <div class="chart col-md-5">
+    <canvas id="doughnut" class="chart chart-doughnut"
+    chart-data="data" chart-labels="labels" chart-colors="colors" style="width: 400px; height: 400px; display: inline-flex;">
+    </canvas>
   </div>
 </div>
-<div id="container7">
-  <div id="contentEndPlay">
-      <button type="button" id="endButton" class="btn btn-success" ng-click="goToPlay()">Play Again</button>
+<div class="row">
+  <div id="container7" class="col-md-10">
+    <!-- <div id="contentEndPlay"> -->
+        <!-- <button type="button" id="endButton" class="btn btn-success" ng-click="goToPlay()">Play Again</button> -->
+        <div class="svg-wrapper contentEndPlay">
+          <svg height="60" width="320" xmlns="http://www.w3.org/2000/svg">
+            <rect class="shape" height="60" width="320" />
+          </svg>
+           <a id="playButton" ng-click="goToPlay()"><div class="text">PLAY AGAIN</div></a>
+        </div>
+    <!-- </div> -->
   </div>
 </div>
