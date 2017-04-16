@@ -1,10 +1,39 @@
-<div id="container5" ng-init = "getDescription()">
-  <div id="contentInline">
-    {{description}}
-  </div>
+
+<div class="paragraph" ng-init = "getDescription()">
+    <div id="paragraph-wrapper" ng-init = "getQuestion()">
+    <h2> Let's get started! </h2>
+    <hr>
+    <br>
+
+    <p> Welcome to SpotiQuiz. To continue with the quiz click the "Play" button on
+        the bottom of the page. After clicking the button you will be directed to the page
+        where you will have a question on the screen followed by four options to choose from.
+        The music will automatically play for 10 seconds upon the start of the quiz and
+        on change of the question. If you correctly answer the question you will be awarded
+        one point. There will be a time bar on the top of the screen indicating the time left for
+        you to answer the question. Another bar on the bottom of the screen will indicate the
+        progress in the quiz.</p>
+
+    <h2> Power Ups! </h2>
+    <hr>
+
+    <p> You will have the option of using two "power ups" during the course of the game. The
+        two power ups are named "Extra Time" and "50/50". The extra time power up will aloww you
+        to fill up your time bar to a maximum so that you get more time to answer the question in
+        in case you think that you know the answer but need more time to think. The "50/50" power up
+        will randomly remove two incorrect options and leave you with one correct and one incorrect
+        option to choose from. Both the power ups can be used only once during the course of the game.</p>
+
+    <h2> From Creator of the Quiz! </h2>
+    <hr>
+
+    <p>{{description}} </p>
+
+    </div>
 </div>
-<div id="containerCreateQuiz" ng-init = "getQuestion()">
-  <div id="contentInline">
-    <a ng-href="#!/play"><button type="button" id="searchButton">PLAY</button></a>
-  </div>
+<div class="svg-wrapper">
+  <svg height="60" width="320" xmlns="http://www.w3.org/2000/svg">
+    <rect class="shape" height="60" width="320" />
+  </svg>
+   <a id="playButton" ng-href="#!/play"><div class="text">PLAY</div></a>
 </div>

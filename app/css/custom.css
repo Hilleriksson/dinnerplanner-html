@@ -140,6 +140,84 @@ body{
   background-color: #84bd00;
 }
 
+/*Description CSS*/
+
+.paragraph {
+    text-align: center;
+    font-size: 1em;
+    color: #474747;
+    font-family: open sans, sans-serif;
+    padding: 50px 0% 0px 0%;
+    background-color: #f1f3f4;
+}
+
+#paragraph-wrapper {
+    max-width: 100%;
+    padding: 0px 20% 70px 20%;
+    /*margin-bottom: 200px;*/
+}
+
+.paragraph h2 {
+  margin-top: 75px;
+    font-size: 2em;
+    text-align: center;
+    font-family: open roboto, sans-serif;
+}
+
+.paragraph hr {
+    border: 2px solid #84bd00;
+    width: 10%;
+}
+
+.svg-wrapper {
+  height: 60px;
+	margin: 0 auto;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 320px;
+}
+
+.shape {
+  fill: transparent;
+  stroke-dasharray: 140 540;
+  stroke-dashoffset: -474;
+  stroke-width: 8px;
+  stroke: #84bd00;
+}
+
+.text {
+  text-align: center;
+  color: #84bd00;
+  font-family: 'Roboto Condensed';
+  font-size: 22px;
+  letter-spacing: 8px;
+  line-height: 32px;
+  position: relative;
+  top: -48px;
+}
+
+@keyframes draw {
+  0% {
+    stroke-dasharray: 140 540;
+    stroke-dashoffset: -474;
+    stroke-width: 8px;
+  }
+  100% {
+    stroke-dasharray: 760;
+    stroke-dashoffset: 0;
+    stroke-width: 2px;
+  }
+}
+
+.svg-wrapper:hover .shape {
+  -webkit-animation: 0.5s draw linear forwards;
+  animation: 0.5s draw linear forwards;
+}
+
+a#playButton {
+  color: transparent;
+}
 /*Category CSS*/
 
 #container4 {
