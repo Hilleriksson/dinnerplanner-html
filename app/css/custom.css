@@ -345,15 +345,22 @@ a#playButton {
 }
 
 /*End Quiz CSS*/
+.chart{
+  width: 400px;
+  height: 400px;
+  left: 10%;
+  margin: 100px 0 0 10px;
+}
+
 #container6 {
   position: absolute;
   color: white;
-  width: 900px;
+  width: 500px;
   height: 260px;
   z-index: 15;
   top: 50%;
   left: 50%;
-  margin: -300px 0 0 -450px;
+  margin: -300px 0 0 150px;
 }
 
 #contentEndPlay {
@@ -372,8 +379,8 @@ a#playButton {
   width: 900px;
   height: 260px;
   z-index: 15;
-  top: 75%;
-  left: 50%;
+  top: 85%;
+  left: 55%;
   margin: -300px 0 0 -450px;
 }
 
