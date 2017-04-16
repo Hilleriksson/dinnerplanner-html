@@ -79,11 +79,11 @@
 				</div>
 				<div class="row"  style="color: #828282">
 					<h3 style="color: #000000">Recent Activity:</h3>
-					Played a game of <i>Classical</i>-quiz and got a score of <i>8</i><br>
-					Played a game of <i>Classical</i>-quiz and got a score of <i>12</i><br>
-					Played a game of <i>Classical</i>-quiz and got a score of <i>2</i><br>
-					Played a game of <i>Classical</i>-quiz and got a score of <i>10</i><br>
+						<div id="tryingshit" ng-repeat="data in repeatData">
+								Played a game of <i>{{data.data}}</i> with a score of <i>{{data.value}}</i>
+						</div>
 				</div>
+				<button class="btn btn-default" ng-click="fakeGame()" type="button">I just played a fake game</button>
 		    </div>
 		</div>
 	</div>

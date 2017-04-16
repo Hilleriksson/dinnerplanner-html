@@ -88,7 +88,9 @@ spotiQuizApp.controller('LoginController', ['$scope','$firebaseAuth','$location'
           auth.$onAuthStateChanged(function(authData){
             angular.copy(authData, user);
             $scope.userids = user.uid;
+            console.log(user.uid)
 
               });
+          console.log(user)
 
 }]);
