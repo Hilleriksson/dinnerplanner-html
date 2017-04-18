@@ -1,8 +1,9 @@
 <div id="container3">
   <div id="content">
-    <span class="glyphicon glyphicon-volume-up" aria-hidden="true"></span>
+    <!-- <span class="glyphicon glyphicon-volume-up" aria-hidden="true"></span>
     <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
-    <span class="glyphicon glyphicon-pause" aria-hidden="true"></span>
+    <span class="glyphicon glyphicon-pause" aria-hidden="true"></span> -->
+    <h1 id="spotiQuizTitlePlay">SpotiQuiz</h1>
     <div>
        <button ng-init="playSong()" style="display: none;">PLAY</button>
    </div>
@@ -13,7 +14,10 @@
         <div class="progress-bar progress-bar-{{barType}} progress-bar-striped" role="progressbar" style="width:{{counter}}%">
         </div>
       </div>
-      <button ng-click="powerUp()" class="btn btn-danger" style="display:{{displayType}};">Add Extra Time</button>
+      <div>
+        <button ng-click="powerUpFifty()" class="btn btn-primary" style="display:{{displayTypeFifty}};">Fifty/Fifty</button>
+        <button ng-click="powerUp()" class="btn btn-danger" style="display:{{displayType}};">Add Extra Time</button>
+      </div>
     </div>
   </div>
 </div>
@@ -25,22 +29,22 @@
 <div id="container2">
   <div id="option1">
     <div id="content">
-      <button type="button" id="optionButton" class="btn btn-success" ng-click="updateScore(1)">{{option1}}</button>
+      <button type="button" id="optionButton" class="btn btn-success" ng-click="updateScore(1)" style="display:{{displayTypeOption[0]}};">{{option1}}</button>
     </div>
   </div>
   <div id="option2">
     <div id="content">
-      <button type="button" id="optionButton" class="btn btn-success" ng-click="updateScore(2)">{{option2}}</button>
+      <button type="button" id="optionButton" class="btn btn-success" ng-click="updateScore(2)" style="display:{{displayTypeOption[1]}};">{{option2}}</button>
     </div>
   </div>
   <div id="option3">
     <div id="content">
-      <button type="button" id="optionButton" class="btn btn-success" ng-click="updateScore(3)">{{option3}}</button>
+      <button type="button" id="optionButton" class="btn btn-success" ng-click="updateScore(3)" style="display:{{displayTypeOption[2]}};">{{option3}}</button>
     </div>
   </div>
   <div id="option4">
     <div id="content">
-      <button type="button" id="optionButton" class="btn btn-success" ng-click="updateScore(4)">{{option4}}</button>
+      <button type="button" id="optionButton" class="btn btn-success" ng-click="updateScore(4)" style="display:{{displayTypeOption[3]}};">{{option4}}</button>
     </div>
   </div>
 </div>

@@ -1,6 +1,6 @@
 body{
   /*height : 100vh;*/
-   /*background-color:  #000000;*/
+  /*background-color:  #000000;*/
 }
 
 .container-fluid {
@@ -10,22 +10,38 @@ body{
 
 /*Play CSS*/
 
-        #spotiQuizTitle { color: #84bd00;
-            font-family: 'Helvetica Neue', sans-serif;
-            font-size: 275px;
-            font-weight: bold;
-            letter-spacing: -1px;
-            line-height: 1;
-            position: absolute;
-            left: 50%;
-            top: 20%;
-            padding: 10px;
-            width: auto;
-            -webkit-transform: translate(-50%,-50%);
-                -ms-transform: translate(-50%,-50%);
-                    transform: translate(-50%,-50%);
-              }
+#spotiQuizTitle {
+  color: #84bd00;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 275px;
+  font-weight: bold;
+  letter-spacing: -1px;
+  line-height: 1;
+  position: absolute;
+  left: 50%;
+  top: 20%;
+  padding: 10px;
+  width: auto;
+  -webkit-transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+}
 
+#spotiQuizTitlePlay {
+  color: #84bd00;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-weight: bold;
+  letter-spacing: -1px;
+  line-height: 1;
+  position: absolute;
+  left: 50%;
+  top: 10%;
+  padding: 5px;
+  width: auto;
+  -webkit-transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+}
 
 .bottomDiv {
   display: inline-flex;
@@ -44,7 +60,7 @@ body{
   font: 36px Arial, sans-serif;
   position: relative;
   float: left;
-  top: 50%;
+  top: 20%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -91,10 +107,6 @@ body{
   left: 50%;
   margin: -300px 0 0 -450px;
 }
-
-/*.containerProgressBar {
-  margin-top: 55%;
-}*/
 
 #option1 {
   position: absolute;
@@ -154,7 +166,6 @@ body{
 #paragraph-wrapper {
     max-width: 100%;
     padding: 0px 20% 70px 20%;
-    /*margin-bottom: 200px;*/
 }
 
 .paragraph h2 {
@@ -218,6 +229,7 @@ body{
 a#playButton {
   color: transparent;
 }
+
 /*Category CSS*/
 
 #container4 {
@@ -307,7 +319,6 @@ a#playButton {
   color: #000000;
   background-color: #ffffff;
   border: 1px solid #84bd00;
-  /*border-radius: 25px;*/
   width: 130px;
   font-size: 15px;
 }
@@ -317,7 +328,6 @@ a#playButton {
   color: #000000;
   background-color: #84bd00;
   border: 1px solid #84bd00;
-  /*border-radius: 25px;*/
   width: 130px;
   font-size: 15px;
 }
@@ -328,7 +338,6 @@ a#playButton {
   color: #000000;
   background-color: #ffffff;
   border: 1px solid #84bd00;
-  /*border-radius: 25px;*/
   width: 260px;
   font-size: 15px;
 }
@@ -339,7 +348,6 @@ a#playButton {
   color: #000000;
   background-color: #84bd00;
   border: 1px solid #84bd00;
-  /*border-radius: 25px;*/
   width: 260px;
   font-size: 15px;
 }
@@ -389,7 +397,6 @@ a#playButton {
   color: #000000;
   background-color: #ffffff;
   border: 1px solid #84bd00;
-  /*border-radius: 25px;*/
   width: 200px;
   height: 90px;
   font-size: 15px;
@@ -400,7 +407,6 @@ a#playButton {
   color: #000000;
   background-color: #84bd00;
   border: 1px solid #84bd00;
-  /*border-radius: 25px;*/
   width: 200px;
   height: 90px;
   font-size: 15px;
@@ -409,30 +415,13 @@ a#playButton {
 /*Sidebar CSS*/
 
 #leftMenu{
-  /*background-color: #ecebe8;*/
   height:100%;
-  /*border: 1px solid yellow;
-  /*height: 100%;
-  width: 20%;
-  overflow: hidden;
-  display: inline-block;*/
 }
 
 #sidebarButtonContainer {
   color: black;
   font: 72px Arial, sans-serif;
   text-align: center;
- /* position: relative;
-  /*float: left;*/
-  /*top: 70%;
-  transform: translate(-50%, -50%);*
-  position: absolute;
-  left: 55%;
-  padding: 10px;
-  width: auto;
-  -webkit-transform: translate(-50%,-50%);
-  -ms-transform: translate(-50%,-50%);
-  transform: translate(-50%,-50%);*/
 }
 
 #sidebarButton {
@@ -440,7 +429,6 @@ a#playButton {
   color: #000000;
   background-color: #ffffff;
   border: 1px solid #84bd00;
-  /*border-radius: 25px;*/
   width: 200px;
   height: 50px;
   font-size: 15px;
@@ -451,7 +439,6 @@ a#playButton {
   color: #000000;
   background-color: #84bd00;
   border: 1px solid #84bd00;
-  /*border-radius: 25px;*/
   width: 200px;
   height: 50px;
   font-size: 15px;
@@ -465,57 +452,47 @@ a#playButton {
   border-color: blue;
 }
 
+.img-circle-sidebar{
+    width:150px; /* you can use % */
+    height: auto;
+    border-radius: 50%;
+    border-style: solid;
+    border-color: blue;
+    align: center;
+}
 
-
-    .img-circle-sidebar{
-        /*margin-left: 95px;
-        margin-top: 115px;*/
-        width:150px; /* you can use % */
-        height: auto;
-        border-radius: 50%;
-        border-style: solid;
-        border-color: blue;
-        align: center;
-      }
-
-      #nameProfilehtmlSidebar{
-        /*margin-left: 0px;
-        position: absolute;
-        width: 350px;*/
-        text-align: center;
-        padding: 0%;
-
+#nameProfilehtmlSidebar{
+    text-align: center;
+    padding: 0%;
 }
 
 #history {
   width: 100%;
   margin-top: 5%;
 }
-      #displayNameContainer {
-        margin-top: 47px;
 
+#displayNameContainer {
+  margin-top: 47px;
 }
 
-
 #displayNameProfilehtml {
-            color: #000000;
-            font-family: 'Helvetica Neue', sans-serif;
-            font-size: 50px;
-            font-weight: bold;
-            letter-spacing: -5px;
-            line-height: 1;
+  color: #000000;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 50px;
+  font-weight: bold;
+  letter-spacing: -5px;
+  line-height: 1;
 }
 
 a#imgProfilehtml img {
   display: block;
 }
 
-
-            a#imgProfilehtml{
-        float: left;
-        position: relative;
-        margin-left: 10px;
-      }
+a#imgProfilehtml{
+  float: left;
+  position: relative;
+  margin-left: 10px;
+}
 
 a#imgProfilehtml span {
   display: none;
@@ -534,30 +511,30 @@ a#imgProfilehtml:hover span {
   width: 150px; /* you can use % */
   height: auto;
   border-radius: 50%;
-    cursor: pointer;
+  cursor: pointer;
 }
 
 #txtProfilehtml {
   color: #ffffff;
-        font-family: 'Helvetica Neue', sans-serif;
-        font-size: 10px;
-        font-weight: bold;
-        letter-spacing: -1px;
-        line-height: 1;
-        width: 50px;
-        text-align: center;
-        }
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: -1px;
+  line-height: 1;
+  width: 50px;
+  text-align: center;
+}
 
-      #nameProfilehtml{
-        padding: 5%;
+#nameProfilehtml{
+  padding: 5%;
+}
 
-      }
+#testest{
+  position: absolute;
+  width: 200px;
+}
 
-      #testest{
-        position: absolute;
-        width: 200px;
-      }
-      /* The max width is dependant on the container (more info below) */
+/* The max width is dependant on the container (more info below) */
 .typeahead .custom-popup-wrapper {
   position: absolute;
   top: 100%;

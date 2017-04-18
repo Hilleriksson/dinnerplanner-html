@@ -2,15 +2,9 @@ spotiQuizApp.controller('PlayController', function ($scope, $timeout, quizServic
 
   var mytimeout = 0
   var powerUpCounter = 0;
-  $scope.powerUp = function () {
-    ++powerUpCounter;
-    $timeout.cancel(mytimeout);
-    $scope.counter = 100;
-    $scope.displayType = 'none';
-    $scope.barType = 'success';
-    mytimeout = $timeout($scope.onTimeout,100);
-  };
+
   $scope.displayType = 'none';
+  $scope.displayTypeFifty = '';
   $scope.progress = 0;
   $scope.counter = 100;
   $scope.barType = 'success';
@@ -70,6 +64,7 @@ spotiQuizApp.controller('PlayController', function ($scope, $timeout, quizServic
   var options = [];
   $scope.audio = '';
   $scope.nextQuestion = function () {
+    $scope.displayTypeOption = [];
     $scope.progress = (numbersGenerated.length + 1)/quizLength * 100;
     console.log(quizLength);
     if(numbersGenerated.length === quizLength){
@@ -101,6 +96,31 @@ spotiQuizApp.controller('PlayController', function ($scope, $timeout, quizServic
     }
   };
 
+  $scope.displayTypeOption = [];
+  $scope.powerUpFifty = function () {
+    var correctOption = quizService.getCorrectAns(x - 1);
+    var random1 = Math.floor((Math.random() * 4));
+    var random2 = Math.floor((Math.random() * 4));
+    if (random1 === random2 || random1 + 1 === correctOption || random2 + 1 === correctOption) {
+      $scope.powerUpFifty();
+    }else{
+      $scope.displayTypeOption[random1] = "none";
+      $scope.displayTypeOption[random2] = "none";
+      $scope.displayTypeFifty = 'none';
+    }
+  };
+
+  $scope.powerUp = function () {
+    if(powerUpCounter === 0){
+      $timeout.cancel(mytimeout);
+      $scope.counter = 100;
+      $scope.displayType = 'none';
+      $scope.barType = 'success';
+      mytimeout = $timeout($scope.onTimeout,100);
+    }
+    ++powerUpCounter;
+  };
+
   $scope.updateScore = function (option) {
     var correctAns = parseInt(quizService.getCorrectAns(x - 1));
     if(correctAns === option){
@@ -118,7 +138,6 @@ spotiQuizApp.controller('PlayController', function ($scope, $timeout, quizServic
   }
 
   $scope.endQuiz = function () {
-    quizService.setQuizLength(0);
     quizService.removeAllQuestion();
     quizService.removeAllOption();
     quizService.removeAllCorrectAns();
