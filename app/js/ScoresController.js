@@ -2,6 +2,7 @@ spotiQuizApp.controller('ScoresController', function($scope, $firebaseArray) {
 
   // Ref to interact with Firebase
   var usersRef = firebase.database().ref().child("users");
+  $scope.mostPopularQuizzes = {};
 
   // TODO use a string comparison of this kind instead of exact match
   // Levenshtein Distance algo taken from the Internet
@@ -36,21 +37,34 @@ spotiQuizApp.controller('ScoresController', function($scope, $firebaseArray) {
 
   // TODO Populate the select with the options of the most popular quizzes
   $scope.getMostPopularQuizzes = function() {
+    console.log("Most popular quizzes gets called.");
+    // Empty the list
+    $scope.mostPopularQuizzes = {};
     var numQuizzes = 5;
     // Fetch quizzes from popular quizzes, take most popular ones and get their name
-    var quizzesPopRef = firebase.database().ref().child("quizzes-pop");
+    var quizzesPopRef = firebase.database().ref().child("quizzes-pop").orderByValue().limitToLast(numQuizzes);
     var quizzesRef = firebase.database().ref().child("quizzes");
 
     var quizzesPop = $firebaseArray(quizzesPopRef);
     quizzesPop.$loaded().then(function() {
-      console.log("Quizzes and their popularity loaded from Firebase.");
-      // Find kth most popular, then find numQuizzes - 1 larger or equal. 2 iterations of array
-      var mostPopularQuizzes = [];
-      angular.forEach(quizzesPop, function(popularity, quizId) {
-        
+      console.log("Quizzes loaded from Firebase.");
+      console.log(quizzesPop);
+      var listNames = [];
+      angular.forEach(quizzesPop, function(quizPop) {
+        // Look for name on quizzesRef
+        var quizRef = firebase.database().ref("/quizzes/" + quizPop.$id);
+        var quiz = $firebaseArray(quizRef);
+        var completed = 0;
+        quiz.$loaded().then(function() {
+          var name = quiz[3].$value;
+          // console.log("" + quizPop.$id " has correspondent name: " + name + ".");
+          // console.log("Popular quiz retrieved: " + quiz.name);
+          console.log(quizPop.$id)
+          $scope.mostPopularQuizzes[quizPop.$id] = name;
+        });
       });
     });
-    
+
 
   };
 
@@ -99,5 +113,5 @@ spotiQuizApp.controller('ScoresController', function($scope, $firebaseArray) {
 
 
   $scope.getUsers();
-
+  $scope.getMostPopularQuizzes();
 });

@@ -83,14 +83,18 @@
         <div class="row" id="selectType">
           <div class="col-md-4">
             <div class="form-group">
-              <select class="form-control">
+              <!-- TODO Handle changing content when select changes -->
+              <select class="form-control" ng-model="selectedQuiz" ng-change="search(type)">
                 <option value="" disabled selected>Most popular quizzes</option>
                 <!-- Populate with most popular quizzes -->
                 <option>All</option>
-                <option>90's music</option>
+                <option ng-repeat="popularQuiz in mostPopularQuizzes">
+                  {{popularQuiz}}
+                </option>
+                <!-- <option>90's music</option>
                 <option>00's music</option>
                 <option>Hip Hop</option>
-                <option>Indie</option>
+                <option>Indie</option> -->
               </select>
             </div>
           </div>
