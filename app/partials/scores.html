@@ -107,7 +107,7 @@
             </div>
           </div>
         </div>
-        <table class="table table-striped">
+        <table class="table table-striped" ng-if="highScoreShow ==='showQuiz'">
           <thead>
             <tr>
               <th>#</th>
@@ -121,6 +121,19 @@
               <td><b>1</b></td>
               <td><a href="#!/user/userid">Axel</a></td>
               <td>500</td>
+            </tr>
+          </tbody>
+        </table>
+        <table class="table table-striped" ng-if="highScoreShow === 'searchResults'">
+          <thead>
+            <tr>
+              <th>Quiz name</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="result in searchResults">
+              <!-- TODO when clicking it has to select this quiz and show the high score -->
+              <td>{{ result.quizName }}</td>
             </tr>
           </tbody>
         </table>

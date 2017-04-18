@@ -4,6 +4,11 @@ spotiQuizApp.controller('ScoresController', function($scope, $firebaseArray) {
   var usersRef = firebase.database().ref().child("users");
   $scope.mostPopularQuizzes = {};
 
+  // showQuiz shows the selected quiz highscores
+  // searchResults shows the search results so when one is clicked the selected
+  // quiz is changed 
+  $scope.highScoreShow = "showQuiz";
+
   // TODO use a string comparison of this kind instead of exact match
   // Levenshtein Distance algo taken from the Internet
   function compareStrings(s, t) {
@@ -73,7 +78,7 @@ spotiQuizApp.controller('ScoresController', function($scope, $firebaseArray) {
   };
   // TODO Retrieve quiz names matching the input and show high scores for each of them
   $scope.searchQuizName = function(quizSearch) {
-    
+    $scope.scoreContentStatus = "loading";
   };
 
   $scope.searchUsername = function(usernameQuery) {
