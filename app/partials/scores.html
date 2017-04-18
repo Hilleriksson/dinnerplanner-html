@@ -44,7 +44,7 @@
               <input type="text" class="form-control" placeholder="Search username" ng-model="usernameQuery">
               <span class="input-group-btn">
                   <button class="btn btn-default" type="button" ng-click="searchUsername(usernameQuery)">Go!</button>
-            </span>
+              </span>
             </div>
             <!-- /input-group -->
           </div>
@@ -84,7 +84,7 @@
           <div class="col-md-4">
             <div class="form-group">
               <!-- TODO Handle changing content when select changes -->
-              <select class="form-control" ng-model="selectedQuiz" ng-change="search(type)">
+              <select class="form-control" ng-model="quizSelect" ng-change="showSelectedQuiz(quizSelect)">
                 <option value="" disabled selected>Most popular quizzes</option>
                 <!-- Populate with most popular quizzes -->
                 <option>All</option>
@@ -99,14 +99,14 @@
             </div>
           </div>
           <div class="col-md-4">
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="Search quiz name">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search quiz name" ng-model="quizSearch">
+              <span class="input-group-btn">
+                  <button class="btn btn-default" type="button" ng-click="searchQuizName(quizSearch)">Go!</button>
+              </span>
             </div>
           </div>
         </div>
-        <!-- <div class="text-center">
-        <h3>Selected quiz name</h3>
-      </div> -->
         <table class="table table-striped">
           <thead>
             <tr>

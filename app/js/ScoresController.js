@@ -68,9 +68,12 @@ spotiQuizApp.controller('ScoresController', function($scope, $firebaseArray) {
 
   };
 
-  // TODO Retrieve quiz names matching the input and show high scores for each of them
-  $scope.searchQuizName = function() {
+  $scope.showSelectedQuiz = function(quizSelect) {
 
+  };
+  // TODO Retrieve quiz names matching the input and show high scores for each of them
+  $scope.searchQuizName = function(quizSearch) {
+    
   };
 
   $scope.searchUsername = function(usernameQuery) {
