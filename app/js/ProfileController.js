@@ -62,7 +62,6 @@ spotiQuizApp.controller('ProfileController', ['$scope','$firebaseAuth', '$fireba
 					}
 			})
 		$scope.obj = obj;
-		console.log(obj)
 
 		var getQuizzes = $firebaseArray(firebase.database().ref().child('quizzes'));
 		var quizName = [];
