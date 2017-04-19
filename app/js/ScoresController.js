@@ -147,42 +147,61 @@ spotiQuizApp.controller('ScoresController', function($scope, $firebaseArray) {
   $scope.searchUsername = function(usernameQuery) {
     // Query firebase for scores of an specific user
     // Fetch users and show the scores of the similar one
-    var users = $firebaseArray(usersRef);
-    $scope.scoreContentStatus = "loading";
-    $scope.usernameQuery = usernameQuery;
-    users.$loaded().then(function() {
-      console.log("Query is: " + $scope.usernameQuery);
-      console.log("Fetched users data from database.");
-      console.log(users);
+    // var users = $firebaseArray(usersRef);
+    // $scope.scoreContentStatus = "loading";
+    // $scope.usernameQuery = usernameQuery;
+    // users.$loaded().then(function() {
+    //   console.log("Query is: " + $scope.usernameQuery);
+    //   console.log("Fetched users data from database.");
+    //   console.log(users);
 
-      // Save scores from users with similar name to query, use some distance algo
-      // If the query is empty return everything
-      if ($scope.usernameQuery === "") {
-        $scope.usersContent = users;
-      } else {
-        var results = [];
-        angular.forEach(users, function(user) {
-          if (user.name === $scope.usernameQuery) {
-            console.log("Found user with similar name: " + user.name);
-            results.push({
-              "name": user.name,
-              "scores": {
-                "quiz": user.scores.quiz,
-                "score": user.scores.score
-              }
-            });
-          }
-        });
-        console.log("Logging results array");
-        console.log(results);
-        $scope.usersContent = results;
-      }
-      $scope.scoreContentStatus = "loaded";
+    //   // Save scores from users with similar name to query, use some distance algo
+    //   // If the query is empty return everything
+    //   if ($scope.usernameQuery === "") {
+    //     $scope.usersContent = users;
+    //   } else {
+    //     var results = [];
+    //     angular.forEach(users, function(user) {
+    //       if (user.name === $scope.usernameQuery) {
+    //         console.log("Found user with similar name: " + user.name);
+    //         results.push({
+    //           "name": user.name,
+    //           "scores": {
+    //             "quiz": user.scores.quiz,
+    //             "score": user.scores.score
+    //           }
+    //         });
+    //       }
+    //     });
+    //     console.log("Logging results array");
+    //     console.log(results);
+    //     $scope.usersContent = results;
+    //   }
+    //   $scope.scoreContentStatus = "loaded";
+    // });
+    $scope.scoreContentStatus = "loading";
+    var scoresRef = firebase.database().ref().child("all_scores");
+    var scores = $firebaseArray(scoresRef);
+    scores.$loaded().then(function() {
+      var usersRef = firebase.database().ref().child("users");
+      var users = $firebaseArray(usersRef);
+      users.$loaded().then(function() {
+        if(usernameQuery === "") {
+          // show every score
+          $scope.histScores = scores;
+          $scope.scoreContentStatus = "loaded";
+        } else {
+          // show scores by username
+
+        }
+      });
     });
   };
 
 
 
-  $scope.getUsers();
+  // $scope.getUsers();
+  // TODO refactor name to something that makes more sense
+  $scope.searchUsername("");
   $scope.getMostPopularQuizzes();
 });

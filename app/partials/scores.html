@@ -54,19 +54,17 @@
           <thead>
             <tr>
               <th>Username</th>
-              <th>Quiz type</th>
+              <th>Quiz name</th>
               <th>Score</th>
               <th>Date</th>
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="user in usersContent" ng-if="scoreContentStatus === 'loaded'">
-              <td>{{ user.name }}</td>
-              <td>{{ user.scores.quiz }}</td>
-              <!-- Probably have to change this to score[0] when there's more than 1 
-            object -->
-              <td>{{ user.scores.score }}</td>
-              <td>{{ user.name }}</td>
+            <tr ng-repeat="score in histScores" ng-if="scoreContentStatus === 'loaded'">
+              <td>{{ score.USERID }}</td>
+              <td>{{ score.NAME }}</td>
+              <td>{{ score.SCORE }}</td>
+              <td>{{ score.TIMESTAMP }}</td>
             </tr>
             <!-- <tr>
             <td><a href="#!/user/userid">Axel</a></td>
