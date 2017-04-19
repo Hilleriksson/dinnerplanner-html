@@ -48,10 +48,10 @@ spotiQuizApp.controller('PlayController', function ($scope, $timeout, quizServic
       else
       {
           $timeout.cancel(mytimeout);
+          $scope.counter = 100;
           $scope.buttonText='Stop';
           $scope.barType = 'success';
           $scope.displayType = 'none';
-          $scope.counter = 100;
           mytimeout = $timeout($scope.onTimeout,100);
       }
           $scope.stopped=!$scope.stopped;

@@ -57,11 +57,21 @@ body{
 
 #content {
   color: black;
-  font: 36px Arial, sans-serif;
+  font: 20px Arial, sans-serif;
   position: relative;
   float: left;
   top: 20%;
   left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#contentTitle {
+  color: black;
+  font: 36px Arial, sans-serif;
+  position: relative;
+  float: left;
+  top: 20%;
+  left: 33%;
   transform: translate(-50%, -50%);
 }
 
@@ -75,13 +85,24 @@ body{
   transform: translate(-50%, -50%);
 }
 
+#contentBar {
+  width: 1170px;
+  color: black;
+  font: 36px Arial, sans-serif;
+  position: absolute;
+  float: left;
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 #container {
   position: absolute;
   color: white;
-  width: 900px;
-  height: 260px;
+  width: 700px;
+  height: 100px;
   z-index: 15;
-  top: 50%;
+  top: 75%;
   left: 50%;
   margin: -300px 0 0 -450px;
 }
@@ -90,34 +111,34 @@ body{
   position: absolute;
   color: white;
   width: 900px;
-  height: 400px;
+  height: 300px;
   z-index: 15;
   top: 75%;
   left: 50%;
-  margin: -300px 0 0 -450px;
+  margin: -200px 0 0 -450px;
 }
 
 #container3 {
   position: absolute;
   color: white;
   width: 900px;
-  height: 260px;
+  height: 200px;
   z-index: 15;
-  top: 25%;
-  left: 50%;
+  top: 40%;
+  left: 60%;
   margin: -300px 0 0 -450px;
 }
 
 #option1 {
   position: absolute;
-  bottom: 50%;
+  bottom: 30%;
   width: 450px;
   height: 200px;
 }
 
 #option2 {
   position: absolute;
-  bottom: 50%;
+  bottom: 30%;
   right: 0;
   width: 450px;
   height: 200px;
@@ -140,8 +161,8 @@ body{
 
 #optionButton {
   color: black;
-  font-size: 20px;
-  height: 150px;
+  font-size: 15px;
+  height: 100px;
   width: 400px;
   background-color: white;
   border-color: #84bd00;
@@ -181,10 +202,11 @@ body{
 }
 
 .svg-wrapper {
+  cursor: pointer;
   height: 60px;
 	margin: 0 auto;
   position: relative;
-  top: 50%;
+  top: 50px;
   transform: translateY(-50%);
   width: 320px;
 }
@@ -354,10 +376,9 @@ a#playButton {
 
 /*End Quiz CSS*/
 .chart{
-  width: 400px;
-  height: 400px;
-  left: 10%;
-  margin: 100px 0 0 10px;
+  width: 300px;
+  left: 5%;
+  margin: 5% 0 0 0;
 }
 
 #container6 {
@@ -366,9 +387,8 @@ a#playButton {
   width: 500px;
   height: 260px;
   z-index: 15;
-  top: 50%;
+  top: 10%;
   left: 50%;
-  margin: -300px 0 0 150px;
 }
 
 #contentEndPlay {
@@ -384,12 +404,11 @@ a#playButton {
 #container7 {
   position: absolute;
   color: white;
-  width: 900px;
-  height: 260px;
+  width: 300px;
+  height: 100px;
   z-index: 15;
-  top: 85%;
-  left: 55%;
-  margin: -300px 0 0 -450px;
+  top: 65%;
+  left: 40%;
 }
 
 #endButton {
