@@ -13,6 +13,19 @@ spotiQuizApp.factory('quizService', function ($resource, $firebaseArray, $fireba
   this.currentScore = 0;
   this.quizName = '';
   this.userName = '';
+  this.powerUpUsed = 0;
+
+  this.incrementPowerUpUsed = function () {
+    this.powerUpUsed = this.powerUpUsed + 1;
+  }
+
+  this.setPowerUpUsed = function (val) {
+    this.powerUpUsed = val;
+  }
+
+  this.getPowerUpUsed = function () {
+    return this.powerUpUsed;
+  }
 
   this.incrementCurrentScore = function () {
     this.currentScore = this.currentScore + 1;

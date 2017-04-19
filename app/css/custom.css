@@ -386,7 +386,7 @@ a#playButton {
 #container6 {
   position: absolute;
   color: white;
-  width: 500px;
+  width: 550px;
   height: 260px;
   z-index: 15;
   top: 10%;
@@ -395,7 +395,7 @@ a#playButton {
 
 #contentEndPlay {
   color: black;
-  font: 72px Arial, sans-serif;
+  font: 60px Arial, sans-serif;
   position: relative;
   float: left;
   top: 50%;

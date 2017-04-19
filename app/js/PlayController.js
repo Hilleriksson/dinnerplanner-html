@@ -99,6 +99,7 @@ spotiQuizApp.controller('PlayController', function ($scope, $timeout, quizServic
     if (random1 === random2 || random1 === correctOption - 1 || random2 === correctOption - 1) {
       $scope.powerUpFifty();
     }else{
+      quizService.incrementPowerUpUsed();
       $scope.displayTypeOption[random1] = "none";
       $scope.displayTypeOption[random2] = "none";
       $scope.displayTypeFifty = 'none';
@@ -113,6 +114,7 @@ spotiQuizApp.controller('PlayController', function ($scope, $timeout, quizServic
       $scope.displayType = 'none';
       $scope.barType = 'success';
       mytimeout = $timeout($scope.onTimeout,100);
+      quizService.incrementPowerUpUsed();
     }
     ++powerUpCounter;
   };
