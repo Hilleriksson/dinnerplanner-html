@@ -4,7 +4,7 @@
 <div class="row">
   <div id="container6" ng-init="getCurrentScore()" class="col-md-5">
     <div id="contentEndPlay">
-      Your Score : {{currentScore}}
+      Your Score : {{score}}/{{quizLength}}
     </div>
   </div>
   <div class="chart col-md-5">
@@ -15,14 +15,11 @@
 </div>
 <div class="row">
   <div id="container7" class="col-md-10">
-    <!-- <div id="contentEndPlay"> -->
-        <!-- <button type="button" id="endButton" class="btn btn-success" ng-click="goToPlay()">Play Again</button> -->
         <div class="svg-wrapper contentEndPlay">
           <svg height="60" width="320" xmlns="http://www.w3.org/2000/svg">
             <rect class="shape" height="60" width="320" />
           </svg>
            <a id="playButton" ng-click="goToPlay()"><div class="text">PLAY AGAIN</div></a>
         </div>
-    <!-- </div> -->
   </div>
 </div>

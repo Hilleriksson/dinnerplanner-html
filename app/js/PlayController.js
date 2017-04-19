@@ -1,7 +1,8 @@
 spotiQuizApp.controller('PlayController', function ($scope, $timeout, quizService, $firebaseArray, $filter, ngAudio) {
 
-  var mytimeout = 0
+  var mytimeout = 0;
   var powerUpCounter = 0;
+  $scope.queNumber = 0;
 
   $scope.displayType = 'none';
   $scope.displayTypeFifty = '';
@@ -29,14 +30,7 @@ spotiQuizApp.controller('PlayController', function ($scope, $timeout, quizServic
       }
   };
 
-  console.log($firebaseArray(firebase.database().ref().child('quizzes')));
   var quizQuestions = $firebaseArray(firebase.database().ref().child('quizzes'));
-  quizQuestions.$loaded()
-    .then(function(){
-        angular.forEach(quizQuestions, function(user) {
-            console.log(user);
-        })
-    });
 
   $scope.takeAction = function(){
       if(!$scope.stopped){
@@ -59,14 +53,15 @@ spotiQuizApp.controller('PlayController', function ($scope, $timeout, quizServic
 
   var numbersGenerated = [];
   var quizLength = quizService.getQuizLength();
-  console.log(quizLength);
   var x = 0;
   var options = [];
   $scope.audio = '';
   $scope.nextQuestion = function () {
+    if($scope.audio !== '' && $scope.audio.canPlay === true){
+      $scope.pauseSong();
+    }
     $scope.displayTypeOption = [];
     $scope.progress = (numbersGenerated.length + 1)/quizLength * 100;
-    console.log(quizLength);
     if(numbersGenerated.length === quizLength){
       $timeout.cancel(mytimeout);
       quizService.storeInAllScores();
@@ -75,15 +70,14 @@ spotiQuizApp.controller('PlayController', function ($scope, $timeout, quizServic
       $scope.endQuiz();
     }else{
       x = Math.floor((Math.random() * quizLength) + 1);
-      console.log(x);
       if ( numbersGenerated.indexOf( x ) > -1 ){
         $scope.nextQuestion();
       }else{
+        ++$scope.queNumber;
         options = quizService.getOptions(x - 1);
         numbersGenerated.push(x);
         $scope.sourceURL = quizService.getSongURL(x - 1);
         $scope.audio = ngAudio.load(quizService.getSongURL(x - 1));
-        $scope.playSong();
         $scope.question = quizService.getQuestion(x - 1);
         $scope.option1 = options[0];
         $scope.option2 = options[1];
@@ -98,12 +92,14 @@ spotiQuizApp.controller('PlayController', function ($scope, $timeout, quizServic
 
   $scope.displayTypeOption = [];
   $scope.powerUpFifty = function () {
+    $scope.audio.play();
     var correctOption = quizService.getCorrectAns(x - 1);
     var random1 = Math.floor((Math.random() * 4));
     var random2 = Math.floor((Math.random() * 4));
-    if (random1 === random2 || random1 + 1 === correctOption || random2 + 1 === correctOption) {
+    if (random1 === random2 || random1 === correctOption - 1 || random2 === correctOption - 1) {
       $scope.powerUpFifty();
     }else{
+      quizService.incrementPowerUpUsed();
       $scope.displayTypeOption[random1] = "none";
       $scope.displayTypeOption[random2] = "none";
       $scope.displayTypeFifty = 'none';
@@ -111,12 +107,14 @@ spotiQuizApp.controller('PlayController', function ($scope, $timeout, quizServic
   };
 
   $scope.powerUp = function () {
+    $scope.audio.play();
     if(powerUpCounter === 0){
       $timeout.cancel(mytimeout);
       $scope.counter = 100;
       $scope.displayType = 'none';
       $scope.barType = 'success';
       mytimeout = $timeout($scope.onTimeout,100);
+      quizService.incrementPowerUpUsed();
     }
     ++powerUpCounter;
   };
@@ -127,15 +125,11 @@ spotiQuizApp.controller('PlayController', function ($scope, $timeout, quizServic
       quizService.incrementCurrentScore();
     }
     $scope.nextQuestion();
-  }
-
-  $scope.playSong = function () {
-    $scope.audio.play();
-  }
+  };
 
   $scope.pauseSong = function () {
     $scope.audio.pause();
-  }
+  };
 
   $scope.endQuiz = function () {
     quizService.removeAllQuestion();

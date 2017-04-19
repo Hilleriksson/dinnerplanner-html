@@ -1,11 +1,13 @@
 body{
-  /*height : 100vh;*/
-  /*background-color:  #000000;*/
 }
 
 .container-fluid {
   padding-right: 0px;
   padding-left: 0px;
+}
+
+#trCategory {
+  cursor: pointer;
 }
 
 /*Play CSS*/
@@ -176,29 +178,29 @@ body{
 /*Description CSS*/
 
 .paragraph {
-    text-align: center;
-    font-size: 1em;
-    color: #474747;
-    font-family: open sans, sans-serif;
-    padding: 50px 0% 0px 0%;
-    background-color: #f1f3f4;
+  text-align: center;
+  font-size: 1em;
+  color: #474747;
+  font-family: open sans, sans-serif;
+  padding: 50px 0% 0px 0%;
+  background-color: #f1f3f4;
 }
 
 #paragraph-wrapper {
-    max-width: 100%;
-    padding: 0px 20% 70px 20%;
+  max-width: 100%;
+  padding: 0px 20% 70px 20%;
 }
 
 .paragraph h2 {
   margin-top: 75px;
-    font-size: 2em;
-    text-align: center;
-    font-family: open roboto, sans-serif;
+  font-size: 2em;
+  text-align: center;
+  font-family: open roboto, sans-serif;
 }
 
 .paragraph hr {
-    border: 2px solid #84bd00;
-    width: 10%;
+  border: 2px solid #84bd00;
+  width: 10%;
 }
 
 .svg-wrapper {
@@ -384,7 +386,7 @@ a#playButton {
 #container6 {
   position: absolute;
   color: white;
-  width: 500px;
+  width: 550px;
   height: 260px;
   z-index: 15;
   top: 10%;
@@ -393,7 +395,7 @@ a#playButton {
 
 #contentEndPlay {
   color: black;
-  font: 72px Arial, sans-serif;
+  font: 60px Arial, sans-serif;
   position: relative;
   float: left;
   top: 50%;
@@ -472,17 +474,17 @@ a#playButton {
 }
 
 .img-circle-sidebar{
-    width:150px; /* you can use % */
-    height: auto;
-    border-radius: 50%;
-    border-style: solid;
-    border-color: blue;
-    align: center;
+  width:150px; /* you can use % */
+  height: auto;
+  border-radius: 50%;
+  border-style: solid;
+  border-color: blue;
+  align: center;
 }
 
 #nameProfilehtmlSidebar{
-    text-align: center;
-    padding: 0%;
+  text-align: center;
+  padding: 0%;
 }
 
 #history {

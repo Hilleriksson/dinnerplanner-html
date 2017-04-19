@@ -12,6 +12,20 @@ spotiQuizApp.factory('quizService', function ($resource, $firebaseArray, $fireba
   this.quizId = '';
   this.currentScore = 0;
   this.quizName = '';
+  this.userName = '';
+  this.powerUpUsed = 0;
+
+  this.incrementPowerUpUsed = function () {
+    this.powerUpUsed = this.powerUpUsed + 1;
+  }
+
+  this.setPowerUpUsed = function (val) {
+    this.powerUpUsed = val;
+  }
+
+  this.getPowerUpUsed = function () {
+    return this.powerUpUsed;
+  }
 
   this.incrementCurrentScore = function () {
     this.currentScore = this.currentScore + 1;
@@ -107,6 +121,7 @@ spotiQuizApp.factory('quizService', function ($resource, $firebaseArray, $fireba
   this.storeUserID = function () {
     auth.$onAuthStateChanged(function(authData){
       _self.userId = authData.uid;
+      _self.userName = authData.displayName;
     })
   }
 
@@ -125,7 +140,8 @@ spotiQuizApp.factory('quizService', function ($resource, $firebaseArray, $fireba
       NAME: this.quizName,
       SCORE: this.currentScore,
       TIMESTAMP: +new Date,
-      USERID: this.userId
+      USERID: this.userId,
+      USERNAME: this.userName
     };
     var newMsgKey = firebase.database().ref().child(childName).push().key;
     var updates = {};

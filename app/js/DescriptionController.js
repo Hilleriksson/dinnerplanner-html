@@ -4,7 +4,6 @@ spotiQuizApp.controller('DescriptionController', function ($scope, quizService, 
   $scope.description = 'Description not found.';
   $scope.quizName = '';
   $scope.creatorName = '';
-  console.log(quiz);
   $scope.getDescription = function () {
       quiz.$loaded()
         .then(function(){
