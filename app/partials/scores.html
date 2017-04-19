@@ -56,22 +56,16 @@
               <th>Username</th>
               <th>Quiz name</th>
               <th>Score</th>
-              <th>Date</th>
+              <th>Timestamp</th>
             </tr>
           </thead>
           <tbody>
             <tr ng-repeat="score in histScores" ng-if="scoreContentStatus === 'loaded'">
-              <td><a href="#!/user/{{score.USERID}}">{{ score.USERNAME }}</a></td>
+              <td>{{ score.USERNAME }}</td>
               <td><a href="#!/description/{{score.QUIZID}}">{{ score.NAME }}</a></td>
               <td>{{ score.SCORE }}</td>
               <td>{{ score.TIMESTAMP }}</td>
             </tr>
-            <!-- <tr>
-            <td><a href="#!/user/userid">Axel</a></td>
-            <td>90's music</td>
-            <td>500</td>
-            <td>March 28th 15:21</td>
-          </tr> -->
           </tbody>
         </table>
         <img class="img-responsive" id="loadingAnimation" ng-if="scoreContentStatus == 'loading'" src="http://www.cuisson.co.uk/templates/cuisson/supersize/slideshow/img/progress.BAK-FOURTH.gif">
@@ -114,7 +108,7 @@
           <tbody>
             <tr ng-repeat="score in highScoresQuiz">
               <td><b>{{$index + 1}}</b></td>
-              <td><a href="#!/user/{{score[0]}}">{{highScoresNames[score[0]]}}</a></td>
+              <td>{{highScoresNames[score[0]]}}</td>
               <td>{{score[1]}}</td>
             </tr>
           </tbody>
