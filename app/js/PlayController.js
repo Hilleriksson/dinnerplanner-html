@@ -1,6 +1,6 @@
 spotiQuizApp.controller('PlayController', function ($scope, $timeout, quizService, $firebaseArray, $filter, ngAudio) {
 
-  var mytimeout = 0
+  var mytimeout = 0;
   var powerUpCounter = 0;
 
   $scope.displayType = 'none';
@@ -121,11 +121,11 @@ spotiQuizApp.controller('PlayController', function ($scope, $timeout, quizServic
       quizService.incrementCurrentScore();
     }
     $scope.nextQuestion();
-  }
+  };
 
   $scope.pauseSong = function () {
     $scope.audio.pause();
-  }
+  };
 
   $scope.endQuiz = function () {
     quizService.removeAllQuestion();
