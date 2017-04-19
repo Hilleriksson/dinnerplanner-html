@@ -12,30 +12,93 @@ spotiQuizApp.controller('ProfileController', ['$scope','$firebaseAuth', '$fireba
 			$scope.displayProfileName = authData.displayName;
 			$scope.displayProfilePicture = authData.photoURL;
 			history();
+			scoreTable();
 	}
 	function history() {
 		var getUserHistory = $firebaseArray(firebase.database().ref().child('users').child(authData.uid).child('history'));
-		$scope.quizName = [];
+		//$scope.quizName = [];
 		var whatQuiz = [];
 		var whatScore = [];
 
 		getUserHistory.$loaded()
-		.then(function(){
-			angular.forEach(getUserHistory, function(user)	{
-				whatQuiz.push(user.name)
-				whatScore.push(user.score)
+			.then(function(){
+				angular.forEach(getUserHistory, function(user)	{
+					whatQuiz.push(user.name)
+					whatScore.push(user.score)
+				});
+				this.repeatData = whatQuiz.map(function(value, index) {
+					return {
+						data: value,
+						value: whatScore[index]
+					}
+				})
+				$scope.repeatData = repeatData.reverse();
 			});
-			this.repeatData = whatQuiz.map(function(value, index) {
-				return {
-					data: value,
-					value: whatScore[index]
-				}
+		};
+
+	function scoreTable() {
+		var getScores = $firebaseArray(firebase.database().ref().child('all_scores'));
+		//$scope.whatQuizName = [];
+		var whatQuizID = [];
+		var whatScoreID = [];
+		var arr = [];
+		var obj = { };
+
+		var dic = {};
+
+		getScores.$loaded()
+			.then(function(){
+
+				angular.forEach(getScores, function(scores)	{
+					if (scores.USERID == authData.uid){
+						whatQuizID.push(scores.NAME)
+						dic[scores.QUIZID] = (dic[scores.QUIZID] || 0) + scores.SCORE;
+
+					}
+				});
+
+					for (var i = 0, j = whatQuizID.length; i < j; i++) {
+					   obj[whatQuizID[i]] = (obj[whatQuizID[i]] || 0) + 1;
+					}
 			})
-			$scope.repeatData = repeatData.reverse();
-		});
-	};
-})
+		$scope.obj = obj;
+		console.log(obj)
+
+		var getQuizzes = $firebaseArray(firebase.database().ref().child('quizzes'));
+		var quizName = [];
+
+		getQuizzes.$loaded()
+			.then(function(){
+				angular.forEach(getQuizzes, function(quiz)	{
+
+
+					if ($.inArray(quiz.$id, whatQuizID) !== -1){
+							quizName.push(quiz.name)
+						}
+					});
+
+					this.scoreTableData = whatQuizID.map(function(value, index) {
+						return {
+							data: value,
+							value: whatScoreID[index]
+						}
+					})
+					$scope.scoreTableData = quizName;
+
+				});
+			};
+
+
+
+		})
+
 }
+
+
+
+
+
+
 
 	/*auth.$onAuthStateChanged(function(authData){
 		if (authData != null) {

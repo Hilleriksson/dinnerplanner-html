@@ -108,5 +108,4 @@ spotiQuizApp.controller('LoginController', ['$scope','$firebaseAuth','$firebaseA
 
               });
           console.log(user)
-
 }]);

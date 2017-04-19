@@ -122,6 +122,7 @@ spotiQuizApp.factory('quizService', function ($resource, $firebaseArray, $fireba
     var childName = "all_scores";
     var msgData = {
       QUIZID: this.quizId,
+      NAME: this.quizName,
       SCORE: this.currentScore,
       TIMESTAMP: +new Date,
       USERID: this.userId

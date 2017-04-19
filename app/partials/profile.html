@@ -37,43 +37,16 @@
 					</div>
 				</div>
 
-			<div class="col-md-8">
-		    	<div class="row">
+			<div class="col-md-6">
+				<div class="row">
 				    <table id="history">
 					  <tr style="color: #000000">
 					    <th>Quiz Type</th>
 					    <th># of Games</th>
-					    <th>Av. Score</th>
-					    <th>Total Score</th>
-					    <th>Placement</th>
 					  </tr>
-					  <tr style="color: #828282">
-					    <td>Classical</td>
-					    <td>76</td>
-					    <td>8</td>
-					    <td>21</td>
-					    <td>2</td>
-					  </tr>
-					  <tr style="color: #828282">
-					    <td>Pop</td>
-					    <td>10</td>
-					    <td>4</td>
-					    <td>6</td>
-					    <td>24</td>
-					  </tr>
-					  <tr style="color: #828282">
-					    <td>Punk</td>
-					    <td>2</td>
-					    <td>6</td>
-					    <td>8</td>
-					    <td>17</td>
-					  </tr>
-					  <tr style="color: #828282">
-					    <td>Rock</td>
-					    <td>1</td>
-					    <td>3</td>
-					    <td>3</td>
-					    <td>36</td>
+					  <tr style="color: #828282" ng-repeat="(key,val) in obj">
+					    <td>{{key}}</td>
+					    <td>{{val}}</td>
 					  </tr>
 					</table>
 				</div>
