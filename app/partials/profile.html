@@ -79,7 +79,7 @@
 				</div>
 				<div class="row"  style="color: #828282">
 					<h3 style="color: #000000">Recent Activity:</h3>
-						<div id="tryingshit" ng-repeat="data in repeatData">
+						<div id="tryingshit" ng-repeat="data in repeatData | limitTo:5">
 								Played a game of <i>{{data.data}}</i> with a score of <i>{{data.value}}</i>
 						</div>
 				</div>

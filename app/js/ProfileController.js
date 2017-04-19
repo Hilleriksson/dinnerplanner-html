@@ -11,9 +11,7 @@ spotiQuizApp.controller('ProfileController', ['$scope','$firebaseAuth', '$fireba
 		if (authData != null) {
 			$scope.displayProfileName = authData.displayName;
 			$scope.displayProfilePicture = authData.photoURL;
-
-
-		history();
+			history();
 	}
 	function history() {
 		var getUserHistory = $firebaseArray(firebase.database().ref().child('users').child(authData.uid).child('history'));
@@ -33,7 +31,7 @@ spotiQuizApp.controller('ProfileController', ['$scope','$firebaseAuth', '$fireba
 					value: whatScore[index]
 				}
 			})
-			$scope.repeatData = repeatData;
+			$scope.repeatData = repeatData.reverse();
 		});
 	};
 })
@@ -51,7 +49,7 @@ spotiQuizApp.controller('ProfileController', ['$scope','$firebaseAuth', '$fireba
 
 		var historyData = {
 			name: 'testQuiz',
-			score: 'x points',
+			score: 'z points',
 			timestamp: 'date/time'
 		};
 
@@ -78,7 +76,7 @@ spotiQuizApp.controller('ProfileController', ['$scope','$firebaseAuth', '$fireba
 			event.preventDefault();
 			console.log(changeName)
 
-	        authData.updateProfile({ //Need to fix this to work in angular.
+	        authData.updateProfile({
 	        	displayName: changeName,
 	        }).then(function() {
 	        	console.log('Update successful.')
@@ -101,7 +99,7 @@ spotiQuizApp.controller('ProfileController', ['$scope','$firebaseAuth', '$fireba
 			event.preventDefault();
 			console.log(changePhoto)
 
-	        authData.updateProfile({ //Need to fix this to work in angular
+	        authData.updateProfile({
 	        	photoURL: changePhoto,
 	        }).then(function() {
 	        	console.log('Update successful.')
