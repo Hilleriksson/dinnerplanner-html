@@ -8,11 +8,14 @@ spotiQuizApp.controller('ProfileController', ['$scope','$firebaseAuth', '$fireba
 
 	function runHistory() {
 	auth.$onAuthStateChanged(function(authData){
+
 		if (authData != null) {
 			$scope.displayProfileName = authData.displayName;
 			$scope.displayProfilePicture = authData.photoURL;
 			history();
 			scoreTable();
+	}	else {
+		$location.path('/login')
 	}
 	function history() {
 		var getUserHistory = $firebaseArray(firebase.database().ref().child('users').child(authData.uid).child('history'));
@@ -53,80 +56,17 @@ spotiQuizApp.controller('ProfileController', ['$scope','$firebaseAuth', '$fireba
 					if (scores.USERID == authData.uid){
 						whatQuizID.push(scores.NAME)
 						dic[scores.QUIZID] = (dic[scores.QUIZID] || 0) + scores.SCORE;
-
-					}
-				});
-
+						}
+					});
 					for (var i = 0, j = whatQuizID.length; i < j; i++) {
 					   obj[whatQuizID[i]] = (obj[whatQuizID[i]] || 0) + 1;
 					}
-			})
-		$scope.obj = obj;
+				})
+				$scope.obj = obj;
 
-		var getQuizzes = $firebaseArray(firebase.database().ref().child('quizzes'));
-		var quizName = [];
-
-		getQuizzes.$loaded()
-			.then(function(){
-				angular.forEach(getQuizzes, function(quiz)	{
-
-
-					if ($.inArray(quiz.$id, whatQuizID) !== -1){
-							quizName.push(quiz.name)
-						}
-					});
-
-					this.scoreTableData = whatQuizID.map(function(value, index) {
-						return {
-							data: value,
-							value: whatScoreID[index]
-						}
-					})
-					$scope.scoreTableData = quizName;
-
-				});
 			};
-
-
-
 		})
-
-}
-
-
-
-
-
-
-
-	/*auth.$onAuthStateChanged(function(authData){
-		if (authData != null) {
-			$scope.displayProfileName = authData.displayName;
-			$scope.displayProfilePicture = authData.photoURL;
-		}
-
-	$scope.fakeGame = function() {
-		$firebaseArray(firebase.database().ref().child('users').child(authData.uid).child('history'));
-		console.log("fakeGame() called.")
-
-		var historyData = {
-			name: 'testQuiz',
-			score: 'z points',
-			timestamp: 'date/time'
-		};
-
-		var newHistoryKey = firebase.database().ref().child('users').child(authData.uid).child('history').push().key;
-
-		var updates = {};
-		updates["/users/" + authData.uid + "/history/" + newHistoryKey] = historyData;
-		firebase.database().ref().update(updates).then(function() {
-			console.log("Saved contact message to database.");
-	      test1();
-
-	  });
-
 	}
-})*/
 
 	auth.$onAuthStateChanged(function(authData){
 		if (authData != null) {
