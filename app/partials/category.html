@@ -21,7 +21,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="quiz in quizList | orderBy: orderFilter | filter:{ name: query}" ng-click="showQuiz(quiz.$id)">
+          <tr id="trCategory" ng-repeat="quiz in quizList | orderBy: orderFilter | filter:{ name: query}" ng-click="showQuiz(quiz.$id)">
               <td>{{quiz.name}}</td>
               <td>{{quiz.questions.length-1}}</td>
               <td>{{quiz.creatorName}}</td>
