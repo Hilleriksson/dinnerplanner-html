@@ -120,6 +120,7 @@ spotiQuizApp.controller('ScoresController', function($scope, $firebaseArray) {
     $scope.scoreContentStatus = "loading";
     $scope.searchResults = [];
 
+    // If query is empty show all
     // Get all quizzes, look for name
     var quizzesRef = firebase.database().ref().child("quizzes");
     var quizzes = $firebaseArray(quizzesRef);
@@ -129,7 +130,12 @@ spotiQuizApp.controller('ScoresController', function($scope, $firebaseArray) {
         if (quiz.name === quizSearch) {
           // found result, add to list
           console.log("Found matching quiz. Id: " + quiz.$id + " Name: " + quiz.name);
-          $scope.searchResults.push({ id: quiz.$id, name: quiz.name })
+          $scope.searchResults.push({ id: quiz.$id, name: quiz.name });
+        }
+        // If query is empty show all
+        // WARNING: EXTREMELY UGLY CODE :/ will do it for now
+        if (quizSearch === "") {
+          $scope.searchResults.push({ id: quiz.$id, name: quiz.name });
         }
       });
       $scope.highScoreShow = "searchResults";
