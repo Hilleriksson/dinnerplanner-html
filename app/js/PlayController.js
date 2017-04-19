@@ -2,6 +2,7 @@ spotiQuizApp.controller('PlayController', function ($scope, $timeout, quizServic
 
   var mytimeout = 0;
   var powerUpCounter = 0;
+  $scope.queNumber = 0;
 
   $scope.displayType = 'none';
   $scope.displayTypeFifty = '';
@@ -72,6 +73,7 @@ spotiQuizApp.controller('PlayController', function ($scope, $timeout, quizServic
       if ( numbersGenerated.indexOf( x ) > -1 ){
         $scope.nextQuestion();
       }else{
+        ++$scope.queNumber;
         options = quizService.getOptions(x - 1);
         numbersGenerated.push(x);
         $scope.sourceURL = quizService.getSongURL(x - 1);
