@@ -84,12 +84,13 @@
           <div class="col-md-4">
             <div class="form-group">
               <!-- TODO Handle changing content when select changes -->
-              <select class="form-control" ng-model="quizSelect" ng-change="showSelectedQuiz(quizSelect)">
+              <select class="form-control" ng-model="quizSelected" ng-change="showSelectedQuiz(quizSelected)">
                 <option value="" disabled selected>Most popular quizzes</option>
                 <!-- Populate with most popular quizzes -->
+                <!-- TODO -->
                 <option>All</option>
-                <option ng-repeat="popularQuiz in mostPopularQuizzes">
-                  {{popularQuiz}}
+                <option ng-repeat="popularQuiz in mostPopularQuizzes" ng-value="popularQuiz[0]">
+                  {{popularQuiz[1]}}
                 </option>
                 <!-- <option>90's music</option>
                 <option>00's music</option>
@@ -112,15 +113,15 @@
             <tr>
               <th>#</th>
               <th>Username</th>
-              <th>Avg. score</th>
+              <th>Total score</th>
             </tr>
           </thead>
           <tbody>
             <!-- TODO fill content with database content -->
-            <tr>
-              <td><b>1</b></td>
-              <td><a href="#!/user/userid">Axel</a></td>
-              <td>500</td>
+            <tr ng-repeat="score in highScoresQuiz">
+              <td><b>{{$index + 1}}</b></td>
+              <td><a href="#!/user/{{score[0]}}">{{score[0]}}</a></td>
+              <td>{{score[1]}}</td>
             </tr>
           </tbody>
         </table>
@@ -133,7 +134,8 @@
           <tbody>
             <tr ng-repeat="result in searchResults">
               <!-- TODO when clicking it has to select this quiz and show the high score -->
-              <td>{{ result.quizName }}</td>
+              <!-- <td>{{ result.quizName }}</td> -->
+              <td><a href="" ng-click="showSelectedQuiz(result.id)">{{result.name}}</a></td>
             </tr>
           </tbody>
         </table>

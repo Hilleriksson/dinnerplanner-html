@@ -44,7 +44,7 @@ spotiQuizApp.controller('ScoresController', function($scope, $firebaseArray) {
   $scope.getMostPopularQuizzes = function() {
     console.log("Most popular quizzes gets called.");
     // Empty the list
-    $scope.mostPopularQuizzes = {};
+    $scope.mostPopularQuizzes = [];
     var numQuizzes = 5;
     // Fetch quizzes from popular quizzes, take most popular ones and get their name
     var quizzesPopRef = firebase.database().ref().child("quizzes-pop").orderByValue().limitToLast(numQuizzes);
@@ -54,18 +54,16 @@ spotiQuizApp.controller('ScoresController', function($scope, $firebaseArray) {
     quizzesPop.$loaded().then(function() {
       console.log("Quizzes loaded from Firebase.");
       console.log(quizzesPop);
-      var listNames = [];
       angular.forEach(quizzesPop, function(quizPop) {
         // Look for name on quizzesRef
         var quizRef = firebase.database().ref("/quizzes/" + quizPop.$id);
         var quiz = $firebaseArray(quizRef);
-        var completed = 0;
         quiz.$loaded().then(function() {
           var name = quiz[3].$value;
           // console.log("" + quizPop.$id " has correspondent name: " + name + ".");
           // console.log("Popular quiz retrieved: " + quiz.name);
-          console.log(quizPop.$id)
-          $scope.mostPopularQuizzes[quizPop.$id] = name;
+          // console.log(quizPop.$id)
+          $scope.mostPopularQuizzes.push([quizPop.$id, name]);
         });
       });
     });
@@ -73,12 +71,71 @@ spotiQuizApp.controller('ScoresController', function($scope, $firebaseArray) {
 
   };
 
-  $scope.showSelectedQuiz = function(quizSelect) {
+  // quizSelect is the id of the quiz
+  $scope.showSelectedQuiz = function(quizSelected) {
+    // Retrieve highest scores for this
+    // Have to get them from all_scores table and calculate them
+    console.log("showSelectedQuiz gets called.");
+    console.log(quizSelected + " has been selected.");
+    var allScoresRef = firebase.database().ref().child("all_scores");
+    var allScores = $firebaseArray(allScoresRef);
+    $scope.highScoresQuiz = [];
+    $scope.scoreContentStatus = "loading";
+    allScores.$loaded().then(function() {
+      var highScoresQuiz = {};
 
+      angular.forEach(allScores, function(score) {
+        // Check if same id for quiz, save into user's id key for dict
+        console.log("Score quizId");
+        console.log(score.QUIZID);
+        if (score.QUIZID === quizSelected) {
+          console.log("Found score for selected quiz.");
+          highScoresQuiz[score.USERID] = (highScoresQuiz[score.USERID] || 0) + score.SCORE;
+        }
+      });
+      // All scores are saved, have to reorder from bigger to lower and save it to score
+      // Create array from dictionary and sort it
+      // Code adapted from: https://stackoverflow.com/questions/5199901/
+      var tuples = [];
+      for (var key in highScoresQuiz) {
+        tuples.push([key, highScoresQuiz[key]]);
+      }
+
+      tuples.sort(function(a, b) {
+        a = a[1];
+        b = b[1];
+
+        return a < b ? -1 : (a > b ? 1 : 0);
+      });
+
+      // highScoresQuiz[i][0] contains USERID
+      // highScoresQuiz[i][1] contains score for that quiz
+      $scope.highScoresQuiz = tuples;
+      $scope.highScoreShow = "showQuiz";
+      $scope.scoreContentStatus = "loaded";
+    });
   };
   // TODO Retrieve quiz names matching the input and show high scores for each of them
   $scope.searchQuizName = function(quizSearch) {
     $scope.scoreContentStatus = "loading";
+    $scope.searchResults = [];
+
+    // Get all quizzes, look for name
+    var quizzesRef = firebase.database().ref().child("quizzes");
+    var quizzes = $firebaseArray(quizzesRef);
+    quizzes.$loaded().then(function() {
+      angular.forEach(quizzes, function(quiz) {
+        // Check where name is
+        if (quiz.name === quizSearch) {
+          // found result, add to list
+          console.log("Found matching quiz. Id: " + quiz.$id + " Name: " + quiz.name);
+          $scope.searchResults.push({ id: quiz.$id, name: quiz.name })
+        }
+      });
+      $scope.highScoreShow = "searchResults";
+      $scope.scoreContentStatus = "loaded";
+    });
+
   };
 
   $scope.searchUsername = function(usernameQuery) {
