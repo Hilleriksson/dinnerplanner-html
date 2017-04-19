@@ -1,7 +1,11 @@
-spotiQuizApp.controller('CategoryController', function ($scope, quizService, $location) {
+spotiQuizApp.controller('CategoryController', function ($scope, quizService, $location, $firebaseAuth) {
 
   var quizQuestions = quizService.getQuiz();
   var quizPop = quizService.getAllQuizFromOuizPOP();
+
+  //To store the userId in the service file after the LoginController
+  var storeUserID = quizService.storeUserID();
+  console.log(quizQuestions);
 
   $scope.query = '';
   $scope.orderFilter = '-pop'
