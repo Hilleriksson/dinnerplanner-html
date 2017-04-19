@@ -94,7 +94,7 @@ spotiQuizApp.controller('LoginController', ['$scope','$firebaseAuth','$firebaseA
         $location.path('/home')
 
       }, function(error) {
-        console.error('logged in error', error);
+        //console.error('logged in error', error);
         $scope.errorMessage = error.message;
         errorTxt.classList.remove('hidden');
       });
@@ -104,8 +104,6 @@ spotiQuizApp.controller('LoginController', ['$scope','$firebaseAuth','$firebaseA
           auth.$onAuthStateChanged(function(authData){
             angular.copy(authData, user);
             $scope.userids = user.uid;
-            console.log(user.uid)
 
               });
-          console.log(user)
 }]);
