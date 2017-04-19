@@ -5,7 +5,6 @@ spotiQuizApp.controller('CategoryController', function ($scope, quizService, $lo
 
   //To store the userId in the service file after the LoginController
   var storeUserID = quizService.storeUserID();
-  console.log(quizQuestions);
 
   $scope.query = '';
   $scope.orderFilter = '-pop'
