@@ -1,7 +1,7 @@
 
 
-spotiQuizApp.controller('LoginController', ['$scope','$firebaseAuth','$location', function($scope, $firebaseAuth, $location, quizService) {
-  
+spotiQuizApp.controller('LoginController', ['$scope','$firebaseAuth','$firebaseArray', '$location', function($scope, $firebaseAuth, $firebaseArray, $location, quizService) {
+
   var auth = $firebaseAuth();
 
   //var rootRef = firebase.database().ref() // Kirra detta, så kirrar vi
@@ -38,7 +38,7 @@ spotiQuizApp.controller('LoginController', ['$scope','$firebaseAuth','$location'
 
           }
         }
-        })
+      })
 
       }, function(error) {
         //console.error('Sign up error', error);
@@ -66,10 +66,26 @@ spotiQuizApp.controller('LoginController', ['$scope','$firebaseAuth','$location'
               }, function(error) {
 
               });
-            }
-          }
-        })
-      }
+                $firebaseArray(firebase.database().ref().child('users'));
+
+                var newUserDatabase = {
+                  name: 'testQuiz',
+                  score: 'x points',
+                  timestamp: 'date/time'
+                };
+
+                var newHistoryKey = firebase.database().ref().child('users').push().key;
+
+                var updates = {};
+                   updates["/users/" + authData.uid + "/history/" + newHistoryKey] = newUserDatabase;
+                   firebase.database().ref().update(updates).then(function() {
+                   console.log("Saved contact message to database.");
+
+                });
+               }
+             }
+           })
+         }
 
 
       auth.$signInWithEmailAndPassword(username, password).then(function(){   //<--- This is what we want

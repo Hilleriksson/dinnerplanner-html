@@ -4,15 +4,19 @@ spotiQuizApp.controller('ProfileController', ['$scope','$firebaseAuth', '$fireba
 	var auth = $firebaseAuth();
 	var ref = firebase.database().ref();
 	var list = $firebaseArray(ref);
+	runHistory();
 
-	var getUserHistory = getUserHistory();
-	test1();
+	function runHistory() {
+	auth.$onAuthStateChanged(function(authData){
+		if (authData != null) {
+			$scope.displayProfileName = authData.displayName;
+			$scope.displayProfilePicture = authData.photoURL;
 
-	function getUserHistory() {
-		return  $firebaseArray(firebase.database().ref().child('users').child('IqJFsvvBghQxVMUVNbm7Ax3RAM82').child('history'));
+
+		history();
 	}
-
-	function test1() {
+	function history() {
+		var getUserHistory = $firebaseArray(firebase.database().ref().child('users').child(authData.uid).child('history'));
 		$scope.quizName = [];
 		var whatQuiz = [];
 		var whatScore = [];
@@ -20,7 +24,7 @@ spotiQuizApp.controller('ProfileController', ['$scope','$firebaseAuth', '$fireba
 		getUserHistory.$loaded()
 		.then(function(){
 			angular.forEach(getUserHistory, function(user)	{
-				whatQuiz.push(user.$id)
+				whatQuiz.push(user.name)
 				whatScore.push(user.score)
 			});
 			this.repeatData = whatQuiz.map(function(value, index) {
@@ -32,12 +36,18 @@ spotiQuizApp.controller('ProfileController', ['$scope','$firebaseAuth', '$fireba
 			$scope.repeatData = repeatData;
 		});
 	};
+})
+}
 
+	/*auth.$onAuthStateChanged(function(authData){
+		if (authData != null) {
+			$scope.displayProfileName = authData.displayName;
+			$scope.displayProfilePicture = authData.photoURL;
+		}
 
 	$scope.fakeGame = function() {
-		$firebaseArray(firebase.database().ref().child('users').child('IqJFsvvBghQxVMUVNbm7Ax3RAM82').child('history'));
+		$firebaseArray(firebase.database().ref().child('users').child(authData.uid).child('history'));
 		console.log("fakeGame() called.")
-		var childName = "IqJFsvvBghQxVMUVNbm7Ax3RAM82";
 
 		var historyData = {
 			name: 'testQuiz',
@@ -45,10 +55,10 @@ spotiQuizApp.controller('ProfileController', ['$scope','$firebaseAuth', '$fireba
 			timestamp: 'date/time'
 		};
 
-		var newHistoryKey = firebase.database().ref().child('users').child(childName).child('history').push().key;
+		var newHistoryKey = firebase.database().ref().child('users').child(authData.uid).child('history').push().key;
 
 		var updates = {};
-		updates["/users/" + childName + "/history/" + newHistoryKey] = historyData;
+		updates["/users/" + authData.uid + "/history/" + newHistoryKey] = historyData;
 		firebase.database().ref().update(updates).then(function() {
 			console.log("Saved contact message to database.");
 	      test1();
@@ -56,6 +66,7 @@ spotiQuizApp.controller('ProfileController', ['$scope','$firebaseAuth', '$fireba
 	  });
 
 	}
+})*/
 
 	auth.$onAuthStateChanged(function(authData){
 		if (authData != null) {
