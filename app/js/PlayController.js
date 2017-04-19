@@ -101,7 +101,7 @@ spotiQuizApp.controller('PlayController', function ($scope, $timeout, quizServic
     var correctOption = quizService.getCorrectAns(x - 1);
     var random1 = Math.floor((Math.random() * 4));
     var random2 = Math.floor((Math.random() * 4));
-    if (random1 === random2 || random1 + 1 === correctOption || random2 + 1 === correctOption) {
+    if (random1 === random2 || random1 === correctOption - 1 || random2 === correctOption - 1) {
       $scope.powerUpFifty();
     }else{
       $scope.displayTypeOption[random1] = "none";
