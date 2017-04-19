@@ -110,7 +110,7 @@ spotiQuizApp.controller('ScoresController', function($scope, $firebaseArray) {
 
       // highScoresQuiz[i][0] contains USERID
       // highScoresQuiz[i][1] contains score for that quiz
-      $scope.highScoresQuiz = tuples;
+      $scope.highScoresQuiz = tuples.reverse();
       $scope.highScoreShow = "showQuiz";
       $scope.scoreContentStatus = "loaded";
     });
